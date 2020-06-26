@@ -1,0 +1,6 @@
+[submodule "api"]
+  path = api
+  url = https://github.com/nizi24/StudyLevel-api
+[submodule "front"]
+  path = front
+  url = https://github.com/nizi24/StudyLevel-front
