@@ -32,7 +32,7 @@ services:
         CONTAINER_PORT: $CONTAINER_PORT
     command: yarn run dev
     volumes:
-      - ./front:/$WORKDIR
+      - ./front:/$WORKDIR:delegated
     ports:
       - "$FRONT_PORT:$CONTAINER_PORT"
     depends_on:
