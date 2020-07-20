@@ -23,6 +23,8 @@ services:
       - db
     ports:
       - "$API_PORT:$CONTAINER_PORT"
+    stdin_open: true
+    tty: true
 
   front:
     build:
