@@ -18,6 +18,9 @@ class SignupViewModel: ObservableObject {
     func signup() {
         errorMessages = []
         createErrorMessages()
+        if errorMessages.isEmpty {
+            
+        }
     }
     
     private func createErrorMessages() {
