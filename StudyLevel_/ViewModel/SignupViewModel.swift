@@ -19,11 +19,13 @@ class SignupViewModel: ObservableObject {
         errorMessages = []
         createErrorMessages()
         if errorMessages.isEmpty {
-            
+            Signup(name: name, email: email, password: password).signup { error in
+                self.errorMessages.append(error)
+            }
         }
     }
     
-    private func createErrorMessages() {
+    func createErrorMessages() {
         let validationResults = SignupValidation(viewModel: self).isValid()
         for validationResult in validationResults {
             switch validationResult {

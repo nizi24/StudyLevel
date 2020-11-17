@@ -30,13 +30,14 @@ struct SignupView: View {
                     TextField("パスワードの確認", text: $viewModel.confirmationPassword)
                         .padding(10)
                 }.frame(height: 300)
+                ForEach(viewModel.errorMessages.indices, id: \.self) { i in
+                    Text("・" + viewModel.errorMessages[i])
+                        .foregroundColor(Color.red)
+                        .padding(.bottom, 10)
+                }
                 Text("利用規約 及び プライバシーポリシー に同意の上ご利用ください。")
                     .font(.footnote)
                     .padding(.bottom, 30)
-                ForEach(viewModel.errorMessages.indices, id: \.self) { i in
-                    Text(viewModel.errorMessages[i])
-                        .foregroundColor(Color.red)
-                }
                 Button(action: {
                     viewModel.signup()
                 }, label: {
@@ -45,10 +46,9 @@ struct SignupView: View {
                         .fontWeight(.bold)
                 })
                 .padding(10)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.blue, lineWidth: 1)
-                )
+                .background(Color.blue)
+                .foregroundColor(Color.white)
+                .cornerRadius(10)
                 Spacer()
             }
         }
