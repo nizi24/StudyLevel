@@ -7,6 +7,7 @@ target 'StudyLevel_' do
 
   # Pods for StudyLevel_
 
+  pod 'RealmSwift'
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
   

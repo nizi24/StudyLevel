@@ -14,13 +14,16 @@ class SignupViewModel: ObservableObject {
     @Published var password = ""
     @Published var confirmationPassword = ""
     @Published var errorMessages: [String] = []
+    @Published var complete = false
     
     func signup() {
         errorMessages = []
         createErrorMessages()
         if errorMessages.isEmpty {
-            Signup(name: name, email: email, password: password).signup { error in
+            Signup(name: name, email: email, password: password).signup(failure: { error in
                 self.errorMessages.append(error)
+            }) { user in
+                self.complete = true
             }
         }
     }

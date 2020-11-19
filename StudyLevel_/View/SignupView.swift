@@ -15,6 +15,11 @@ struct SignupView: View {
             Color.backgroundGray
                 .edgesIgnoringSafeArea(.all)
             VStack {
+                NavigationLink(
+                    destination: ContentView(),
+                    isActive: $viewModel.complete) {
+                    EmptyView()
+                }
                 Text("新規登録")
                     .font(.title2)
                     .fontWeight(.bold)
@@ -25,9 +30,9 @@ struct SignupView: View {
                         .padding(10)
                     TextField("メールアドレス", text: $viewModel.email)
                         .padding(10)
-                    TextField("パスワード", text: $viewModel.password)
+                    SecureField("パスワード", text: $viewModel.password)
                         .padding(10)
-                    TextField("パスワードの確認", text: $viewModel.confirmationPassword)
+                    SecureField("パスワードの確認", text: $viewModel.confirmationPassword)
                         .padding(10)
                 }.frame(height: 300)
                 ForEach(viewModel.errorMessages.indices, id: \.self) { i in
@@ -57,6 +62,8 @@ struct SignupView: View {
 
 struct SignupView_Previews: PreviewProvider {
     static var previews: some View {
-        SignupView()
+        NavigationView {
+            SignupView()
+        }
     }
 }

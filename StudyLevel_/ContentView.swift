@@ -8,8 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var viewModel = ContentViewModel()
+    
     var body: some View {
-        SignupView()
+        if CurrentUser().isLogin() {
+            if viewModel.error {
+                Text(viewModel.errorMessage)
+            } else {
+                MenuView()
+            }
+        } else {
+            SignupOrLoginView()
+        }
     }
 }
 
