@@ -15,6 +15,12 @@
 		6A2B4E812566145F00D7CE7F /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B4E802566145F00D7CE7F /* ContentViewModel.swift */; };
 		6A2B4E8E256659A500D7CE7F /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B4E8D256659A500D7CE7F /* MenuView.swift */; };
 		6A2B4E9325665A5800D7CE7F /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B4E9225665A5800D7CE7F /* MenuViewModel.swift */; };
+		6A2B4E982566640C00D7CE7F /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B4E972566640C00D7CE7F /* LoadingView.swift */; };
+		6A2B4E9D256664CE00D7CE7F /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B4E9C256664CE00D7CE7F /* ActivityIndicator.swift */; };
+		6A2B4EA225669F0200D7CE7F /* CreateTimeReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B4EA125669F0200D7CE7F /* CreateTimeReportView.swift */; };
+		6A2B4EA725669F2F00D7CE7F /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B4EA625669F2F00D7CE7F /* MyPageView.swift */; };
+		6A2B4EAC2566A0E700D7CE7F /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B4EAB2566A0E700D7CE7F /* NotificationView.swift */; };
+		6A2B4EB12566A13B00D7CE7F /* OtherMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B4EB02566A13B00D7CE7F /* OtherMenuView.swift */; };
 		6A583DD22563E1AD006FE098 /* StudyLevelClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A583DD12563E1AC006FE098 /* StudyLevelClient.swift */; };
 		6A583DD72563EACC006FE098 /* StudyLevelAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A583DD62563EACC006FE098 /* StudyLevelAPIError.swift */; };
 		6A583DDC256400EE006FE098 /* StudyLevelClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A583DDB256400EE006FE098 /* StudyLevelClientError.swift */; };
@@ -67,6 +73,12 @@
 		6A2B4E802566145F00D7CE7F /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		6A2B4E8D256659A500D7CE7F /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		6A2B4E9225665A5800D7CE7F /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
+		6A2B4E972566640C00D7CE7F /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		6A2B4E9C256664CE00D7CE7F /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		6A2B4EA125669F0200D7CE7F /* CreateTimeReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTimeReportView.swift; sourceTree = "<group>"; };
+		6A2B4EA625669F2F00D7CE7F /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
+		6A2B4EAB2566A0E700D7CE7F /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		6A2B4EB02566A13B00D7CE7F /* OtherMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuView.swift; sourceTree = "<group>"; };
 		6A583DD12563E1AC006FE098 /* StudyLevelClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyLevelClient.swift; sourceTree = "<group>"; };
 		6A583DD62563EACC006FE098 /* StudyLevelAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyLevelAPIError.swift; sourceTree = "<group>"; };
 		6A583DDB256400EE006FE098 /* StudyLevelClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyLevelClientError.swift; sourceTree = "<group>"; };
@@ -134,10 +146,15 @@
 		6A0B8C8025615831009BD8EC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6A2B4E972566640C00D7CE7F /* LoadingView.swift */,
 				6A0B8C8325615868009BD8EC /* SignupView.swift */,
 				6A583DEC2565ED0E006FE098 /* LoginView.swift */,
 				6A6811922565F5F900510D73 /* SignupOrLoginView.swift */,
 				6A2B4E8D256659A500D7CE7F /* MenuView.swift */,
+				6A2B4EA125669F0200D7CE7F /* CreateTimeReportView.swift */,
+				6A2B4EA625669F2F00D7CE7F /* MyPageView.swift */,
+				6A2B4EAB2566A0E700D7CE7F /* NotificationView.swift */,
+				6A2B4EB02566A13B00D7CE7F /* OtherMenuView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -145,6 +162,7 @@
 		6A0B8C8125615839009BD8EC /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				6A2B4E9C256664CE00D7CE7F /* ActivityIndicator.swift */,
 				6A0B8C8B256158FB009BD8EC /* SignupViewModel.swift */,
 				6A6811712565F07000510D73 /* LoginViewModel.swift */,
 				6A2B4E802566145F00D7CE7F /* ContentViewModel.swift */,
@@ -534,17 +552,23 @@
 				6A6811932565F5F900510D73 /* SignupOrLoginView.swift in Sources */,
 				6A0B8C8425615868009BD8EC /* SignupView.swift in Sources */,
 				6A673A9C256160D200184D88 /* Signup.swift in Sources */,
+				6A2B4EAC2566A0E700D7CE7F /* NotificationView.swift in Sources */,
+				6A2B4E982566640C00D7CE7F /* LoadingView.swift in Sources */,
 				6A583DD72563EACC006FE098 /* StudyLevelAPIError.swift in Sources */,
 				6AEF716A2563AA080078E333 /* User.swift in Sources */,
 				6A2B4E8E256659A500D7CE7F /* MenuView.swift in Sources */,
+				6A2B4EB12566A13B00D7CE7F /* OtherMenuView.swift in Sources */,
+				6A2B4EA225669F0200D7CE7F /* CreateTimeReportView.swift in Sources */,
 				6A6811722565F07000510D73 /* LoginViewModel.swift in Sources */,
 				6A583DDC256400EE006FE098 /* StudyLevelClientError.swift in Sources */,
 				6AB298EF25614DE8003D2792 /* ContentView.swift in Sources */,
 				6A583DED2565ED0E006FE098 /* LoginView.swift in Sources */,
 				6AEF71812563C22D0078E333 /* HTTPMethod.swift in Sources */,
+				6A2B4E9D256664CE00D7CE7F /* ActivityIndicator.swift in Sources */,
 				6A583DE82565ECC8006FE098 /* Login.swift in Sources */,
 				6AEF71862563DF200078E333 /* HTTPClient.swift in Sources */,
 				6A2B4E812566145F00D7CE7F /* ContentViewModel.swift in Sources */,
+				6A2B4EA725669F2F00D7CE7F /* MyPageView.swift in Sources */,
 				6AEF717C2563C18B0078E333 /* Request.swift in Sources */,
 				6A2B4E9325665A5800D7CE7F /* MenuViewModel.swift in Sources */,
 				6A583DD22563E1AD006FE098 /* StudyLevelClient.swift in Sources */,

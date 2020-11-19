@@ -13,7 +13,7 @@ struct MenuView: View {
     var body: some View {
         ZStack {
             NavigationLink(
-                destination: ContentView(),
+                destination: SignupOrLoginView(),
                 isActive: $viewModel.isNotLogin,
                 label: {
                     EmptyView()
@@ -24,9 +24,40 @@ struct MenuView: View {
                 }, label: {
                     Text("Logout")
                 })
-                    .tabItem { Text("Home") }
-                Text("Create")
-                    .tabItem { Text("Create") }
+                    .tabItem {
+                        VStack {
+                            Image(systemName: "list.bullet")
+                            Text("Home")
+                        }
+                    }
+                CreateTimeReportView()
+                    .tabItem {
+                        VStack {
+                            Image(systemName: "square.and.pencil")
+                            Text("記録する")
+                        }
+                    }
+                MyPageView()
+                    .tabItem {
+                        VStack {
+                            Image(systemName: "person.crop.circle")
+                            Text("マイページ")
+                        }
+                    }
+                NotificationView()
+                    .tabItem {
+                        VStack {
+                            Image(systemName: "bell")
+                            Text("通知")
+                        }
+                    }
+                OtherMenuView()
+                    .tabItem {
+                        VStack {
+                            Image(systemName: "gearshape")
+                            Text("設定・その他")
+                        }
+                    }
             }
             .navigationBarBackButtonHidden(true)
         }
