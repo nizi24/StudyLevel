@@ -21,6 +21,12 @@ class UserRequest: Request {
         return self
     }
     
+    func show(id: Int) -> Self {
+        path = "/v2/users/\(id)"
+        method = .get
+        return self
+    }
+    
     func create(name: String, email: String, uid: String) -> Self {
         path = "/v2/users"
         method = .post

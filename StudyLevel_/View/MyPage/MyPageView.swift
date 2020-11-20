@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct MyPageView: View {
+    @ObservedObject var viewModel = MyPageViewModel()
+    
     var body: some View {
-        Text("MyPage")
+        VStack {
+            Text(viewModel.user?.name ?? "")
+            ExperienceProgressView(viewModel: MyPageViewModel())
+        }
     }
 }
 

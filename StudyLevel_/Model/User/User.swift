@@ -7,7 +7,7 @@
 
 import Foundation
 
-class User: NSObject, Decodable {
+struct User: Decodable {
     var id: Int
     var name: String
     var screenName: String
@@ -25,4 +25,6 @@ class User: NSObject, Decodable {
         case profile
         case guest
     }
+    
+    
 }
