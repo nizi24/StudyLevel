@@ -15,6 +15,7 @@ class MyPageViewModel: ObservableObject {
     @Published var avatarURL: URL?
     @Published var followingCount: Int?
     @Published var followerCount: Int?
+    @Published var weeklyTarget: WeeklyTarget?
     @Published var timeReports: [TimeReport]?
     @Published var connecting: Bool
     
@@ -26,9 +27,10 @@ class MyPageViewModel: ObservableObject {
         getFollowingCount()
         getFollowerCount()
         getTimeReports()
+        getWeeklyTarget()
     }
-        
-    func getUser() {
+    
+    private func getUser() {
         guard let id = CurrentUser().currentUser()?.id else {
             errorMessage = "認証に失敗しました"
             return
@@ -45,7 +47,7 @@ class MyPageViewModel: ObservableObject {
         }
     }
     
-    func getExperience() {
+    private func getExperience() {
         guard let id = CurrentUser().currentUser()?.id else {
             errorMessage = "認証に失敗しました"
             return
@@ -63,7 +65,7 @@ class MyPageViewModel: ObservableObject {
         }
     }
     
-    func getRequiredEXP() {
+    private func getRequiredEXP() {
         guard let level = experience?.level else {
             errorMessage = "通信に失敗しました"
             self.connecting = false
@@ -82,7 +84,7 @@ class MyPageViewModel: ObservableObject {
         }
     }
     
-    func getAvatarURL() {
+    private func getAvatarURL() {
         guard let id = CurrentUser().currentUser()?.id else {
             errorMessage = "認証に失敗しました"
             return
@@ -99,7 +101,7 @@ class MyPageViewModel: ObservableObject {
         }
     }
     
-    func getFollowingCount() {
+    private func getFollowingCount() {
         guard let id = CurrentUser().currentUser()?.id else {
             errorMessage = "認証に失敗しました"
             return
@@ -116,7 +118,7 @@ class MyPageViewModel: ObservableObject {
         }
     }
     
-    func getFollowerCount() {
+    private func getFollowerCount() {
         guard let id = CurrentUser().currentUser()?.id else {
             errorMessage = "認証に失敗しました"
             return
@@ -133,7 +135,24 @@ class MyPageViewModel: ObservableObject {
         }
     }
     
-    func getTimeReports() {
+    private func getWeeklyTarget() {
+        guard let id = CurrentUser().currentUser()?.id else {
+            errorMessage = "認証に失敗しました"
+            return
+        }
+        let request = WeeklyTargetRequest().show(userId: id)
+        StudyLevelClient().send(request: request) { result in
+            switch result {
+            case .success(let weeklyTarget):
+                DispatchQueue.main.async {
+                    self.weeklyTarget = weeklyTarget
+                }
+            case .failure(_): break
+            }
+        }
+    }
+    
+    private func getTimeReports() {
         guard let id = CurrentUser().currentUser()?.id else {
             errorMessage = "認証に失敗しました"
             return
@@ -167,6 +186,33 @@ class MyPageViewModel: ObservableObject {
             return ""
         }
         return "\(requiredEXP - experienceToNext)/\(requiredEXP)"
+    }
+    
+    func weeklyTargetProgress() -> Double {
+        guard let target = weeklyTarget else {
+            return 0
+        }
+        let progressMinutes = conversionDateTimeToMinute(dateTime: target.progress)
+        let targetMinutes = conversionDateTimeToMinute(dateTime: target.targetTime)
+        return Double(progressMinutes) / Double(targetMinutes) * 100
+    }
+    
+    func weeklyTargetProgressNumeretor() -> String {
+        guard let target = weeklyTarget else {
+            return ""
+        }
+        
+        return ""
+    }
+    
+    private func conversionDateTimeToMinute(dateTime: String) -> Int {
+        let splitToArray = dateTime.split(separator: "T")
+        let day = splitToArray[0].split(separator: "-")[2]
+        let time = splitToArray[1].split(separator: ":")
+        let hour = time[0]
+        let minutes = time[1]
+        let calcMinutes = (Int(day)! * 24 * 60) + (Int(hour)! * 60) + Int(minutes)!
+        return calcMinutes
     }
     
     func levelColor() -> String {

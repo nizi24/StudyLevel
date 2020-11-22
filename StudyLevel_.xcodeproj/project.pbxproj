@@ -39,6 +39,10 @@
 		6A2B4EB62566A48B00D7CE7F /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B4EB52566A48B00D7CE7F /* MyPageViewModel.swift */; };
 		6A446D9E256A25D200AC93DF /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A446D9D256A25D200AC93DF /* TagView.swift */; };
 		6A446DA3256A2CB400AC93DF /* FlexibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A446DA2256A2CB400AC93DF /* FlexibleView.swift */; };
+		6A446DAC256A3B7600AC93DF /* WeeklyTargetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A446DAB256A3B7600AC93DF /* WeeklyTargetRequest.swift */; };
+		6A446DB1256A3BAF00AC93DF /* WeeklyTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A446DB0256A3BAF00AC93DF /* WeeklyTarget.swift */; };
+		6A446DB9256A7D1200AC93DF /* WeeklyTargetTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A446DB8256A7D1200AC93DF /* WeeklyTargetTest.swift */; };
+		6A446DC6256A7F7100AC93DF /* WeeklyTargetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A446DC5256A7F7100AC93DF /* WeeklyTargetView.swift */; };
 		6A583DD22563E1AD006FE098 /* StudyLevelClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A583DD12563E1AC006FE098 /* StudyLevelClient.swift */; };
 		6A583DD72563EACC006FE098 /* StudyLevelAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A583DD62563EACC006FE098 /* StudyLevelAPIError.swift */; };
 		6A583DDC256400EE006FE098 /* StudyLevelClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A583DDB256400EE006FE098 /* StudyLevelClientError.swift */; };
@@ -125,6 +129,10 @@
 		6A2B4EB52566A48B00D7CE7F /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
 		6A446D9D256A25D200AC93DF /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		6A446DA2256A2CB400AC93DF /* FlexibleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleView.swift; sourceTree = "<group>"; };
+		6A446DAB256A3B7600AC93DF /* WeeklyTargetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyTargetRequest.swift; sourceTree = "<group>"; };
+		6A446DB0256A3BAF00AC93DF /* WeeklyTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyTarget.swift; sourceTree = "<group>"; };
+		6A446DB8256A7D1200AC93DF /* WeeklyTargetTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyTargetTest.swift; sourceTree = "<group>"; };
+		6A446DC5256A7F7100AC93DF /* WeeklyTargetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyTargetView.swift; sourceTree = "<group>"; };
 		6A583DD12563E1AC006FE098 /* StudyLevelClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyLevelClient.swift; sourceTree = "<group>"; };
 		6A583DD62563EACC006FE098 /* StudyLevelAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyLevelAPIError.swift; sourceTree = "<group>"; };
 		6A583DDB256400EE006FE098 /* StudyLevelClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyLevelClientError.swift; sourceTree = "<group>"; };
@@ -242,6 +250,7 @@
 				6A12465E256751F20095CB13 /* RequiredEXP.swift */,
 				6A12462925673D730095CB13 /* Experience.swift */,
 				6AEF71692563AA080078E333 /* User.swift */,
+				6A446DB0256A3BAF00AC93DF /* WeeklyTarget.swift */,
 				6A12461F2566A9F00095CB13 /* Auth */,
 				6A583DE62565ECA1006FE098 /* Requests */,
 				6A583DE52565EBA5006FE098 /* HTTPRequestProcessor */,
@@ -292,6 +301,7 @@
 				6A2B4EA625669F2F00D7CE7F /* MyPageView.swift */,
 				6A12464825674D540095CB13 /* ExperienceProgressView.swift */,
 				6A124694256883ED0095CB13 /* ProfileView.swift */,
+				6A446DC5256A7F7100AC93DF /* WeeklyTargetView.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -329,6 +339,7 @@
 				6ABF38D72568F478009CAEF3 /* ExperienceRecordRequest.swift */,
 				6ABF39042568F9D3009CAEF3 /* TagsRequest.swift */,
 				6ABF391125692E23009CAEF3 /* LikeCountAndCommentCountRequest.swift */,
+				6A446DAB256A3B7600AC93DF /* WeeklyTargetRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -415,6 +426,7 @@
 				6A124666256753A70095CB13 /* RequiredEXPTest.swift */,
 				6A1246AF2568EEC20095CB13 /* TimeReportTest.swift */,
 				6ABF38C82568F182009CAEF3 /* ExperienceRecordTest.swift */,
+				6A446DB8256A7D1200AC93DF /* WeeklyTargetTest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -698,6 +710,7 @@
 				6AEF716A2563AA080078E333 /* User.swift in Sources */,
 				6A1246852568011F0095CB13 /* AvatarRequest.swift in Sources */,
 				6ABF38F72568F715009CAEF3 /* TimeReportViewModel.swift in Sources */,
+				6A446DAC256A3B7600AC93DF /* WeeklyTargetRequest.swift in Sources */,
 				6ABF38C12568F100009CAEF3 /* ExperienceRecord.swift in Sources */,
 				6A12469A25689E2B0095CB13 /* FollowCountRequest.swift in Sources */,
 				6A2B4E8E256659A500D7CE7F /* MenuView.swift in Sources */,
@@ -712,6 +725,7 @@
 				6A583DED2565ED0E006FE098 /* LoginView.swift in Sources */,
 				6AEF71812563C22D0078E333 /* HTTPMethod.swift in Sources */,
 				6A2B4E9D256664CE00D7CE7F /* ActivityIndicator.swift in Sources */,
+				6A446DC6256A7F7100AC93DF /* WeeklyTargetView.swift in Sources */,
 				6A12466C2567542F0095CB13 /* RequiredEXPRequest.swift in Sources */,
 				6A446D9E256A25D200AC93DF /* TagView.swift in Sources */,
 				6A583DE82565ECC8006FE098 /* Login.swift in Sources */,
@@ -721,6 +735,7 @@
 				6A2B4EA725669F2F00D7CE7F /* MyPageView.swift in Sources */,
 				6ABF38F22568F643009CAEF3 /* TimeReportView.swift in Sources */,
 				6AEF717C2563C18B0078E333 /* Request.swift in Sources */,
+				6A446DB1256A3BAF00AC93DF /* WeeklyTarget.swift in Sources */,
 				6A2B4E9325665A5800D7CE7F /* MenuViewModel.swift in Sources */,
 				6A583DD22563E1AD006FE098 /* StudyLevelClient.swift in Sources */,
 				6A12467B2567FA560095CB13 /* ImageContainer.swift in Sources */,
@@ -740,6 +755,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6AEF716525636E7B0078E333 /* SignupViewModelTest.swift in Sources */,
+				6A446DB9256A7D1200AC93DF /* WeeklyTargetTest.swift in Sources */,
 				6ABF38C92568F182009CAEF3 /* ExperienceRecordTest.swift in Sources */,
 				6AEF716F2563BAB30078E333 /* UserTest.swift in Sources */,
 				6A124667256753A70095CB13 /* RequiredEXPTest.swift in Sources */,

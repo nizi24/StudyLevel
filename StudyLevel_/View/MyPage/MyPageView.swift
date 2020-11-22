@@ -27,6 +27,10 @@ struct MyPageView: View {
                             .frame(height: 100)
                             .padding()
                             .background(Color.white)
+                        WeeklyTargetView(viewModel: viewModel)
+                            .frame(height: 100)
+                            .padding()
+                            .background(Color.white)
                         Spacer()
                         VStack {
                             if let timeReports = viewModel.timeReports {
