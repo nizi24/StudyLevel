@@ -16,15 +16,17 @@ struct ExperienceProgressView: View {
             HStack {
                 VStack {
                     Text("Lv." + String(viewModel.experience?.level ?? 0))
-                        .font(.title)
+                        .font(.title2)
                     Text("Current Level")
+                        .font(.footnote)
                 }
                 Spacer()
                 VStack {
                     Text(String(viewModel.experience?.totalExperience ?? 0))
-                        .font(.title)
+                        .font(.title2)
                         .foregroundColor(Color(UIColor(hex: viewModel.levelColor())))
                     Text("Total EXP")
+                        .font(.footnote)
                 }
                 
             }
@@ -33,9 +35,10 @@ struct ExperienceProgressView: View {
             
             HStack {
                 ProgressView(value: viewModel.progress() ?? 0, total: 100)
-                    .scaleEffect(y: 5)
+                    .scaleEffect(y: 3)
                 Text(viewModel.progressNumeretor())
                     .foregroundColor(.secondary)
+                    .font(.footnote)
             }
             .frame(width: screen.width * 9 / 10)
         }

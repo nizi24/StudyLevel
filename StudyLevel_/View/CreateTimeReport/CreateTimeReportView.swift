@@ -17,6 +17,8 @@ struct CreateTimeReportView: View {
 
 struct CreateTimeReportView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateTimeReportView()
+        NavigationView {
+            CreateTimeReportView()
+        }
     }
 }
