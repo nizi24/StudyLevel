@@ -89,7 +89,7 @@ class CurrentUser: Object {
     }
     
     private func realmMigration() {
-        let schemaVersion: UInt64 = 2
+        let schemaVersion: UInt64 = 3
 
         let config = Realm.Configuration(
             schemaVersion: schemaVersion,

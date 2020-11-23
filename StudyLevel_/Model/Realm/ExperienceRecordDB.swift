@@ -18,5 +18,13 @@ class ExperienceRecordDB: Object {
     override static func primaryKey() -> String? {
             return "id"
     }
-
+    
+    func create(experienceRecord: ExperienceRecord) -> Self {
+        id = experienceRecord.id
+        userId = experienceRecord.userId
+        timeReportId = experienceRecord.timeReportId
+        experiencePoint = experienceRecord.experiencePoint
+        bonusMultiplier = experienceRecord.bonusMultiplier
+        return self
+    }
 }

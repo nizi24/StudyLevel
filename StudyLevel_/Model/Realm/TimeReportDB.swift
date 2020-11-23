@@ -17,6 +17,7 @@ class TimeReportDB: Object {
     @objc dynamic var createdAt: String = ""
     @objc dynamic var likeCount: Int = 0
     @objc dynamic var commentCount: Int = 0
+    @objc dynamic var experienceReport: ExperienceRecordDB? = ExperienceRecordDB()
     let creator = LinkingObjects(fromType: UserDB.self, property: "timeReports")
     var tags = List<TagDB>()
     
@@ -33,6 +34,7 @@ class TimeReportDB: Object {
         createdAt = viewModel.timeReport.createdAt
         likeCount = viewModel.likeCount!
         commentCount = viewModel.commentCount!
+        experienceReport = ExperienceRecordDB().create(experienceRecord: viewModel.experienceRecord!)
         for tag in viewModel.tags! {
             tags.append(TagDB().create(tag: tag))
         }
@@ -48,6 +50,16 @@ class TimeReportDB: Object {
     func delete(timeReportId: Int) {
         let realm = try! Realm()
         let deleteTarget = realm.objects(TimeReportDB.self).filter("id == %@", timeReportId)
+        if let deleteTargetTags = deleteTarget.first?.tags {
+            try! realm.write {
+                realm.delete(deleteTargetTags)
+            }
+        }
+        if let deleteTargetExperienceRecord = deleteTarget.first?.experienceReport {
+            try! realm.write {
+                realm.delete(deleteTargetExperienceRecord)
+            }
+        }
         try! realm.write {
             realm.delete(deleteTarget)
         }

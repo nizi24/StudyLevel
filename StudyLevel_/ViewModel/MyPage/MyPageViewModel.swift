@@ -33,13 +33,14 @@ class MyPageViewModel: ObservableObject {
     }
     
     private func saveToRealm() {
-        // すべての
+        // すべての通信が完了してない場合やり直し
         guard user != nil && experience != nil && requiredEXP != nil && followingCount != nil else {
             return
         }
         guard followerCount != nil, let timeReports = timeReports, weeklyTargetConnectionComplete else {
             return
         }
+        // 今まで保存したレポートを退避
         for timeReport in timeReports {
             if let dbList = UserDB().getCurrentUser()?.timeReports {
                 for db in dbList {
@@ -49,7 +50,9 @@ class MyPageViewModel: ObservableObject {
                 }
             }
         }
+        // 最新の状態を保つために古い情報を削除
         UserDB().removeCurrentUser()
+        // 新しく作り直して保存
         let userdb = UserDB().create(viewModel: self)
         userdb.save()
     }
@@ -63,6 +66,7 @@ class MyPageViewModel: ObservableObject {
         StudyLevelClient().send(request: request) { result in
             switch result {
             case .success(let user):
+                // メインスレッドから投稿しないと警告が出る & Viewの再構築が遅くなる
                 DispatchQueue.main.async {
                     self.user = user
                     self.saveToRealm()

@@ -45,28 +45,29 @@ class TimeReportViewModel: ObservableObject {
     }
     
     func appendCurrentUser() {
+        // すべての通信が完了していない場合、return
         guard experienceRecord != nil && tags != nil && likeCount != nil && commentCount != nil && avatarConnectionComplete else {
             return
         }
         guard let creator = creator, let currentUser = CurrentUser().currentUser() else {
             return
         }
+        // ログイン中のユーザーとレポートの作成者が一致する場合
         if creator.id == currentUser.id {
+            // UserDBの作成が完了していない場合、待機
             guard let user = UserDB().getCurrentUser() else {
                 appendCurrentUser()
                 return
             }
+            // 古い情報を削除
             TimeReportDB().delete(timeReportId: timeReport.id)
+            // すでにUserDBに追加している場合、return
             for report in user.timeReports {
                 guard report.id != timeReport.id else {
                     return
                 }
             }
-            if let timeReport = TimeReportDB().find(id: timeReport.id) {
-                UserDB().appendTimeReport(timeReport: timeReport)
-            } else {
-                UserDB().appendTimeReport(timeReport: TimeReportDB().create(viewModel: self))
-            }
+            UserDB().appendTimeReport(timeReport: TimeReportDB().create(viewModel: self))
         }
     }
     

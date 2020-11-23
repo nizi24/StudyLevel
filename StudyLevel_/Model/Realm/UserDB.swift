@@ -71,9 +71,6 @@ class UserDB: Object {
         let experience = realm.objects(ExperienceDB.self).filter("userId == %@", id)
         let weeklyTarget = realm.objects(WeeklyTargetDB.self).filter("userId == %@", id)
         let requiredEXP = realm.objects(RequiredEXPDB.self)
-        let timeReports = realm.objects(TimeReportDB.self).filter("userId == %@", id)
-        let tags = realm.objects(TagDB.self)
-        let experienceRecord = realm.objects(ExperienceRecordDB.self)
         
         try! realm.write {
             realm.delete(currentUser)
@@ -81,8 +78,6 @@ class UserDB: Object {
             realm.delete(weeklyTarget)
             realm.delete(requiredEXP)
             currentUser.first?.timeReports.removeAll()
-            realm.delete(tags)
-            realm.delete(experienceRecord)
         }
     }
     
