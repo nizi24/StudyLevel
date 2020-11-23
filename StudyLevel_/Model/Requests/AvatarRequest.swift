@@ -8,7 +8,7 @@
 import Foundation
 
 class AvatarRequest: Request {
-    typealias Response = URL
+    typealias Response = URL?
     var path = "/v2/:id/avatar_url"
     var method: HTTPMethod = .get
     var queryItems: [URLQueryItem]?

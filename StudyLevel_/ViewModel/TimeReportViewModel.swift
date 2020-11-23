@@ -15,15 +15,17 @@ class TimeReportViewModel: ObservableObject {
     @Published var tags: [Tag]?
     @Published var likeCount: Int?
     @Published var commentCount: Int?
-    
+    @Published var avatarConnectionComplete: Bool
     
     init(timeReport: TimeReport) {
+        self.avatarConnectionComplete = false
         self.timeReport = timeReport
         getCreator()
         initGetterOtherThanCreator()
     }
     
     init(timeReport: TimeReport, creator: User?) {
+        self.avatarConnectionComplete = false
         self.timeReport = timeReport
         if let creator = creator {
             self.creator = creator
@@ -34,10 +36,38 @@ class TimeReportViewModel: ObservableObject {
     }
     
     func initGetterOtherThanCreator() {
+        appendCurrentUser()
+        getAvatarURL()
         getTags()
         getExperienceRecord()
         getLikeCount()
         getCommentCount()
+    }
+    
+    func appendCurrentUser() {
+        guard experienceRecord != nil && tags != nil && likeCount != nil && commentCount != nil && avatarConnectionComplete else {
+            return
+        }
+        guard let creator = creator, let currentUser = CurrentUser().currentUser() else {
+            return
+        }
+        if creator.id == currentUser.id {
+            guard let user = UserDB().getCurrentUser() else {
+                appendCurrentUser()
+                return
+            }
+            TimeReportDB().delete(timeReportId: timeReport.id)
+            for report in user.timeReports {
+                guard report.id != timeReport.id else {
+                    return
+                }
+            }
+            if let timeReport = TimeReportDB().find(id: timeReport.id) {
+                UserDB().appendTimeReport(timeReport: timeReport)
+            } else {
+                UserDB().appendTimeReport(timeReport: TimeReportDB().create(viewModel: self))
+            }
+        }
     }
     
     func processingStudyDate() -> String {
@@ -104,8 +134,14 @@ class TimeReportViewModel: ObservableObject {
             case .success(let avatarURL):
                 DispatchQueue.main.async {
                     self.avatarURL = avatarURL
+                    self.avatarConnectionComplete = true
+                    self.appendCurrentUser()
                 }
-            case .failure(_): break
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.avatarConnectionComplete = true
+                    self.appendCurrentUser()
+                }
             }
         }
     }
@@ -117,6 +153,7 @@ class TimeReportViewModel: ObservableObject {
             case .success(let tags):
                 DispatchQueue.main.async {
                     self.tags = tags
+                    self.appendCurrentUser()
                 }
             case .failure(_): break
             }
@@ -130,6 +167,7 @@ class TimeReportViewModel: ObservableObject {
             case .success(let experienceRecord):
                 DispatchQueue.main.async {
                     self.experienceRecord = experienceRecord
+                    self.appendCurrentUser()
                 }
             case .failure(_): break
             }
@@ -143,6 +181,7 @@ class TimeReportViewModel: ObservableObject {
             case .success(let likeCount):
                 DispatchQueue.main.async {
                     self.likeCount = likeCount
+                    self.appendCurrentUser()
                 }
             case .failure(_): break
             }
@@ -156,6 +195,7 @@ class TimeReportViewModel: ObservableObject {
             case .success(let commentCount):
                 DispatchQueue.main.async {
                     self.commentCount = commentCount
+                    self.appendCurrentUser()
                 }
             case .failure(_): break
             }

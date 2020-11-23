@@ -9,16 +9,25 @@ import SwiftUI
 
 struct WeeklyTargetView: View {
     @ObservedObject var viewModel: MyPageViewModel
+    @State var screen: CGSize = UIScreen.main.bounds.size
     
     var body: some View {
         VStack {
             HStack {
                 Image(systemName: "target")
+                    .padding(.leading, 5)
                 Text("今週の目標")
+                Text(viewModel.processingWeeklyStart())
                 Spacer()
             }
-            ProgressView(value: viewModel.weeklyTargetProgress(), total: 100)
-                .scaleEffect(y: 3)
+            HStack {
+                ProgressView(value: viewModel.weeklyTargetProgress(), total: 100)
+                    .scaleEffect(y: 3)
+                Text(viewModel.weeklyTargetProgressNumeretor())
+                    .foregroundColor(.secondary)
+                    .font(.footnote)
+            }
+            .frame(width: screen.width * 9 / 10)
         }
     }
 }

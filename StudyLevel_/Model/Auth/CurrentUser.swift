@@ -16,6 +16,8 @@ class CurrentUser: Object {
     
     
     func set() -> Result<CurrentUser, Error> {
+        realmMigration()
+        removeCurrentUser()
         let realm = try! Realm()
         if isLogin() {
             let uid = Auth.auth().currentUser!.uid
@@ -71,6 +73,14 @@ class CurrentUser: Object {
         }
     }
     
+    private func removeCurrentUser() {
+        let realm = try! Realm()
+        let presentUser = realm.objects(Self.self)
+        try! realm.write {
+            realm.delete(presentUser)
+        }
+    }
+    
     private func setCurrentUserToRealm() {
         let realm = try! Realm()
         try! realm.write {
@@ -79,7 +89,7 @@ class CurrentUser: Object {
     }
     
     private func realmMigration() {
-        let schemaVersion: UInt64 = 1
+        let schemaVersion: UInt64 = 2
 
         let config = Realm.Configuration(
             schemaVersion: schemaVersion,

@@ -8,9 +8,18 @@
 import SwiftUI
 
 struct CreateTimeReportView: View {
+    @ObservedObject var viewModel = CreateTimeReportViewModel()
+    
     var body: some View {
         VStack {
-            
+            List {
+                ForEach(viewModel.timeReports.indices, id: \.self) { i in
+                    Text(String(viewModel.timeReports[i].id))
+                    Text(String(viewModel.timeReports[i].memo))
+                }
+            }
+        }.onAppear {
+            viewModel.getTimeReports()
         }
     }
 }

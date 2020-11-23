@@ -16,7 +16,9 @@ class MyPageViewModel: ObservableObject {
     @Published var followingCount: Int?
     @Published var followerCount: Int?
     @Published var weeklyTarget: WeeklyTarget?
+    @Published var weeklyTargetConnectionComplete = false
     @Published var timeReports: [TimeReport]?
+    @Published var timeReportDBList: [TimeReportDB] = []
     @Published var connecting: Bool
     
     init() {
@@ -30,6 +32,28 @@ class MyPageViewModel: ObservableObject {
         getWeeklyTarget()
     }
     
+    private func saveToRealm() {
+        // すべての
+        guard user != nil && experience != nil && requiredEXP != nil && followingCount != nil else {
+            return
+        }
+        guard followerCount != nil, let timeReports = timeReports, weeklyTargetConnectionComplete else {
+            return
+        }
+        for timeReport in timeReports {
+            if let dbList = UserDB().getCurrentUser()?.timeReports {
+                for db in dbList {
+                    if db.id == timeReport.id {
+                        timeReportDBList.append(db)
+                    }
+                }
+            }
+        }
+        UserDB().removeCurrentUser()
+        let userdb = UserDB().create(viewModel: self)
+        userdb.save()
+    }
+    
     private func getUser() {
         guard let id = CurrentUser().currentUser()?.id else {
             errorMessage = "認証に失敗しました"
@@ -41,6 +65,7 @@ class MyPageViewModel: ObservableObject {
             case .success(let user):
                 DispatchQueue.main.async {
                     self.user = user
+                    self.saveToRealm()
                 }
             case .failure(_): break
             }
@@ -78,6 +103,7 @@ class MyPageViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     self.requiredEXP = requiredEXP
                     self.connecting = false
+                    self.saveToRealm()
                 }
             case .failure(_): break
             }
@@ -95,6 +121,7 @@ class MyPageViewModel: ObservableObject {
             case .success(let avatarURL):
                 DispatchQueue.main.async {
                     self.avatarURL = avatarURL
+                    self.saveToRealm()
                 }
             case .failure(_): break
             }
@@ -112,6 +139,7 @@ class MyPageViewModel: ObservableObject {
             case .success(let followingCount):
                 DispatchQueue.main.async {
                     self.followingCount = followingCount
+                    self.saveToRealm()
                 }
             case .failure(_): break
             }
@@ -129,6 +157,7 @@ class MyPageViewModel: ObservableObject {
             case .success(let followerCount):
                 DispatchQueue.main.async {
                     self.followerCount = followerCount
+                    self.saveToRealm()
                 }
             case .failure(_): break
             }
@@ -146,8 +175,14 @@ class MyPageViewModel: ObservableObject {
             case .success(let weeklyTarget):
                 DispatchQueue.main.async {
                     self.weeklyTarget = weeklyTarget
+                    self.weeklyTargetConnectionComplete = true
+                    self.saveToRealm()
                 }
-            case .failure(_): break
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.weeklyTargetConnectionComplete = true
+                    self.saveToRealm()
+                }
             }
         }
     }
@@ -201,18 +236,36 @@ class MyPageViewModel: ObservableObject {
         guard let target = weeklyTarget else {
             return ""
         }
-        
-        return ""
+        let progressDateArray = conversionDateTimeToArray(dateTime: target.progress)
+        let targetTimeDateArray = conversionDateTimeToArray(dateTime: target.targetTime)
+        let progressHour = (Int(progressDateArray[0])! - 1) * 24 + Int(progressDateArray[1])!
+        let targetTimeHour = (Int(targetTimeDateArray[0])! - 1) * 24 + Int(targetTimeDateArray[1])!
+        return "\(progressHour):\(progressDateArray[2])/\(targetTimeHour):\(targetTimeDateArray[2])"
+    }
+    
+    func processingWeeklyStart() -> String {
+        guard let target = weeklyTarget else {
+            return ""
+        }
+        let pattern = "^\\d{4}-0?(\\d{1,2})-(\\d{2})"
+        let weeklyStartArray = target.startDate.capture(pattern: pattern, group: [1, 2])
+        let weeklyEndArray = target.endDate.capture(pattern: pattern, group: [1, 2])
+        return "\(weeklyStartArray[0])月\(weeklyStartArray[1])日〜\(weeklyEndArray[0])月\(weeklyEndArray[1])日"
     }
     
     private func conversionDateTimeToMinute(dateTime: String) -> Int {
+        let dateArray = conversionDateTimeToArray(dateTime: dateTime)
+        let calcMinutes = ((Int(dateArray[0])! - 1) * 24 * 60) + (Int(dateArray[1])! * 60) + Int(dateArray[2])!
+        return calcMinutes
+    }
+    
+    private func conversionDateTimeToArray(dateTime: String) -> [String] {
         let splitToArray = dateTime.split(separator: "T")
         let day = splitToArray[0].split(separator: "-")[2]
         let time = splitToArray[1].split(separator: ":")
         let hour = time[0]
         let minutes = time[1]
-        let calcMinutes = (Int(day)! * 24 * 60) + (Int(hour)! * 60) + Int(minutes)!
-        return calcMinutes
+        return [String(day), String(hour), String(minutes)]
     }
     
     func levelColor() -> String {
