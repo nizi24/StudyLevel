@@ -21,4 +21,15 @@ struct Experience: Decodable {
         case totalExperience = "total_experience"
         case experienceToNext = "experience_to_next"
     }
+    
+    init?(experienceDB: ExperienceDB?) {
+        guard let experienceDB = experienceDB else {
+            return nil
+        }
+        id = experienceDB.id
+        userId = experienceDB.userId
+        level = experienceDB.level
+        totalExperience = experienceDB.totalExperience
+        experienceToNext = experienceDB.experienceToNext
+    }
 }

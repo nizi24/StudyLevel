@@ -44,6 +44,9 @@ struct MyPageView: View {
                 }
                 .frame(width: screen.width * 19 / 20)
             }
+        }.onAppear {
+            
+                viewModel.getToRealm()
         }
     }
 }

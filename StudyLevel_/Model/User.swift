@@ -26,5 +26,13 @@ struct User: Decodable {
         case guest
     }
     
-    
+    init(userDB: UserDB) {
+        id = userDB.id
+        name = userDB.name
+        screenName = userDB.screenName
+        createdAt = userDB.createdAt
+        updatedAt = userDB.createdAt
+        profile = userDB.profile
+        guest = userDB.guest
+    }
 }

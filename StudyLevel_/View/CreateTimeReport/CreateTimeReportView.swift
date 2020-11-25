@@ -12,14 +12,19 @@ struct CreateTimeReportView: View {
     
     var body: some View {
         VStack {
-            List {
-                ForEach(viewModel.timeReports.indices, id: \.self) { i in
-                    Text(String(viewModel.timeReports[i].id))
-                    Text(String(viewModel.timeReports[i].memo))
-                }
+            Form {
+                DatePicker(selection: $viewModel.studyDate,
+                           in: viewModel.oneWeekBefore()...Date(),
+                           label: {
+                    Text("学習日時")
+                })
+                Button(action: {
+                    viewModel.tapStudyTime.toggle()
+                }, label: { Text("a") })
+                    .sheet(isPresented: $viewModel.tapStudyTime) {
+                        
+                    }
             }
-        }.onAppear {
-            viewModel.getTimeReports()
         }
     }
 }

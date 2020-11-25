@@ -510,8 +510,8 @@
             filePath = "StudyLevel_/ViewModel/MyPage/MyPageViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
             landmarkName = "getWeeklyTarget()"
             landmarkType = "7">
          </BreakpointContent>
@@ -526,8 +526,8 @@
             filePath = "StudyLevel_/ViewModel/MyPage/MyPageViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
             landmarkName = "getWeeklyTarget()"
             landmarkType = "7">
          </BreakpointContent>
@@ -542,8 +542,8 @@
             filePath = "StudyLevel_/ViewModel/MyPage/MyPageViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
             landmarkName = "getWeeklyTarget()"
             landmarkType = "7">
             <Locations>
@@ -839,32 +839,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B68D0558-D561-49F0-B321-3A975E2DDB78"
+            uuid = "1317F7AA-8ABA-495B-B211-81847C0E09CE"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "StudyLevel_/ViewModel/CreateTimeReport/CreateTimeReport.swift"
+            filePath = "StudyLevel_/ViewModel/MyPage/MyPageViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "14"
-            endingLineNumber = "14"
-            landmarkName = "getTimeReports()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "BCE3AA43-B97E-4ADF-AED2-78C972E4735F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "StudyLevel_/ViewModel/CreateTimeReport/CreateTimeReport.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
-            landmarkName = "getTimeReports()"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "getToRealm()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

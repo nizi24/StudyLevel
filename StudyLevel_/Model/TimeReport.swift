@@ -23,4 +23,13 @@ struct TimeReport: Decodable, Hashable {
         case memo
         case createdAt = "created_at"
     }
+    
+    init(timeReportDB: TimeReportDB) {
+        id = timeReportDB.id
+        userId = timeReportDB.userId
+        studyTime = timeReportDB.studyTime
+        studyDate = timeReportDB.studyDate
+        memo = timeReportDB.memo
+        createdAt = timeReportDB.createdAt
+    }
 }

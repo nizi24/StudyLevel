@@ -31,4 +31,20 @@ struct WeeklyTarget: Decodable {
         case targetTime = "target_time"
         case progress
     }
+    
+    init?(weeklyTargetDB: WeeklyTargetDB?) {
+        guard let weeklyTargetDB = weeklyTargetDB else {
+            return nil
+        }
+        id = weeklyTargetDB.id
+        userId = weeklyTargetDB.userId
+        startDate = weeklyTargetDB.startDate
+        endDate = weeklyTargetDB.endDate
+        achieve = weeklyTargetDB.achieve
+        createdAt = weeklyTargetDB.createdAt
+        updatedAt = weeklyTargetDB.updatedAt
+        checked = weeklyTargetDB.checked
+        targetTime = weeklyTargetDB.targetTime
+        progress = weeklyTargetDB.progress
+    }
 }

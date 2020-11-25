@@ -32,6 +32,27 @@ class MyPageViewModel: ObservableObject {
         getWeeklyTarget()
     }
     
+    func getToRealm() {
+        guard let userDB = UserDB().getCurrentUser() else {
+            return
+        }
+        user = User(userDB: userDB)
+        experience = Experience(experienceDB: userDB.experience)
+        requiredEXP = RequiredEXP(requiredEXPDB: userDB.requiredEXP)
+        if let urlString = userDB.avatarURL {
+            avatarURL = URL(string: urlString)
+        } else {
+            avatarURL = nil
+        }
+        followerCount = userDB.followerCount
+        followingCount = userDB.followingCount
+        weeklyTarget = WeeklyTarget(weeklyTargetDB: userDB.weeklyTarget)
+        timeReports = []
+        for timeReportDB in userDB.timeReports {
+            timeReports!.append(TimeReport(timeReportDB: timeReportDB))
+        }
+    }
+    
     private func saveToRealm() {
         // すべての通信が完了してない場合やり直し
         guard user != nil && experience != nil && requiredEXP != nil && followingCount != nil else {

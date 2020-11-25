@@ -8,13 +8,13 @@
 import Foundation
 
 class CreateTimeReportViewModel: ObservableObject {
-    @Published var timeReports: [TimeReportDB] = []
+    @Published var studyDate = Date()
+    @Published var studyHour = 0
+    @Published var tapStudyTime = false
     
-    func getTimeReports() {
-        guard let user = UserDB().getCurrentUser() else {
-            return
-        }
-        timeReports = []
-        timeReports.append(contentsOf: user.timeReports)
+    
+    func oneWeekBefore() -> Date {
+        let oneWeekBefore = Calendar.current.date(byAdding: .day, value: -7, to: Date())!
+        return Calendar.current.startOfDay(for: oneWeekBefore)
     }
 }

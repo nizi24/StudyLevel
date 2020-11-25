@@ -115,7 +115,7 @@ struct TimeReportView: View {
             .padding(.trailing, 30)
             .padding(.bottom, 15)
             Divider()
-            Spacer()
+//            Spacer()
         }
     }
     
@@ -154,8 +154,8 @@ struct TimeReportView: View {
         }
 }
 
-struct TimeReportView_Previews: PreviewProvider {
-    static var previews: some View {
-        TimeReportView(viewModel: TimeReportViewModel(timeReport: TimeReport(id: 1, userId: 1, studyTime: "2000-01-01T23:01:00.000+09:00", studyDate: "2020-11-21T18:41:00.000+09:00", memo: "勉強した", createdAt: "2020-11-21T11:19:55.927+09:00")), connecting: .constant(false))
-    }
-}
+//struct TimeReportView_Previews: PreviewProvider {
+//    static var previews: some View {
+//TimeReportView(viewModel: TimeReportViewModel(timeReport: TimeReport(id: 1, userId: 1, studyTime: "2000-01-01T23:01:00.000+09:00", studyDate: "2020-11-21T18:41:00.000+09:00", memo: "勉強した", createdAt: "2020-11-21T11:19:55.927+09:00")), connecting: .constant(false))
+//    }
+//}
