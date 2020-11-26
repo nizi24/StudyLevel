@@ -48,7 +48,7 @@ class MyPageViewModel: ObservableObject {
         followingCount = userDB.followingCount
         weeklyTarget = WeeklyTarget(weeklyTargetDB: userDB.weeklyTarget)
         timeReports = []
-        for timeReportDB in userDB.timeReports {
+        for timeReportDB in userDB.timeReports.sorted(byKeyPath: "studyDate").reversed() {
             timeReports!.append(TimeReport(timeReportDB: timeReportDB))
         }
     }

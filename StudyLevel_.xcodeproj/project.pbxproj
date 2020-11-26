@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -62,6 +62,8 @@
 		6A6811722565F07000510D73 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6811712565F07000510D73 /* LoginViewModel.swift */; };
 		6A6811932565F5F900510D73 /* SignupOrLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6811922565F5F900510D73 /* SignupOrLoginView.swift */; };
 		6A6811A02565FA3A00510D73 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A68119F2565FA3A00510D73 /* CurrentUser.swift */; };
+		6A932EA5256E8C1300D0B4AE /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 6A932EA4256E8C1300D0B4AE /* PartialSheet */; };
+		6A932EAA256FDD9500D0B4AE /* KeyBoardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A932EA9256FDD9500D0B4AE /* KeyBoardObserver.swift */; };
 		6AB298ED25614DE8003D2792 /* StudyLevel_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB298EC25614DE8003D2792 /* StudyLevel_App.swift */; };
 		6AB298EF25614DE8003D2792 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB298EE25614DE8003D2792 /* ContentView.swift */; };
 		6AB298F125614DEA003D2792 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AB298F025614DEA003D2792 /* Assets.xcassets */; };
@@ -161,6 +163,7 @@
 		6A6811712565F07000510D73 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		6A6811922565F5F900510D73 /* SignupOrLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupOrLoginView.swift; sourceTree = "<group>"; };
 		6A68119F2565FA3A00510D73 /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
+		6A932EA9256FDD9500D0B4AE /* KeyBoardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyBoardObserver.swift; sourceTree = "<group>"; };
 		6AB298E925614DE8003D2792 /* StudyLevel_.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudyLevel_.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AB298EC25614DE8003D2792 /* StudyLevel_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyLevel_App.swift; sourceTree = "<group>"; };
 		6AB298EE25614DE8003D2792 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -202,6 +205,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A932EA5256E8C1300D0B4AE /* PartialSheet in Frameworks */,
 				04DBB6B79A411E0B3478E6C5 /* Pods_StudyLevel_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,6 +261,7 @@
 				6A12467A2567FA560095CB13 /* ImageContainer.swift */,
 				6ABF38F62568F715009CAEF3 /* TimeReportViewModel.swift */,
 				6A446DCA256A8B2100AC93DF /* ExtensionStringRegex.swift */,
+				6A932EA9256FDD9500D0B4AE /* KeyBoardObserver.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -515,6 +520,9 @@
 			dependencies = (
 			);
 			name = StudyLevel_;
+			packageProductDependencies = (
+				6A932EA4256E8C1300D0B4AE /* PartialSheet */,
+			);
 			productName = StudyLevel_;
 			productReference = 6AB298E925614DE8003D2792 /* StudyLevel_.app */;
 			productType = "com.apple.product-type.application";
@@ -591,6 +599,9 @@
 				ja,
 			);
 			mainGroup = 6AB298E025614DE8003D2792;
+			packageReferences = (
+				6A932EA3256E8C1300D0B4AE /* XCRemoteSwiftPackageReference "PartialSheet" */,
+			);
 			productRefGroup = 6AB298EA25614DE8003D2792 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -747,6 +758,7 @@
 				6A446DA3256A2CB400AC93DF /* FlexibleView.swift in Sources */,
 				6A2B4EB62566A48B00D7CE7F /* MyPageViewModel.swift in Sources */,
 				6ABF38D82568F478009CAEF3 /* ExperienceRecordRequest.swift in Sources */,
+				6A932EAA256FDD9500D0B4AE /* KeyBoardObserver.swift in Sources */,
 				6A446DF5256AA04000AC93DF /* ExperienceRecordDB.swift in Sources */,
 				6A2B4EAC2566A0E700D7CE7F /* NotificationView.swift in Sources */,
 				6A2B4E982566640C00D7CE7F /* LoadingView.swift in Sources */,
@@ -1137,6 +1149,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6A932EA3256E8C1300D0B4AE /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AndreaMiotto/PartialSheet.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.11;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6A932EA4256E8C1300D0B4AE /* PartialSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6A932EA3256E8C1300D0B4AE /* XCRemoteSwiftPackageReference "PartialSheet" */;
+			productName = PartialSheet;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6AB298E125614DE8003D2792 /* Project object */;
 }

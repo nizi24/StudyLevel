@@ -7,13 +7,16 @@
 
 import SwiftUI
 import Firebase
+import PartialSheet
 
 @main
 struct StudyLevel_App: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    let sheetManager: PartialSheetManager = PartialSheetManager()
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(sheetManager)
         }
     }
 }
