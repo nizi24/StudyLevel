@@ -9,6 +9,8 @@ import SwiftUI
 
 struct TagView: View {
     var name: String
+    var showX = false
+    var timeReportFormmViewModel: TimeReportFormViewModel?
     
     var body: some View {
         HStack {
@@ -16,6 +18,13 @@ struct TagView: View {
                 .font(.caption)
             Text(name)
                 .font(.caption)
+            if showX {
+                Button(action: {
+                    timeReportFormmViewModel?.removeTag(tagName: name)
+                }, label: {
+                    Image(systemName: "xmark")
+                })
+            }
         }
         .padding(6)
         .background(Color(UIColor(hex: "FB8C00")))

@@ -16,23 +16,28 @@ class TimeReportViewModel: ObservableObject {
     @Published var likeCount: Int?
     @Published var commentCount: Int?
     @Published var avatarConnectionComplete: Bool
+    var connecting = false
     
-    init(timeReport: TimeReport) {
+    init(timeReport: TimeReport, isFirst: Bool) {
         self.avatarConnectionComplete = false
         self.timeReport = timeReport
-        getCreator()
-        initGetterOtherThanCreator()
+        if isFirst || !getToRealm() {
+            getCreator()
+            initGetterOtherThanCreator()
+        }
     }
     
-    init(timeReport: TimeReport, creator: User?) {
+    init(timeReport: TimeReport, creator: User?, isFirst: Bool) {
         self.avatarConnectionComplete = false
         self.timeReport = timeReport
-        if let creator = creator {
-            self.creator = creator
-        } else {
-            getCreator()
+        if isFirst || !getToRealm() {
+            if let creator = creator {
+                self.creator = creator
+            } else {
+                getCreator()
+            }
+            initGetterOtherThanCreator()
         }
-        initGetterOtherThanCreator()
     }
     
     func initGetterOtherThanCreator() {
@@ -42,6 +47,24 @@ class TimeReportViewModel: ObservableObject {
         getExperienceRecord()
         getLikeCount()
         getCommentCount()
+    }
+    
+    func getToRealm() -> Bool {
+        guard let timeReportDB = TimeReportDB().find(id: timeReport.id) else {
+            return false
+        }
+        if let userDB = timeReportDB.creator.first {
+            creator = User(userDB: userDB)
+        }
+        avatarURL = URL(string: timeReportDB.creator.first?.avatarURL ?? "")
+        experienceRecord = ExperienceRecord(experienceRecordDB: timeReportDB.experienceReport!)
+        tags = []
+        for tag in timeReportDB.tags {
+            tags!.append(Tag(tagDB: tag))
+        }
+        likeCount = timeReportDB.likeCount
+        commentCount = timeReportDB.commentCount
+        return true
     }
     
     func appendCurrentUser() {
@@ -68,6 +91,7 @@ class TimeReportViewModel: ObservableObject {
                 }
             }
             UserDB().appendTimeReport(timeReport: TimeReportDB().create(viewModel: self))
+            getToRealm()
         }
     }
     
@@ -117,11 +141,11 @@ class TimeReportViewModel: ObservableObject {
     
     private func getCreator() {
         let request = UserRequest().show(id: timeReport.userId)
-        StudyLevelClient().send(request: request) { result in
+        StudyLevelClient().send(request: request) { [weak self] result in
             switch result {
             case .success(let user):
                 DispatchQueue.main.async {
-                    self.creator = user
+                    self?.creator = user
                 }
             case .failure(_): break
             }
@@ -130,18 +154,18 @@ class TimeReportViewModel: ObservableObject {
     
     private func getAvatarURL() {
         let request = AvatarRequest().avatarURL(userId: timeReport.userId)
-        StudyLevelClient().send(request: request) { result in
+        StudyLevelClient().send(request: request) {[weak self] result in
             switch result {
             case .success(let avatarURL):
                 DispatchQueue.main.async {
-                    self.avatarURL = avatarURL
-                    self.avatarConnectionComplete = true
-                    self.appendCurrentUser()
+                    self?.avatarURL = avatarURL
+                    self?.avatarConnectionComplete = true
+                    self?.appendCurrentUser()
                 }
             case .failure(_):
                 DispatchQueue.main.async {
-                    self.avatarConnectionComplete = true
-                    self.appendCurrentUser()
+                    self?.avatarConnectionComplete = true
+                    self?.appendCurrentUser()
                 }
             }
         }
@@ -149,12 +173,12 @@ class TimeReportViewModel: ObservableObject {
     
     private func getTags() {
         let request = TagsRequest().index(timeReportId: timeReport.id)
-        StudyLevelClient().send(request: request) { result in
+        StudyLevelClient().send(request: request) { [weak self] result in
             switch result {
             case .success(let tags):
                 DispatchQueue.main.async {
-                    self.tags = tags
-                    self.appendCurrentUser()
+                    self?.tags = tags
+                    self?.appendCurrentUser()
                 }
             case .failure(_): break
             }
@@ -163,12 +187,12 @@ class TimeReportViewModel: ObservableObject {
     
     private func getExperienceRecord() {
         let request = ExperienceRecordRequest().show(timeReportId: timeReport.id)
-        StudyLevelClient().send(request: request) { result in
+        StudyLevelClient().send(request: request) { [weak self] result in
             switch result {
             case .success(let experienceRecord):
                 DispatchQueue.main.async {
-                    self.experienceRecord = experienceRecord
-                    self.appendCurrentUser()
+                    self?.experienceRecord = experienceRecord
+                    self?.appendCurrentUser()
                 }
             case .failure(_): break
             }
@@ -177,12 +201,12 @@ class TimeReportViewModel: ObservableObject {
     
     private func getLikeCount() {
         let request = LikeCountAndCommentCountRequest().likeCount(timeReportId: timeReport.id)
-        StudyLevelClient().send(request: request) { result in
+        StudyLevelClient().send(request: request) { [weak self] result in
             switch result {
             case .success(let likeCount):
                 DispatchQueue.main.async {
-                    self.likeCount = likeCount
-                    self.appendCurrentUser()
+                    self?.likeCount = likeCount
+                    self?.appendCurrentUser()
                 }
             case .failure(_): break
             }
@@ -191,12 +215,12 @@ class TimeReportViewModel: ObservableObject {
     
     private func getCommentCount() {
         let request = LikeCountAndCommentCountRequest().commentCount(timeReportId: timeReport.id)
-        StudyLevelClient().send(request: request) { result in
+        StudyLevelClient().send(request: request) { [weak self] result in
             switch result {
             case .success(let commentCount):
                 DispatchQueue.main.async {
-                    self.commentCount = commentCount
-                    self.appendCurrentUser()
+                    self?.commentCount = commentCount
+                    self?.appendCurrentUser()
                 }
             case .failure(_): break
             }

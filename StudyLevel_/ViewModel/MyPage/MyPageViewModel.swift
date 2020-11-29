@@ -8,10 +8,11 @@
 import Foundation
 
 class MyPageViewModel: ObservableObject {
+    @Published var error = false
+    @Published var errorMessage = ""
     @Published var user: User? = nil
     @Published var experience: Experience? = nil
     @Published var requiredEXP: RequiredEXP? = nil
-    @Published var errorMessage = ""
     @Published var avatarURL: URL?
     @Published var followingCount: Int?
     @Published var followerCount: Int?
@@ -19,10 +20,9 @@ class MyPageViewModel: ObservableObject {
     @Published var weeklyTargetConnectionComplete = false
     @Published var timeReports: [TimeReport]?
     @Published var timeReportDBList: [TimeReportDB] = []
-    @Published var connecting: Bool
+    @Published var connecting: Bool = false
     
     init() {
-        connecting = true
         getUser()
         getExperience()
         getAvatarURL()
@@ -32,9 +32,20 @@ class MyPageViewModel: ObservableObject {
         getWeeklyTarget()
     }
     
-    func getToRealm() {
+    func getToServer() {
+//        connecting = true
+        getUser()
+        getExperience()
+        getAvatarURL()
+        getFollowingCount()
+        getFollowerCount()
+        getTimeReports()
+        getWeeklyTarget()
+    }
+    
+    func getToRealm() -> Bool {
         guard let userDB = UserDB().getCurrentUser() else {
-            return
+            return false
         }
         user = User(userDB: userDB)
         experience = Experience(experienceDB: userDB.experience)
@@ -51,6 +62,7 @@ class MyPageViewModel: ObservableObject {
         for timeReportDB in userDB.timeReports.sorted(byKeyPath: "studyDate").reversed() {
             timeReports!.append(TimeReport(timeReportDB: timeReportDB))
         }
+        return true
     }
     
     private func saveToRealm() {
@@ -61,6 +73,7 @@ class MyPageViewModel: ObservableObject {
         guard followerCount != nil, let timeReports = timeReports, weeklyTargetConnectionComplete else {
             return
         }
+        connecting = false
         // 今まで保存したレポートを退避
         for timeReport in timeReports {
             if let dbList = UserDB().getCurrentUser()?.timeReports {
@@ -76,21 +89,23 @@ class MyPageViewModel: ObservableObject {
         // 新しく作り直して保存
         let userdb = UserDB().create(viewModel: self)
         userdb.save()
+        getToRealm()
     }
     
     private func getUser() {
         guard let id = CurrentUser().currentUser()?.id else {
+            error = true
             errorMessage = "認証に失敗しました"
             return
         }
         let request = UserRequest().show(id: id)
-        StudyLevelClient().send(request: request) { result in
+        StudyLevelClient().send(request: request) { [weak self] result in
             switch result {
             case .success(let user):
                 // メインスレッドから投稿しないと警告が出る & Viewの再構築が遅くなる
                 DispatchQueue.main.async {
-                    self.user = user
-                    self.saveToRealm()
+                    self?.user = user
+                    self?.saveToRealm()
                 }
             case .failure(_): break
             }
@@ -99,16 +114,17 @@ class MyPageViewModel: ObservableObject {
     
     private func getExperience() {
         guard let id = CurrentUser().currentUser()?.id else {
+            error = true
             errorMessage = "認証に失敗しました"
             return
         }
         let request = ExperienceRequest().show(userId: id)
-        StudyLevelClient().send(request: request) { result in
+        StudyLevelClient().send(request: request) { [weak self] result in
             switch result {
             case .success(let experience):
                 DispatchQueue.main.async {
-                    self.experience = experience
-                    self.getRequiredEXP()
+                    self?.experience = experience
+                    self?.getRequiredEXP()
                 }
             case .failure(_):  break
             }
@@ -117,18 +133,19 @@ class MyPageViewModel: ObservableObject {
     
     private func getRequiredEXP() {
         guard let level = experience?.level else {
+            error = true
             errorMessage = "通信に失敗しました"
             self.connecting = false
             return
         }
         let request = RequiredEXPRequest().show(level: level)
-        StudyLevelClient().send(request: request) { result in
+        StudyLevelClient().send(request: request) { [weak self] result in
             switch result {
             case .success(let requiredEXP):
                 DispatchQueue.main.async {
-                    self.requiredEXP = requiredEXP
-                    self.connecting = false
-                    self.saveToRealm()
+                    self?.requiredEXP = requiredEXP
+                    self?.connecting = false
+                    self?.saveToRealm()
                 }
             case .failure(_): break
             }
@@ -137,16 +154,17 @@ class MyPageViewModel: ObservableObject {
     
     private func getAvatarURL() {
         guard let id = CurrentUser().currentUser()?.id else {
+            error = true
             errorMessage = "認証に失敗しました"
             return
         }
         let request = AvatarRequest().avatarURL(userId: id)
-        StudyLevelClient().send(request: request) { result in
+        StudyLevelClient().send(request: request) { [weak self] result in
             switch result {
             case .success(let avatarURL):
                 DispatchQueue.main.async {
-                    self.avatarURL = avatarURL
-                    self.saveToRealm()
+                    self?.avatarURL = avatarURL
+                    self?.saveToRealm()
                 }
             case .failure(_): break
             }
@@ -155,16 +173,17 @@ class MyPageViewModel: ObservableObject {
     
     private func getFollowingCount() {
         guard let id = CurrentUser().currentUser()?.id else {
+            error = true
             errorMessage = "認証に失敗しました"
             return
         }
         let request = FollowCountRequest().followingCount(id: id)
-        StudyLevelClient().send(request: request) { result in
+        StudyLevelClient().send(request: request) { [weak self] result in
             switch result {
             case .success(let followingCount):
                 DispatchQueue.main.async {
-                    self.followingCount = followingCount
-                    self.saveToRealm()
+                    self?.followingCount = followingCount
+                    self?.saveToRealm()
                 }
             case .failure(_): break
             }
@@ -173,16 +192,17 @@ class MyPageViewModel: ObservableObject {
     
     private func getFollowerCount() {
         guard let id = CurrentUser().currentUser()?.id else {
+            error = true
             errorMessage = "認証に失敗しました"
             return
         }
         let request = FollowCountRequest().followerCount(id: id)
-        StudyLevelClient().send(request: request) { result in
+        StudyLevelClient().send(request: request) { [weak self] result in
             switch result {
             case .success(let followerCount):
                 DispatchQueue.main.async {
-                    self.followerCount = followerCount
-                    self.saveToRealm()
+                    self?.followerCount = followerCount
+                    self?.saveToRealm()
                 }
             case .failure(_): break
             }
@@ -191,22 +211,23 @@ class MyPageViewModel: ObservableObject {
     
     private func getWeeklyTarget() {
         guard let id = CurrentUser().currentUser()?.id else {
+            error = true
             errorMessage = "認証に失敗しました"
             return
         }
         let request = WeeklyTargetRequest().show(userId: id)
-        StudyLevelClient().send(request: request) { result in
+        StudyLevelClient().send(request: request) { [weak self] result in
             switch result {
             case .success(let weeklyTarget):
                 DispatchQueue.main.async {
-                    self.weeklyTarget = weeklyTarget
-                    self.weeklyTargetConnectionComplete = true
-                    self.saveToRealm()
+                    self?.weeklyTarget = weeklyTarget
+                    self?.weeklyTargetConnectionComplete = true
+                    self?.saveToRealm()
                 }
             case .failure(_):
                 DispatchQueue.main.async {
-                    self.weeklyTargetConnectionComplete = true
-                    self.saveToRealm()
+                    self?.weeklyTargetConnectionComplete = true
+                    self?.saveToRealm()
                 }
             }
         }
@@ -214,15 +235,16 @@ class MyPageViewModel: ObservableObject {
     
     private func getTimeReports() {
         guard let id = CurrentUser().currentUser()?.id else {
+            error = true
             errorMessage = "認証に失敗しました"
             return
         }
         let request = TimeReportsRequest().index(userId: id)
-        StudyLevelClient().send(request: request) { result in
+        StudyLevelClient().send(request: request) { [weak self] result in
             switch result {
             case .success(let timeReports):
                 DispatchQueue.main.async {
-                    self.timeReports = timeReports
+                    self?.timeReports = timeReports
                 }
             case .failure(_): break
             }
