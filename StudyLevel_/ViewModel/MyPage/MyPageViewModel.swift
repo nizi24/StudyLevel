@@ -20,9 +20,10 @@ class MyPageViewModel: ObservableObject {
     @Published var weeklyTargetConnectionComplete = false
     @Published var timeReports: [TimeReport]?
     @Published var timeReportDBList: [TimeReportDB] = []
-    @Published var connecting: Bool = false
+    @Published var connecting: Bool
     
     init() {
+        connecting = true
         getUser()
         getExperience()
         getAvatarURL()
@@ -33,7 +34,7 @@ class MyPageViewModel: ObservableObject {
     }
     
     func getToServer() {
-//        connecting = true
+        connecting = true
         getUser()
         getExperience()
         getAvatarURL()
@@ -43,9 +44,9 @@ class MyPageViewModel: ObservableObject {
         getWeeklyTarget()
     }
     
-    func getToRealm() -> Bool {
+    func getToRealm() {
         guard let userDB = UserDB().getCurrentUser() else {
-            return false
+            return
         }
         user = User(userDB: userDB)
         experience = Experience(experienceDB: userDB.experience)
@@ -60,9 +61,9 @@ class MyPageViewModel: ObservableObject {
         weeklyTarget = WeeklyTarget(weeklyTargetDB: userDB.weeklyTarget)
         timeReports = []
         for timeReportDB in userDB.timeReports.sorted(byKeyPath: "studyDate").reversed() {
-            timeReports!.append(TimeReport(timeReportDB: timeReportDB))
+//            timeReports!.append(TimeReport(timeReportDB: timeReportDB))
         }
-        return true
+        return
     }
     
     private func saveToRealm() {
@@ -75,21 +76,21 @@ class MyPageViewModel: ObservableObject {
         }
         connecting = false
         // 今まで保存したレポートを退避
-        for timeReport in timeReports {
-            if let dbList = UserDB().getCurrentUser()?.timeReports {
-                for db in dbList {
-                    if db.id == timeReport.id {
-                        timeReportDBList.append(db)
-                    }
-                }
-            }
-        }
+//        for timeReport in timeReports {
+//            if let dbList = UserDB().getCurrentUser()?.timeReports {
+//                for db in dbList {
+//                    if db.id == timeReport.id {
+//                        timeReportDBList.append(db)
+//                    }
+//                }
+//            }
+//        }
         // 最新の状態を保つために古い情報を削除
         UserDB().removeCurrentUser()
         // 新しく作り直して保存
         let userdb = UserDB().create(viewModel: self)
         userdb.save()
-        getToRealm()
+//        getToRealm()
     }
     
     private func getUser() {

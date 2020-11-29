@@ -27,14 +27,14 @@ struct TimeReportView: View {
                 .padding(.leading, 20)
                 VStack {
                     HStack {
-                        Text(viewModel.creator?.name ?? "")
+                        Text(viewModel.timeReport.creator.name)
                             .foregroundColor(.primary)
                             .font(.callout)
                             .bold()
                         Spacer()
                     }
                     HStack {
-                        Text("@" + (viewModel.creator?.screenName ?? ""))
+                        Text("@" + (viewModel.timeReport.creator.screenName))
                             .foregroundColor(.secondary)
                             .font(.caption)
                         Spacer()
@@ -50,7 +50,7 @@ struct TimeReportView: View {
                 Spacer()
             }
             .padding(.leading, 20)
-            if let tags = viewModel.tags {
+            if let tags = viewModel.timeReport.tags {
                 if !tags.isEmpty {
                     HStack {
                         FlexibleView(
@@ -88,7 +88,7 @@ struct TimeReportView: View {
                 .frame(width: screen.width * 1 / 2)
                 HStack(alignment: .bottom) {
                     Image(systemName: "arrow.turn.right.up")
-                    Text(String(viewModel.experienceRecord?.experiencePoint ?? 0))
+                    Text(String(viewModel.timeReport.experienceRecord.experiencePoint))
                         .font(.largeTitle)
                         .bold()
                         .foregroundColor(Color(UIColor(hex: viewModel.changeColor())))
@@ -116,6 +116,8 @@ struct TimeReportView: View {
             .padding(.bottom, 15)
             Divider()
 //            Spacer()
+        }.onAppear {
+//            viewModel.getToRealm()
         }
     }
     
@@ -124,7 +126,7 @@ struct TimeReportView: View {
         var height = CGFloat.zero
     
         return ZStack(alignment: .topLeading) {
-            if let tagList = viewModel.tags {
+            if let tagList = viewModel.timeReport.tags {
                 ForEach(tagList, id: \.self) { tag in
                     TagView(name: tag.name)
                         .padding([.horizontal, .vertical], 4)

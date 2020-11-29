@@ -9,91 +9,71 @@ import Foundation
 
 class TimeReportViewModel: ObservableObject {
     @Published var timeReport: TimeReport
-    @Published var creator: User?
     @Published var avatarURL: URL?
-    @Published var experienceRecord: ExperienceRecord?
-    @Published var tags: [Tag]?
-    @Published var likeCount: Int?
-    @Published var commentCount: Int?
-    @Published var avatarConnectionComplete: Bool
     var connecting = false
     
     init(timeReport: TimeReport, isFirst: Bool) {
-        self.avatarConnectionComplete = false
         self.timeReport = timeReport
-        if isFirst || !getToRealm() {
-            getCreator()
-            initGetterOtherThanCreator()
-        }
     }
     
     init(timeReport: TimeReport, creator: User?, isFirst: Bool) {
-        self.avatarConnectionComplete = false
         self.timeReport = timeReport
-        if isFirst || !getToRealm() {
-            if let creator = creator {
-                self.creator = creator
-            } else {
-                getCreator()
-            }
-            initGetterOtherThanCreator()
-        }
     }
     
-    func initGetterOtherThanCreator() {
-        appendCurrentUser()
-        getAvatarURL()
-        getTags()
-        getExperienceRecord()
-        getLikeCount()
-        getCommentCount()
-    }
-    
-    func getToRealm() -> Bool {
-        guard let timeReportDB = TimeReportDB().find(id: timeReport.id) else {
-            return false
-        }
-        if let userDB = timeReportDB.creator.first {
-            creator = User(userDB: userDB)
-        }
-        avatarURL = URL(string: timeReportDB.creator.first?.avatarURL ?? "")
-        experienceRecord = ExperienceRecord(experienceRecordDB: timeReportDB.experienceReport!)
-        tags = []
-        for tag in timeReportDB.tags {
-            tags!.append(Tag(tagDB: tag))
-        }
-        likeCount = timeReportDB.likeCount
-        commentCount = timeReportDB.commentCount
-        return true
-    }
-    
-    func appendCurrentUser() {
-        // すべての通信が完了していない場合、return
-        guard experienceRecord != nil && tags != nil && likeCount != nil && commentCount != nil && avatarConnectionComplete else {
-            return
-        }
-        guard let creator = creator, let currentUser = CurrentUser().currentUser() else {
-            return
-        }
-        // ログイン中のユーザーとレポートの作成者が一致する場合
-        if creator.id == currentUser.id {
-            // UserDBの作成が完了していない場合、待機
-            guard let user = UserDB().getCurrentUser() else {
-                appendCurrentUser()
-                return
-            }
-            // 古い情報を削除
-            TimeReportDB().delete(timeReportId: timeReport.id)
-            // すでにUserDBに追加している場合、return
-            for report in user.timeReports {
-                guard report.id != timeReport.id else {
-                    return
-                }
-            }
-            UserDB().appendTimeReport(timeReport: TimeReportDB().create(viewModel: self))
-            getToRealm()
-        }
-    }
+//    func initGetterOtherThanCreator() {
+//        appendCurrentUser()
+//        getAvatarURL()
+//        getTags()
+//        getExperienceRecord()
+//        getLikeCount()
+//        getCommentCount()
+//    }
+//
+//    func getToRealm() -> Bool {
+//        guard let timeReportDB = TimeReportDB().find(id: timeReport.id) else {
+//            return false
+//        }
+//        if let userDB = timeReportDB.creator.first {
+//            creator = User(userDB: userDB)
+//        }
+//        avatarURL = URL(string: timeReportDB.creator.first?.avatarURL ?? "")
+//        experienceRecord = ExperienceRecord(experienceRecordDB: timeReportDB.experienceReport!)
+//        tags = []
+//        for tag in timeReportDB.tags {
+//            tags!.append(Tag(tagDB: tag))
+//        }
+//        likeCount = timeReportDB.likeCount
+//        commentCount = timeReportDB.commentCount
+//        return true
+//    }
+//
+//    func appendCurrentUser() {
+//        // すべての通信が完了していない場合、return
+//        guard experienceRecord != nil && tags != nil && likeCount != nil && commentCount != nil && avatarConnectionComplete else {
+//            return
+//        }
+//        guard let creator = creator, let currentUser = CurrentUser().currentUser() else {
+//            return
+//        }
+//        // ログイン中のユーザーとレポートの作成者が一致する場合
+//        if creator.id == currentUser.id {
+//            // UserDBの作成が完了していない場合、待機
+//            guard let user = UserDB().getCurrentUser() else {
+//                appendCurrentUser()
+//                return
+//            }
+//            // 古い情報を削除
+//            TimeReportDB().delete(timeReportId: timeReport.id)
+//            // すでにUserDBに追加している場合、return
+//            for report in user.timeReports {
+//                guard report.id != timeReport.id else {
+//                    return
+//                }
+//            }
+//            UserDB().appendTimeReport(timeReport: TimeReportDB().create(viewModel: self))
+//            getToRealm()
+//        }
+//    }
     
     func processingStudyDate() -> String {
         let studyDate = timeReport.studyDate
@@ -139,92 +119,92 @@ class TimeReportViewModel: ObservableObject {
         return date.split(separator: "T")[1].split(separator: ":")
     }
     
-    private func getCreator() {
-        let request = UserRequest().show(id: timeReport.userId)
-        StudyLevelClient().send(request: request) { [weak self] result in
-            switch result {
-            case .success(let user):
-                DispatchQueue.main.async {
-                    self?.creator = user
-                }
-            case .failure(_): break
-            }
-        }
-    }
-    
-    private func getAvatarURL() {
-        let request = AvatarRequest().avatarURL(userId: timeReport.userId)
-        StudyLevelClient().send(request: request) {[weak self] result in
-            switch result {
-            case .success(let avatarURL):
-                DispatchQueue.main.async {
-                    self?.avatarURL = avatarURL
-                    self?.avatarConnectionComplete = true
-                    self?.appendCurrentUser()
-                }
-            case .failure(_):
-                DispatchQueue.main.async {
-                    self?.avatarConnectionComplete = true
-                    self?.appendCurrentUser()
-                }
-            }
-        }
-    }
-    
-    private func getTags() {
-        let request = TagsRequest().index(timeReportId: timeReport.id)
-        StudyLevelClient().send(request: request) { [weak self] result in
-            switch result {
-            case .success(let tags):
-                DispatchQueue.main.async {
-                    self?.tags = tags
-                    self?.appendCurrentUser()
-                }
-            case .failure(_): break
-            }
-        }
-    }
-    
-    private func getExperienceRecord() {
-        let request = ExperienceRecordRequest().show(timeReportId: timeReport.id)
-        StudyLevelClient().send(request: request) { [weak self] result in
-            switch result {
-            case .success(let experienceRecord):
-                DispatchQueue.main.async {
-                    self?.experienceRecord = experienceRecord
-                    self?.appendCurrentUser()
-                }
-            case .failure(_): break
-            }
-        }
-    }
-    
-    private func getLikeCount() {
-        let request = LikeCountAndCommentCountRequest().likeCount(timeReportId: timeReport.id)
-        StudyLevelClient().send(request: request) { [weak self] result in
-            switch result {
-            case .success(let likeCount):
-                DispatchQueue.main.async {
-                    self?.likeCount = likeCount
-                    self?.appendCurrentUser()
-                }
-            case .failure(_): break
-            }
-        }
-    }
-    
-    private func getCommentCount() {
-        let request = LikeCountAndCommentCountRequest().commentCount(timeReportId: timeReport.id)
-        StudyLevelClient().send(request: request) { [weak self] result in
-            switch result {
-            case .success(let commentCount):
-                DispatchQueue.main.async {
-                    self?.commentCount = commentCount
-                    self?.appendCurrentUser()
-                }
-            case .failure(_): break
-            }
-        }
-
-    }
+//    private func getCreator() {
+//        let request = UserRequest().show(id: timeReport.userId)
+//        StudyLevelClient().send(request: request) { [weak self] result in
+//            switch result {
+//            case .success(let user):
+//                DispatchQueue.main.async {
+//                    self?.creator = user
+//                }
+//            case .failure(_): break
+//            }
+//        }
+//    }
+//
+//    private func getAvatarURL() {
+//        let request = AvatarRequest().avatarURL(userId: timeReport.userId)
+//        StudyLevelClient().send(request: request) {[weak self] result in
+//            switch result {
+//            case .success(let avatarURL):
+//                DispatchQueue.main.async {
+//                    self?.avatarURL = avatarURL
+//                    self?.avatarConnectionComplete = true
+//                    self?.appendCurrentUser()
+//                }
+//            case .failure(_):
+//                DispatchQueue.main.async {
+//                    self?.avatarConnectionComplete = true
+//                    self?.appendCurrentUser()
+//                }
+//            }
+//        }
+//    }
+//
+//    private func getTags() {
+//        let request = TagsRequest().index(timeReportId: timeReport.id)
+//        StudyLevelClient().send(request: request) { [weak self] result in
+//            switch result {
+//            case .success(let tags):
+//                DispatchQueue.main.async {
+//                    self?.tags = tags
+//                    self?.appendCurrentUser()
+//                }
+//            case .failure(_): break
+//            }
+//        }
+//    }
+//
+//    private func getExperienceRecord() {
+//        let request = ExperienceRecordRequest().show(timeReportId: timeReport.id)
+//        StudyLevelClient().send(request: request) { [weak self] result in
+//            switch result {
+//            case .success(let experienceRecord):
+//                DispatchQueue.main.async {
+//                    self?.experienceRecord = experienceRecord
+//                    self?.appendCurrentUser()
+//                }
+//            case .failure(_): break
+//            }
+//        }
+//    }
+//
+//    private func getLikeCount() {
+//        let request = LikeCountAndCommentCountRequest().likeCount(timeReportId: timeReport.id)
+//        StudyLevelClient().send(request: request) { [weak self] result in
+//            switch result {
+//            case .success(let likeCount):
+//                DispatchQueue.main.async {
+//                    self?.likeCount = likeCount
+//                    self?.appendCurrentUser()
+//                }
+//            case .failure(_): break
+//            }
+//        }
+//    }
+//
+//    private func getCommentCount() {
+//        let request = LikeCountAndCommentCountRequest().commentCount(timeReportId: timeReport.id)
+//        StudyLevelClient().send(request: request) { [weak self] result in
+//            switch result {
+//            case .success(let commentCount):
+//                DispatchQueue.main.async {
+//                    self?.commentCount = commentCount
+//                    self?.appendCurrentUser()
+//                }
+//            case .failure(_): break
+//            }
+//        }
+//
+//    }
 }

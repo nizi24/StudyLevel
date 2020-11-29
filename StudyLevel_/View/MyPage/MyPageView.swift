@@ -14,7 +14,7 @@ struct MyPageView: View {
     @State var isFirst = true
         
     var body: some View {
-        NavigationView {
+//        NavigationView {
             ZStack {
                 Color.backgroundGray
                     .edgesIgnoringSafeArea(.all)
@@ -36,8 +36,8 @@ struct MyPageView: View {
                             Spacer()
                             VStack {
                                 if let timeReports = viewModel.timeReports {
-                                    ForEach(timeReports, id: \.self) { timeReport in
-                                        TimeReportView(viewModel: TimeReportViewModel(timeReport: timeReport, creator: viewModel.user, isFirst: isFirst),
+                                    ForEach(timeReports.indices, id: \.self) { i in
+                                        TimeReportView(viewModel: TimeReportViewModel(timeReport: timeReports[i], creator: viewModel.user, isFirst: isFirst),
                                                        connecting: $viewModel.connecting)
                                             .background(Color.white)
                                     }
@@ -49,19 +49,15 @@ struct MyPageView: View {
                 }.alert(isPresented: $viewModel.error) {
                     Alert(title: Text("エラー"), message: Text(viewModel.errorMessage), dismissButton: .cancel())
                 }
-                .navigationBarTitle(Text("マイページ"), displayMode: .inline)
-                .navigationBarItems(trailing: Button(action: {
-                        viewModel.getToServer()
-                    }, label: { Image(systemName: "goforward") }))
+//                .navigationBarTitle(Text("マイページ"), displayMode: .inline)
+//                .navigationBarItems(trailing: Button(action: {
+//                        viewModel.getToServer()
+//                    }, label: { Image(systemName: "goforward") }))
             }
-        }
-        .onAppear {
-            if viewModel.getToRealm() {
-                isFirst = false
-            } else {
-                isFirst = true
+            .onAppear {
+                viewModel.getToServer()
             }
-        }
+//        }
     }
 }
 
