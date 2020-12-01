@@ -24,10 +24,14 @@ struct SignupOrLoginView: View {
                             Text("StudyLevelは、学習時間に応じてレベルが上がる学習管理アプリです。")
                                 .padding()
                                 .font(.headline)
+                            LottieView(filename: "8804-level-up-confetti-animation")
+                                .tag(2)
                         }
                         .tag(0)
                         Text("aa")
                             .tag(1)
+                        LottieView(filename: "8804-level-up-confetti-animation")
+                            .tag(2)
                     }
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
                     .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
