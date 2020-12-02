@@ -18,9 +18,11 @@ final class ImageContainer: ObservableObject {
         let session = URLSession(configuration: .default)
         let realm = try! Realm()
         if let realmData = realm.objects(UserAvatarDB.self).filter("userId == %@", userId).first {
-            if let uiImage = UIImage(data: realmData.imageData) {
-                self.image = uiImage
-                return
+            if realmData.imageURL == resource.absoluteString {
+                if let uiImage = UIImage(data: realmData.imageData) {
+                    self.image = uiImage
+                    return
+                }
             }
         }
         let task = session.dataTask(with: resource, completionHandler: { [weak self] data, _, _ in
@@ -31,9 +33,10 @@ final class ImageContainer: ObservableObject {
             DispatchQueue.main.async {
                 self?.image = networkImage
                 if let userId = self?.userId {
-                    let avatar = UserAvatarDB().create(userId: userId, imageData: imageData)
+                    let avatar = UserAvatarDB().create(userId: userId, imageData: imageData, imageURL: resource.absoluteString)
                     let realm = try! Realm()
                     try! realm.write {
+                        realm.delete(realm.objects(UserAvatarDB.self).filter("userId == %@", userId))
                         realm.add(avatar)
                     }
                 }
