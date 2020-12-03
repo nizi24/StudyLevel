@@ -11,7 +11,6 @@ class CreateTimeReportViewModel: ObservableObject {
     @Published var error = false
     @Published var errorMessage: String? = nil
     @Published var success = false
-    @Published var timeReport: TimeReport?
     @Published var connecting = false
     
     func create(timeReportFormViewModel: TimeReportFormViewModel) {
@@ -32,27 +31,19 @@ class CreateTimeReportViewModel: ObservableObject {
             tags: timeReportFormViewModel.tags, userId: id)
         StudyLevelClient().send(request: request, completion: { result in
             switch result {
-            case .success(let timeReport):
+            case .success(_):
                 DispatchQueue.main.async {
-                    self.timeReport = timeReport
-                    self.saveToRealm()
                     self.connecting = false
                     self.success = true
                 }
-            case .failure(let error):
+            case .failure(_):
                 DispatchQueue.main.async {
-                    print(error)
                     self.errorMessage = "通信に失敗しました。"
                     self.error = true
                     self.connecting = false
                 }
             }
         })
-    }
-    
-    private func saveToRealm() {
-        MyPageViewModel()
-        TimeReportViewModel(timeReport: timeReport!, isFirst: true)
     }
     
     private func processStudyTime(studyHour hour: Int, studyMinute minute: Int) -> String {

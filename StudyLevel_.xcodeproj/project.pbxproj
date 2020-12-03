@@ -52,6 +52,10 @@
 		6A446DF0256A9E8E00AC93DF /* TagDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A446DEF256A9E8E00AC93DF /* TagDB.swift */; };
 		6A446DF5256AA04000AC93DF /* ExperienceRecordDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A446DF4256AA04000AC93DF /* ExperienceRecordDB.swift */; };
 		6A446DFB256B5CAB00AC93DF /* TimeReportFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A446DFA256B5CAA00AC93DF /* TimeReportFormViewModel.swift */; };
+		6A4CC9742577B84F005565D4 /* AleatItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4CC9732577B84F005565D4 /* AleatItem.swift */; };
+		6A4CC98125789195005565D4 /* TimeReportDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4CC98025789195005565D4 /* TimeReportDetailView.swift */; };
+		6A4CC98625789274005565D4 /* TimeReportViewNonNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4CC98525789274005565D4 /* TimeReportViewNonNavigationLink.swift */; };
+		6A4CC98D25789393005565D4 /* TimeReportDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4CC98C25789393005565D4 /* TimeReportDetailViewModel.swift */; };
 		6A583DD22563E1AD006FE098 /* StudyLevelClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A583DD12563E1AC006FE098 /* StudyLevelClient.swift */; };
 		6A583DD72563EACC006FE098 /* StudyLevelAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A583DD62563EACC006FE098 /* StudyLevelAPIError.swift */; };
 		6A583DDC256400EE006FE098 /* StudyLevelClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A583DDB256400EE006FE098 /* StudyLevelClientError.swift */; };
@@ -62,6 +66,8 @@
 		6A6811722565F07000510D73 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6811712565F07000510D73 /* LoginViewModel.swift */; };
 		6A6811932565F5F900510D73 /* SignupOrLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6811922565F5F900510D73 /* SignupOrLoginView.swift */; };
 		6A6811A02565FA3A00510D73 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A68119F2565FA3A00510D73 /* CurrentUser.swift */; };
+		6A6B574A2575212500D1B170 /* EditTimeReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6B57492575212500D1B170 /* EditTimeReportView.swift */; };
+		6A6B574F2575215600D1B170 /* EditTimeReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6B574E2575215600D1B170 /* EditTimeReportViewModel.swift */; };
 		6A932EA5256E8C1300D0B4AE /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 6A932EA4256E8C1300D0B4AE /* PartialSheet */; };
 		6A932EAA256FDD9500D0B4AE /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A932EA9256FDD9500D0B4AE /* KeyboardObserver.swift */; };
 		6AA0F0CE2572096C00F59074 /* TimeReportFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA0F0CD2572096C00F59074 /* TimeReportFormView.swift */; };
@@ -75,12 +81,10 @@
 		6ABF38C12568F100009CAEF3 /* ExperienceRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABF38C02568F100009CAEF3 /* ExperienceRecord.swift */; };
 		6ABF38C92568F182009CAEF3 /* ExperienceRecordTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABF38C82568F182009CAEF3 /* ExperienceRecordTest.swift */; };
 		6ABF38CE2568F210009CAEF3 /* TimeReportsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABF38CD2568F210009CAEF3 /* TimeReportsRequest.swift */; };
-		6ABF38D82568F478009CAEF3 /* ExperienceRecordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABF38D72568F478009CAEF3 /* ExperienceRecordRequest.swift */; };
 		6ABF38F22568F643009CAEF3 /* TimeReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABF38F12568F643009CAEF3 /* TimeReportView.swift */; };
 		6ABF38F72568F715009CAEF3 /* TimeReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABF38F62568F715009CAEF3 /* TimeReportViewModel.swift */; };
 		6ABF38FD2568F92A009CAEF3 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABF38FC2568F92A009CAEF3 /* Tag.swift */; };
 		6ABF39052568F9D3009CAEF3 /* TagsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABF39042568F9D3009CAEF3 /* TagsRequest.swift */; };
-		6ABF391225692E23009CAEF3 /* LikeCountAndCommentCountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABF391125692E23009CAEF3 /* LikeCountAndCommentCountRequest.swift */; };
 		6AC656F525712AAF003FCAB1 /* TimeReportValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC656F425712AAF003FCAB1 /* TimeReportValidation.swift */; };
 		6AC656FA25712AF7003FCAB1 /* SignupValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC656F925712AF7003FCAB1 /* SignupValidation.swift */; };
 		6AEF714B25635E370078E333 /* SignupValidationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEF714A25635E370078E333 /* SignupValidationTest.swift */; };
@@ -158,6 +162,10 @@
 		6A446DEF256A9E8E00AC93DF /* TagDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDB.swift; sourceTree = "<group>"; };
 		6A446DF4256AA04000AC93DF /* ExperienceRecordDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceRecordDB.swift; sourceTree = "<group>"; };
 		6A446DFA256B5CAA00AC93DF /* TimeReportFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeReportFormViewModel.swift; sourceTree = "<group>"; };
+		6A4CC9732577B84F005565D4 /* AleatItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AleatItem.swift; sourceTree = "<group>"; };
+		6A4CC98025789195005565D4 /* TimeReportDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeReportDetailView.swift; sourceTree = "<group>"; };
+		6A4CC98525789274005565D4 /* TimeReportViewNonNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeReportViewNonNavigationLink.swift; sourceTree = "<group>"; };
+		6A4CC98C25789393005565D4 /* TimeReportDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeReportDetailViewModel.swift; sourceTree = "<group>"; };
 		6A583DD12563E1AC006FE098 /* StudyLevelClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyLevelClient.swift; sourceTree = "<group>"; };
 		6A583DD62563EACC006FE098 /* StudyLevelAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyLevelAPIError.swift; sourceTree = "<group>"; };
 		6A583DDB256400EE006FE098 /* StudyLevelClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyLevelClientError.swift; sourceTree = "<group>"; };
@@ -168,6 +176,8 @@
 		6A6811712565F07000510D73 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		6A6811922565F5F900510D73 /* SignupOrLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupOrLoginView.swift; sourceTree = "<group>"; };
 		6A68119F2565FA3A00510D73 /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
+		6A6B57492575212500D1B170 /* EditTimeReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTimeReportView.swift; sourceTree = "<group>"; };
+		6A6B574E2575215600D1B170 /* EditTimeReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTimeReportViewModel.swift; sourceTree = "<group>"; };
 		6A932EA9256FDD9500D0B4AE /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
 		6AA0F0CD2572096C00F59074 /* TimeReportFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeReportFormView.swift; sourceTree = "<group>"; };
 		6AA0F0D525720A4000F59074 /* CreateTimeReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTimeReportViewModel.swift; sourceTree = "<group>"; };
@@ -186,12 +196,10 @@
 		6ABF38C02568F100009CAEF3 /* ExperienceRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceRecord.swift; sourceTree = "<group>"; };
 		6ABF38C82568F182009CAEF3 /* ExperienceRecordTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceRecordTest.swift; sourceTree = "<group>"; };
 		6ABF38CD2568F210009CAEF3 /* TimeReportsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeReportsRequest.swift; sourceTree = "<group>"; };
-		6ABF38D72568F478009CAEF3 /* ExperienceRecordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceRecordRequest.swift; sourceTree = "<group>"; };
 		6ABF38F12568F643009CAEF3 /* TimeReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeReportView.swift; sourceTree = "<group>"; };
 		6ABF38F62568F715009CAEF3 /* TimeReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeReportViewModel.swift; sourceTree = "<group>"; };
 		6ABF38FC2568F92A009CAEF3 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		6ABF39042568F9D3009CAEF3 /* TagsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsRequest.swift; sourceTree = "<group>"; };
-		6ABF391125692E23009CAEF3 /* LikeCountAndCommentCountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeCountAndCommentCountRequest.swift; sourceTree = "<group>"; };
 		6AC656F425712AAF003FCAB1 /* TimeReportValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeReportValidation.swift; sourceTree = "<group>"; };
 		6AC656F925712AF7003FCAB1 /* SignupValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupValidation.swift; sourceTree = "<group>"; };
 		6AEF714A25635E370078E333 /* SignupValidationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupValidationTest.swift; sourceTree = "<group>"; };
@@ -242,6 +250,7 @@
 		6A0B8C8025615831009BD8EC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6A4CC98A25789365005565D4 /* TimeReport */,
 				6A446DA7256A330C00AC93DF /* TimeReportForm */,
 				6A2B4EBB2566A4B300D7CE7F /* MyPage */,
 				6A2B4EBA2566A49300D7CE7F /* Auth */,
@@ -251,7 +260,6 @@
 				6A2B4EB02566A13B00D7CE7F /* OtherMenuView.swift */,
 				6A12467F2567FB320095CB13 /* AvaterView.swift */,
 				6A12468F256805C60095CB13 /* DefaultAvatarView.swift */,
-				6ABF38F12568F643009CAEF3 /* TimeReportView.swift */,
 				6A446D9D256A25D200AC93DF /* TagView.swift */,
 				6A446DA2256A2CB400AC93DF /* FlexibleView.swift */,
 			);
@@ -261,6 +269,7 @@
 		6A0B8C8125615839009BD8EC /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				6A4CC98B2578937C005565D4 /* TimeReport */,
 				6A446DF9256B5C9B00AC93DF /* TimeReportForm */,
 				6A12464E25674D7A0095CB13 /* Auth */,
 				6A12464D25674D690095CB13 /* MyPage */,
@@ -269,9 +278,9 @@
 				6A2B4E9225665A5800D7CE7F /* MenuViewModel.swift */,
 				6A1246752567ECE60095CB13 /* UIColorHex.swift */,
 				6A12467A2567FA560095CB13 /* ImageContainer.swift */,
-				6ABF38F62568F715009CAEF3 /* TimeReportViewModel.swift */,
 				6A446DCA256A8B2100AC93DF /* ExtensionStringRegex.swift */,
 				6A932EA9256FDD9500D0B4AE /* KeyboardObserver.swift */,
+				6A4CC9732577B84F005565D4 /* AleatItem.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -348,6 +357,7 @@
 			children = (
 				6AA0F0CD2572096C00F59074 /* TimeReportFormView.swift */,
 				6A2B4EA125669F0200D7CE7F /* CreateTimeReportView.swift */,
+				6A6B57492575212500D1B170 /* EditTimeReportView.swift */,
 			);
 			path = TimeReportForm;
 			sourceTree = "<group>";
@@ -372,8 +382,28 @@
 				6A446DFA256B5CAA00AC93DF /* TimeReportFormViewModel.swift */,
 				6AC656F425712AAF003FCAB1 /* TimeReportValidation.swift */,
 				6AA0F0D525720A4000F59074 /* CreateTimeReportViewModel.swift */,
+				6A6B574E2575215600D1B170 /* EditTimeReportViewModel.swift */,
 			);
 			path = TimeReportForm;
+			sourceTree = "<group>";
+		};
+		6A4CC98A25789365005565D4 /* TimeReport */ = {
+			isa = PBXGroup;
+			children = (
+				6A4CC98025789195005565D4 /* TimeReportDetailView.swift */,
+				6A4CC98525789274005565D4 /* TimeReportViewNonNavigationLink.swift */,
+				6ABF38F12568F643009CAEF3 /* TimeReportView.swift */,
+			);
+			path = TimeReport;
+			sourceTree = "<group>";
+		};
+		6A4CC98B2578937C005565D4 /* TimeReport */ = {
+			isa = PBXGroup;
+			children = (
+				6ABF38F62568F715009CAEF3 /* TimeReportViewModel.swift */,
+				6A4CC98C25789393005565D4 /* TimeReportDetailViewModel.swift */,
+			);
+			path = TimeReport;
 			sourceTree = "<group>";
 		};
 		6A583DE52565EBA5006FE098 /* HTTPRequestProcessor */ = {
@@ -398,9 +428,7 @@
 				6A1246842568011F0095CB13 /* AvatarRequest.swift */,
 				6A12469925689E2B0095CB13 /* FollowCountRequest.swift */,
 				6ABF38CD2568F210009CAEF3 /* TimeReportsRequest.swift */,
-				6ABF38D72568F478009CAEF3 /* ExperienceRecordRequest.swift */,
 				6ABF39042568F9D3009CAEF3 /* TagsRequest.swift */,
-				6ABF391125692E23009CAEF3 /* LikeCountAndCommentCountRequest.swift */,
 				6A446DAB256A3B7600AC93DF /* WeeklyTargetRequest.swift */,
 				6AA0F0DD257262F100F59074 /* TimeReportRequest.swift */,
 			);
@@ -767,12 +795,14 @@
 				6A0B8C8425615868009BD8EC /* SignupView.swift in Sources */,
 				6A12463225673ED30095CB13 /* ExperienceRequest.swift in Sources */,
 				6A673A9C256160D200184D88 /* Signup.swift in Sources */,
+				6A6B574F2575215600D1B170 /* EditTimeReportViewModel.swift in Sources */,
 				6A12462A25673D730095CB13 /* Experience.swift in Sources */,
 				6A1246762567ECE60095CB13 /* UIColorHex.swift in Sources */,
 				6A124690256805C60095CB13 /* DefaultAvatarView.swift in Sources */,
+				6A4CC98D25789393005565D4 /* TimeReportDetailViewModel.swift in Sources */,
+				6A4CC98125789195005565D4 /* TimeReportDetailView.swift in Sources */,
 				6A446DA3256A2CB400AC93DF /* FlexibleView.swift in Sources */,
 				6A2B4EB62566A48B00D7CE7F /* MyPageViewModel.swift in Sources */,
-				6ABF38D82568F478009CAEF3 /* ExperienceRecordRequest.swift in Sources */,
 				6A932EAA256FDD9500D0B4AE /* KeyboardObserver.swift in Sources */,
 				6A446DF5256AA04000AC93DF /* ExperienceRecordDB.swift in Sources */,
 				6A2B4EAC2566A0E700D7CE7F /* NotificationView.swift in Sources */,
@@ -792,7 +822,6 @@
 				6A2B4EA225669F0200D7CE7F /* CreateTimeReportView.swift in Sources */,
 				6A6811722565F07000510D73 /* LoginViewModel.swift in Sources */,
 				6ABF38CE2568F210009CAEF3 /* TimeReportsRequest.swift in Sources */,
-				6ABF391225692E23009CAEF3 /* LikeCountAndCommentCountRequest.swift in Sources */,
 				6ABF39052568F9D3009CAEF3 /* TagsRequest.swift in Sources */,
 				6A583DDC256400EE006FE098 /* StudyLevelClientError.swift in Sources */,
 				6AA0F0D625720A4000F59074 /* CreateTimeReportViewModel.swift in Sources */,
@@ -810,6 +839,8 @@
 				6ABF38BB2568EF4C009CAEF3 /* TimeReport.swift in Sources */,
 				6AEF71862563DF200078E333 /* HTTPClient.swift in Sources */,
 				6A2B4E812566145F00D7CE7F /* ContentViewModel.swift in Sources */,
+				6A4CC98625789274005565D4 /* TimeReportViewNonNavigationLink.swift in Sources */,
+				6A4CC9742577B84F005565D4 /* AleatItem.swift in Sources */,
 				6A446DDE256A97EE00AC93DF /* RequiredEXPDB.swift in Sources */,
 				6A2B4EA725669F2F00D7CE7F /* MyPageView.swift in Sources */,
 				6ABF38F22568F643009CAEF3 /* TimeReportView.swift in Sources */,
@@ -828,6 +859,7 @@
 				6A0B8C8C256158FB009BD8EC /* SignupViewModel.swift in Sources */,
 				6A446DD1256A941400AC93DF /* UserDB.swift in Sources */,
 				6A6811A02565FA3A00510D73 /* CurrentUser.swift in Sources */,
+				6A6B574A2575212500D1B170 /* EditTimeReportView.swift in Sources */,
 				6AC656FA25712AF7003FCAB1 /* SignupValidation.swift in Sources */,
 				6A124695256883ED0095CB13 /* ProfileView.swift in Sources */,
 				6A446DEB256A9BFC00AC93DF /* TimeReportDB.swift in Sources */,

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class TimeReportFormViewModel: ObservableObject {
     @Published var studyDate = Date()
@@ -15,6 +16,26 @@ class TimeReportFormViewModel: ObservableObject {
     @Published var tags: [String] = []
     @Published var errorMessage = ""
     @Published var memo = ""
+    var timeReportId: Int?
+    
+    init() {}
+    
+    init(timeReport: TimeReport) {
+        timeReportId = timeReport.id
+        studyDate = dateFromString(string: timeReport.studyDate, format: "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+        let studyTime = timeReport.studyTime.split(separator: "T")[1]
+        studyHour = Int(studyTime.split(separator: ":")[0])!
+        studyMinute = Int(studyTime.split(separator: ":")[1])!
+        tags = timeReport.tags.map { $0.name }
+        memo = timeReport.memo
+    }
+    
+    func dateFromString(string: String, format: String) -> Date {
+        let formatter: DateFormatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .gregorian)
+        formatter.dateFormat = format
+        return formatter.date(from: string)!
+    }
     
     func addTag() {
         switch TimeReportValidation().isTagValid(tagName: tagName, tags: tags) {

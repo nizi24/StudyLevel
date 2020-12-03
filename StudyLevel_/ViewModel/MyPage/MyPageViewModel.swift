@@ -17,9 +17,7 @@ class MyPageViewModel: ObservableObject {
     @Published var followingCount: Int?
     @Published var followerCount: Int?
     @Published var weeklyTarget: WeeklyTarget?
-    @Published var weeklyTargetConnectionComplete = false
     @Published var timeReports: [TimeReport]?
-    @Published var timeReportDBList: [TimeReportDB] = []
     @Published var connecting: Bool
     
     init() {
@@ -44,55 +42,6 @@ class MyPageViewModel: ObservableObject {
         getWeeklyTarget()
     }
     
-    func getToRealm() {
-        guard let userDB = UserDB().getCurrentUser() else {
-            return
-        }
-        user = User(userDB: userDB)
-        experience = Experience(experienceDB: userDB.experience)
-        requiredEXP = RequiredEXP(requiredEXPDB: userDB.requiredEXP)
-        if let urlString = userDB.avatarURL {
-            avatarURL = URL(string: urlString)
-        } else {
-            avatarURL = nil
-        }
-        followerCount = userDB.followerCount
-        followingCount = userDB.followingCount
-        weeklyTarget = WeeklyTarget(weeklyTargetDB: userDB.weeklyTarget)
-        timeReports = []
-        for timeReportDB in userDB.timeReports.sorted(byKeyPath: "studyDate").reversed() {
-//            timeReports!.append(TimeReport(timeReportDB: timeReportDB))
-        }
-        return
-    }
-    
-    private func saveToRealm() {
-        // すべての通信が完了してない場合やり直し
-        guard user != nil && experience != nil && requiredEXP != nil && followingCount != nil else {
-            return
-        }
-        guard followerCount != nil, let timeReports = timeReports, weeklyTargetConnectionComplete else {
-            return
-        }
-        connecting = false
-        // 今まで保存したレポートを退避
-//        for timeReport in timeReports {
-//            if let dbList = UserDB().getCurrentUser()?.timeReports {
-//                for db in dbList {
-//                    if db.id == timeReport.id {
-//                        timeReportDBList.append(db)
-//                    }
-//                }
-//            }
-//        }
-        // 最新の状態を保つために古い情報を削除
-        UserDB().removeCurrentUser()
-        // 新しく作り直して保存
-        let userdb = UserDB().create(viewModel: self)
-        userdb.save()
-//        getToRealm()
-    }
-    
     private func getUser() {
         guard let id = CurrentUser().currentUser()?.id else {
             error = true
@@ -106,9 +55,13 @@ class MyPageViewModel: ObservableObject {
                 // メインスレッドから投稿しないと警告が出る & Viewの再構築が遅くなる
                 DispatchQueue.main.async {
                     self?.user = user
-                    self?.saveToRealm()
                 }
-            case .failure(_): break
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self?.connecting = false
+                    self?.error = true
+                    self?.errorMessage = "通信に失敗しました。"
+                }
             }
         }
     }
@@ -127,7 +80,12 @@ class MyPageViewModel: ObservableObject {
                     self?.experience = experience
                     self?.getRequiredEXP()
                 }
-            case .failure(_):  break
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self?.connecting = false
+                    self?.error = true
+                    self?.errorMessage = "通信に失敗しました。"
+                }
             }
         }
     }
@@ -146,9 +104,13 @@ class MyPageViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     self?.requiredEXP = requiredEXP
                     self?.connecting = false
-                    self?.saveToRealm()
                 }
-            case .failure(_): break
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self?.connecting = false
+                    self?.error = true
+                    self?.errorMessage = "通信に失敗しました。"
+                }
             }
         }
     }
@@ -165,7 +127,6 @@ class MyPageViewModel: ObservableObject {
             case .success(let avatarURL):
                 DispatchQueue.main.async {
                     self?.avatarURL = avatarURL
-                    self?.saveToRealm()
                 }
             case .failure(_): break
             }
@@ -184,9 +145,13 @@ class MyPageViewModel: ObservableObject {
             case .success(let followingCount):
                 DispatchQueue.main.async {
                     self?.followingCount = followingCount
-                    self?.saveToRealm()
                 }
-            case .failure(_): break
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self?.connecting = false
+                    self?.error = true
+                    self?.errorMessage = "通信に失敗しました。"
+                }
             }
         }
     }
@@ -203,9 +168,13 @@ class MyPageViewModel: ObservableObject {
             case .success(let followerCount):
                 DispatchQueue.main.async {
                     self?.followerCount = followerCount
-                    self?.saveToRealm()
                 }
-            case .failure(_): break
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self?.connecting = false
+                    self?.error = true
+                    self?.errorMessage = "通信に失敗しました。"
+                }
             }
         }
     }
@@ -222,14 +191,8 @@ class MyPageViewModel: ObservableObject {
             case .success(let weeklyTarget):
                 DispatchQueue.main.async {
                     self?.weeklyTarget = weeklyTarget
-                    self?.weeklyTargetConnectionComplete = true
-                    self?.saveToRealm()
                 }
-            case .failure(_):
-                DispatchQueue.main.async {
-                    self?.weeklyTargetConnectionComplete = true
-                    self?.saveToRealm()
-                }
+            case .failure(_): break
             }
         }
     }
@@ -240,14 +203,45 @@ class MyPageViewModel: ObservableObject {
             errorMessage = "認証に失敗しました"
             return
         }
-        let request = TimeReportsRequest().index(userId: id)
+        let request = TimeReportsRequest().index(userId: id, limit: timeReports?.count ?? 30)
         StudyLevelClient().send(request: request) { [weak self] result in
             switch result {
             case .success(let timeReports):
                 DispatchQueue.main.async {
                     self?.timeReports = timeReports
+                    self?.connecting = false
                 }
-            case .failure(_): break
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self?.connecting = false
+                    self?.error = true
+                    self?.errorMessage = "通信に失敗しました。"
+                }
+            }
+        }
+    }
+    
+    func getTimeReportMore() {
+        guard let id = CurrentUser().currentUser()?.id else {
+            error = true
+            errorMessage = "認証に失敗しました"
+            return
+        }
+        connecting = true
+        let request = TimeReportsRequest().index(userId: id, offset: timeReports?.count ?? 0)
+        StudyLevelClient().send(request: request) { [weak self] result in
+            switch result {
+            case .success(let timeReports):
+                DispatchQueue.main.async {
+                    self?.timeReports?.append(contentsOf: timeReports)
+                    self?.connecting = false
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self?.connecting = false
+                    self?.error = true
+                    self?.errorMessage = "通信に失敗しました。"
+                }
             }
         }
     }

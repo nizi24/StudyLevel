@@ -12,9 +12,10 @@ struct MyPageView: View {
     @State var screen: CGSize = UIScreen.main.bounds.size
     @State var title = "通信中・・・"
     @State var isFirst = true
+    @State var reload = false
         
     var body: some View {
-//        NavigationView {
+        NavigationView {
             ZStack {
                 Color.backgroundGray
                     .edgesIgnoringSafeArea(.all)
@@ -37,27 +38,54 @@ struct MyPageView: View {
                             VStack {
                                 if let timeReports = viewModel.timeReports {
                                     ForEach(timeReports.indices, id: \.self) { i in
-                                        TimeReportView(viewModel: TimeReportViewModel(timeReport: timeReports[i], creator: viewModel.user, isFirst: isFirst),
+                                        TimeReportView(viewModel: TimeReportViewModel(timeReport: timeReports[i]), reload: $reload,
                                                        connecting: $viewModel.connecting)
                                             .background(Color.white)
                                     }
                                 }
                             }
+                            if let timeReports = viewModel.timeReports {
+                                if !timeReports.isEmpty && timeReports.count % 30 == 0 {
+                                    Button(action: {
+                                        viewModel.getTimeReportMore()
+                                    }, label: {
+                                        Text("もっと見る")
+                                                .fontWeight(.semibold)
+                                                .padding()
+                                                .frame(width: 160, height: 48)
+                                                .foregroundColor(Color(.blue))
+                                                .background(Color(.white))
+                                                .cornerRadius(24)
+                                                .overlay(
+                                                    RoundedRectangle(cornerRadius: 24)
+                                                        .stroke(Color(.blue), lineWidth: 1.0)
+                                                )
+                                    })
+                                }
+                            }
+                            Spacer()
                         }
                     }
                     .frame(width: screen.width * 19 / 20)
-                }.alert(isPresented: $viewModel.error) {
-                    Alert(title: Text("エラー"), message: Text(viewModel.errorMessage), dismissButton: .cancel())
                 }
-//                .navigationBarTitle(Text("マイページ"), displayMode: .inline)
-//                .navigationBarItems(trailing: Button(action: {
-//                        viewModel.getToServer()
-//                    }, label: { Image(systemName: "goforward") }))
+                .navigationBarTitle(Text("マイページ"), displayMode: .inline)
+                .navigationBarItems(trailing: Button(action: {
+                        viewModel.getToServer()
+                    }, label: { Image(systemName: "goforward") }))
             }
             .onAppear {
                 viewModel.getToServer()
             }
-//        }
+            .onChange(of: reload) { reload in
+                if reload {
+                    viewModel.getToServer()
+                    self.reload = false
+                }
+            }
+        }
+        .alert(isPresented: $viewModel.error) {
+            Alert(title: Text("エラー"), message: Text(viewModel.errorMessage), dismissButton: .cancel())
+        }
     }
 }
 

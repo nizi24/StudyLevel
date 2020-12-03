@@ -24,23 +24,7 @@ class TimeReportDB: Object {
     override static func primaryKey() -> String? {
             return "id"
     }
-    
-    func create(viewModel: TimeReportViewModel) -> Self {
-//        id = viewModel.timeReport.id
-//        userId = viewModel.timeReport.userId
-//        studyTime = viewModel.timeReport.studyTime
-//        studyDate = viewModel.timeReport.studyDate
-//        memo = viewModel.timeReport.memo
-//        createdAt = viewModel.timeReport.createdAt
-//        likeCount = viewModel.likeCount!
-//        commentCount = viewModel.commentCount!
-//        experienceReport = ExperienceRecordDB().create(experienceRecord: viewModel.experienceRecord!)
-//        for tag in viewModel.tags! {
-//            tags.append(TagDB().create(tag: tag))
-//        }
-        return self
-    }
-    
+        
     func find(id: Int) -> Self? {
         let realm = try! Realm()
         let timeReport = realm.objects(Self.self).filter("id == %@", id).first

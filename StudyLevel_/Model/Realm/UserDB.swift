@@ -42,7 +42,6 @@ class UserDB: Object {
         self.experience = ExperienceDB().create(experience: viewModel.experience!)
         self.requiredEXP = RequiredEXPDB().create(requiredEXP: viewModel.requiredEXP!)
         self.weeklyTarget = WeeklyTargetDB().create(weeklyTarget: viewModel.weeklyTarget)
-        self.timeReports.append(objectsIn: viewModel.timeReportDBList)
         return self
     }
     

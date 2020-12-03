@@ -33,16 +33,4 @@ struct TimeReport: Decodable {
         case likesCount = "likes_count"
         case commentsCount = "comments_count"
     }
-    
-//    init(timeReportDB: TimeReportDB) {
-//        id = timeReportDB.id
-//        userId = timeReportDB.userId
-//        studyTime = timeReportDB.studyTime
-//        studyDate = timeReportDB.studyDate
-//        memo = timeReportDB.memo
-//        createdAt = timeReportDB.createdAt
-//        tags = []
-//        tags.append(contentsOf: Array(_immutableCocoaArray: timeReportDB.tags))
-//        experienceRecord = ExperienceRecord(experienceRecordDB: timeReportDB.experienceReport!)
-//    }
 }

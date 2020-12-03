@@ -18,4 +18,16 @@ class TimeReportsRequest: Request {
         path = "/v2/users/\(userId)/time_reports"
         return self
     }
+    
+    func index(userId: Int, offset: Int) -> Self {
+        path = "/v2/users/\(userId)/time_reports"
+        queryItems = [URLQueryItem(name: "offset", value: String(offset))]
+        return self
+    }
+    
+    func index(userId: Int, limit: Int) -> Self {
+        path = "/v2/users/\(userId)/time_reports"
+        queryItems = [URLQueryItem(name: "limit", value: String(limit))]
+        return self
+    }
 }

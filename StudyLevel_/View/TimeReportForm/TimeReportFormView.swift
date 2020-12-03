@@ -9,7 +9,7 @@ import SwiftUI
 import PartialSheet
 
 struct TimeReportFormView: View {
-    @ObservedObject var viewModel = TimeReportFormViewModel()
+    @ObservedObject var viewModel: TimeReportFormViewModel
     @EnvironmentObject var partialSheetManager: PartialSheetManager
     private static let placeholder = "メモ・学習内容"
     @State private var placeholderText = placeholder
@@ -110,14 +110,16 @@ struct TimeReportFormView: View {
                                     placeholderText = ""
                                 }
                             }
-                        VStack {
-                            HStack {
-                                Text(placeholderText)
-                                    .padding()
-                                    .foregroundColor(.gray)
+                        if viewModel.memo.isEmpty {
+                            VStack {
+                                HStack {
+                                    Text(placeholderText)
+                                        .padding()
+                                        .foregroundColor(.gray)
+                                    Spacer()
+                                }
                                 Spacer()
                             }
-                            Spacer()
                         }
                         VStack {
                             Spacer()
