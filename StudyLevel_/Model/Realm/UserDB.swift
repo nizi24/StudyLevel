@@ -36,7 +36,7 @@ class UserDB: Object {
         self.updatedAt = viewModel.user!.updatedAt
         self.profile = viewModel.user!.profile
         self.guest = viewModel.user!.guest
-        self.avatarURL = viewModel.avatarURL?.absoluteString
+        self.avatarURL = viewModel.user!.avatarURL
         self.followingCount = viewModel.followingCount!
         self.followerCount = viewModel.followerCount!
         self.experience = ExperienceDB().create(experience: viewModel.experience!)

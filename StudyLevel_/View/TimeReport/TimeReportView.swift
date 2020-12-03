@@ -19,9 +19,13 @@ struct TimeReportView: View {
             VStack {
                 HStack {
                     VStack {
-                        if let url = viewModel.avatarURL {
-                            AvaterView(container: ImageContainer(from: url),
-                                       size: 30)
+                        if let urlString = viewModel.timeReport.creator.avatarURL {
+                            if let url = URL(string: urlString) {
+                                AvaterView(container: ImageContainer(from: url, userId: viewModel.timeReport.creator.id),
+                                           size: 30)
+                            } else {
+                                DefaultAvatarView(size: 30)
+                            }
                         } else {
                             DefaultAvatarView(size: 30)
                         }

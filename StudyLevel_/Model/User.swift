@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct User: Decodable {
     var id: Int
@@ -15,6 +16,7 @@ struct User: Decodable {
     var updatedAt: String
     var profile: String?
     var guest: Bool
+    var avatarURL: String?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -24,6 +26,7 @@ struct User: Decodable {
         case updatedAt = "updated_at"
         case profile
         case guest
+        case avatarURL = "avatar_url"
     }
     
     init(userDB: UserDB) {
@@ -34,5 +37,6 @@ struct User: Decodable {
         updatedAt = userDB.createdAt
         profile = userDB.profile
         guest = userDB.guest
+        avatarURL = String(userDB.avatarURL ?? "")
     }
 }

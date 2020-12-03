@@ -25,6 +25,6 @@ struct AvaterView: View {
 
 struct AvaterView_Previews: PreviewProvider {
     static var previews: some View {
-        AvaterView(container: ImageContainer(from: URL(string: "https://user-images.githubusercontent.com/62362974/89768263-57719580-db36-11ea-9a23-bc6b1a49d0f8.png")!))
+        AvaterView(container: ImageContainer(from: URL(string: "https://user-images.githubusercontent.com/62362974/89768263-57719580-db36-11ea-9a23-bc6b1a49d0f8.png")!, userId: 2))
     }
 }

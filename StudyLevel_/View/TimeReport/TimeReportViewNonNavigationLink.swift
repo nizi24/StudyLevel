@@ -14,13 +14,18 @@ struct TimeReportViewNonNavigationLink: View {
     @Binding var reload: Bool
     @Binding var connecting: Bool
     
+    
     var body: some View {
         VStack {
             HStack {
                 VStack {
-                    if let url = viewModel.avatarURL {
-                        AvaterView(container: ImageContainer(from: url),
-                                   size: 30)
+                    if let urlString = viewModel.timeReport.creator.avatarURL {
+                        if let url = URL(string: urlString) {
+                            AvaterView(container: ImageContainer(from: url, userId: viewModel.timeReport.creator.id),
+                                       size: 30)
+                        } else {
+                            DefaultAvatarView(size: 30)
+                        }
                     } else {
                         DefaultAvatarView(size: 30)
                     }
@@ -46,13 +51,7 @@ struct TimeReportViewNonNavigationLink: View {
                 NavigationLink(destination: EditTimeReportView(timeReportFormViewModel: TimeReportFormViewModel(timeReport: viewModel.timeReport))) {
                     Image(systemName: "square.and.pencil")
                 }
-                .padding(.trailing, 20)
-                Button(action: {
-                    viewModel.confirmDelete()
-                }, label: {
-                    Image(systemName: "trash")
-                })
-                .padding(.trailing, 30)
+                .padding(.trailing, 20)                
             }
             HStack {
                 Image(systemName: "calendar")

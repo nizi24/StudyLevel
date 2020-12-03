@@ -14,9 +14,13 @@ struct ProfileView: View {
         VStack {
             HStack {
                 VStack {
-                    if let url = viewModel.avatarURL {
-                        AvaterView(container: ImageContainer(from: url),
-                                   size: 60)
+                    if let urlString = viewModel.user?.avatarURL, let id = viewModel.user?.id {
+                        if let url = URL(string: urlString) {
+                            AvaterView(container: ImageContainer(from: url, userId: id),
+                                       size: 60)
+                        } else {
+                            DefaultAvatarView(size: 60)
+                        }
                     } else {
                         DefaultAvatarView(size: 60)
                     }

@@ -8,14 +8,14 @@
 import Foundation
 
 class AvatarRequest: Request {
-    typealias Response = URL?
-    var path = "/v2/:id/avatar_url"
+    typealias Response = String?
+    var path = "/v2/users/:id/avatar_url"
     var method: HTTPMethod = .get
     var queryItems: [URLQueryItem]?
     var body: Encodable?
     
-    func avatarURL(userId id: Int) -> Self {
-        path = "/v2/\(id)/avatar_url"
+    func avatarURL(userId: Int) -> Self {
+        path = "/v2/users/\(userId)/avatar_url"
         method = .get
         return self
     }

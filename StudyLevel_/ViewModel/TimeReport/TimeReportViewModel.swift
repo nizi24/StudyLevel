@@ -10,13 +10,13 @@ import SwiftUI
 
 class TimeReportViewModel: ObservableObject {
     @Published var timeReport: TimeReport
-    @Published var avatarURL: URL?
     @Published var errorMessage = ""
     @Published var aleat = false
     @Published var aleatType: AleatType? = nil
     
     init(timeReport: TimeReport) {
         self.timeReport = timeReport
+        self.timeReport.creator.avatarURL = timeReport.creator.avatarURL?.replacingOccurrences(of: "localhost", with: "192.168.11.10")
     }
     
     func confirmDelete() {

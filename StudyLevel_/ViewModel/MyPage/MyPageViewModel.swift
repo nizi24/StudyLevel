@@ -13,7 +13,6 @@ class MyPageViewModel: ObservableObject {
     @Published var user: User? = nil
     @Published var experience: Experience? = nil
     @Published var requiredEXP: RequiredEXP? = nil
-    @Published var avatarURL: URL?
     @Published var followingCount: Int?
     @Published var followerCount: Int?
     @Published var weeklyTarget: WeeklyTarget?
@@ -21,21 +20,13 @@ class MyPageViewModel: ObservableObject {
     @Published var connecting: Bool
     
     init() {
-        connecting = true
-        getUser()
-        getExperience()
-        getAvatarURL()
-        getFollowingCount()
-        getFollowerCount()
-        getTimeReports()
-        getWeeklyTarget()
+        connecting = false
     }
     
     func getToServer() {
         connecting = true
         getUser()
         getExperience()
-        getAvatarURL()
         getFollowingCount()
         getFollowerCount()
         getTimeReports()
@@ -55,6 +46,7 @@ class MyPageViewModel: ObservableObject {
                 // メインスレッドから投稿しないと警告が出る & Viewの再構築が遅くなる
                 DispatchQueue.main.async {
                     self?.user = user
+                    self?.user?.avatarURL = user.avatarURL?.replacingOccurrences(of: "localhost", with: "192.168.11.10")
                 }
             case .failure(_):
                 DispatchQueue.main.async {
@@ -111,24 +103,6 @@ class MyPageViewModel: ObservableObject {
                     self?.error = true
                     self?.errorMessage = "通信に失敗しました。"
                 }
-            }
-        }
-    }
-    
-    private func getAvatarURL() {
-        guard let id = CurrentUser().currentUser()?.id else {
-            error = true
-            errorMessage = "認証に失敗しました"
-            return
-        }
-        let request = AvatarRequest().avatarURL(userId: id)
-        StudyLevelClient().send(request: request) { [weak self] result in
-            switch result {
-            case .success(let avatarURL):
-                DispatchQueue.main.async {
-                    self?.avatarURL = avatarURL
-                }
-            case .failure(_): break
             }
         }
     }
