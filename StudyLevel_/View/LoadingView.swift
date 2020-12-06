@@ -17,29 +17,31 @@ struct LoadingView<Content>: View where Content: View {
                 .blur(radius: isShowing ? 3 : 0)
                 .animation(.easeIn)
             
-            ZStack {
-                VStack {
-                    Text(title)
-                        .multilineTextAlignment(.center)
-                    ActivityIndicator(style: .large,
-                                          animating: .constant(true))
-                }.frame(width: 200, height: 160)
-                    .compositingGroup()
+            if isShowing {
+                ZStack {
+                    VStack {
+                        Text(title)
+                            .multilineTextAlignment(.center)
+                        ActivityIndicator(style: .large,
+                                              animating: .constant(true))
+                    }.frame(width: 200, height: 160)
+                        .compositingGroup()
+                        .background(
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(Color(UIColor.systemBackground)))
+                    .shadow(radius: 6)
+                }.frame(minWidth: 0,
+                       maxWidth: .infinity,
+                       minHeight: 0,
+                       maxHeight: .infinity)
+                    .animation(.none)
                     .background(
-                        RoundedRectangle(cornerRadius: 5)
-                            .fill(Color(UIColor.systemBackground)))
-                .shadow(radius: 6)
-            }.frame(minWidth: 0,
-                   maxWidth: .infinity,
-                   minHeight: 0,
-                   maxHeight: .infinity)
-                .animation(.none)
-                .background(
-                    Color.gray
-                        .opacity(0.5))
-                .opacity(self.isShowing ? 1 : 0)
-                .animation(.easeIn)
-                .edgesIgnoringSafeArea(.all)
+                        Color.gray
+                            .opacity(0.5))
+                    .opacity(self.isShowing ? 1 : 0)
+                    .animation(.easeIn)
+                    .edgesIgnoringSafeArea(.all)
+            }
         }
     }
 }
