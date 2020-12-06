@@ -12,7 +12,7 @@ class CommentsRequest: Request {
     var method: HTTPMethod = .get
     var queryItems: [URLQueryItem]?
     var body: Encodable?
-    typealias Response = Comment
+    typealias Response = [Comment]
     
     func index(timeReportId: Int) -> Self {
         path = "/v1/time_reports/\(timeReportId)/comments"

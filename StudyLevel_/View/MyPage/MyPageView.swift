@@ -38,8 +38,7 @@ struct MyPageView: View {
                             VStack {
                                 if let timeReports = viewModel.timeReports {
                                     ForEach(timeReports.indices, id: \.self) { i in
-                                        TimeReportView(viewModel: TimeReportViewModel(timeReport: timeReports[i]), reload: $reload,
-                                                       connecting: $viewModel.connecting)
+                                        TimeReportView(timeReport: timeReports[i], reload: $reload)
                                             .background(Color.white)
                                     }
                                 }

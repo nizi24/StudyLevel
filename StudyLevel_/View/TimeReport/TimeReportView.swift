@@ -8,20 +8,30 @@
 import SwiftUI
 
 struct TimeReportView: View {
-    @ObservedObject var viewModel: TimeReportViewModel
+    @ObservedObject var viewModel = TimeReportViewModel()
     @State var screen: CGSize = UIScreen.main.bounds.size
     @State var editFormAppear = false
     @Binding var reload: Bool
-    @Binding var connecting: Bool
+    var timeReport: TimeReport
+    @State var changeLikesCount: Int = -1
+    @ObservedObject var likesCount: LikesCount
+
+    init(timeReport: TimeReport, reload: Binding<Bool>) {
+        self.timeReport = timeReport
+        self._reload = reload
+        likesCount = LikesCount(likesCount: timeReport.likesCount)
+        changeLikesCount = -1
+        self.timeReport.creator.avatarURL = timeReport.creator.avatarURL?.replacingOccurrences(of: "localhost", with: "192.168.11.10")
+    }
     
     var body: some View {
-        NavigationLink(destination: TimeReportDetailView(viewModel: TimeReportDetailViewModel(timeReport: viewModel.timeReport))) {
+        NavigationLink(destination: TimeReportDetailView(viewModel: TimeReportDetailViewModel(timeReport: timeReport, likesCount: likesCount.likesCount))) {
             VStack {
                 HStack {
                     VStack {
-                        if let urlString = viewModel.timeReport.creator.avatarURL {
+                        if let urlString = timeReport.creator.avatarURL {
                             if let url = URL(string: urlString) {
-                                AvaterView(container: ImageContainer(from: url, userId: viewModel.timeReport.creator.id),
+                                AvaterView(container: ImageContainer(from: url, userId: timeReport.creator.id),
                                            size: 30)
                             } else {
                                 DefaultAvatarView(size: 30)
@@ -34,41 +44,43 @@ struct TimeReportView: View {
                     .padding(.leading, 20)
                     VStack {
                         HStack {
-                            Text(viewModel.timeReport.creator.name)
+                            Text(timeReport.creator.name)
                                 .foregroundColor(.primary)
                                 .font(.callout)
                                 .bold()
                             Spacer()
                         }
                         HStack {
-                            Text("@" + (viewModel.timeReport.creator.screenName))
+                            Text("@" + (timeReport.creator.screenName))
                                 .foregroundColor(.secondary)
                                 .font(.caption)
                             Spacer()
                         }
                     }
                     Spacer()
-                    NavigationLink(destination: EditTimeReportView(timeReportFormViewModel: TimeReportFormViewModel(timeReport: viewModel.timeReport))) {
-                        Image(systemName: "square.and.pencil")
+                    if viewModel.displayEditButton(creatorId: timeReport.creator.id) {
+                        NavigationLink(destination: EditTimeReportView(timeReportFormViewModel: TimeReportFormViewModel(timeReport: timeReport), navigationBarHidden: .constant(false))) {
+                            Image(systemName: "square.and.pencil")
+                        }
+                        .padding(.trailing, 20)
+                        Button(action: {
+                            viewModel.confirmDelete()
+                        }, label: {
+                            Image(systemName: "trash")
+                        })
+                        .padding(.trailing, 30)
                     }
-                    .padding(.trailing, 20)
-                    Button(action: {
-                        viewModel.confirmDelete()
-                    }, label: {
-                        Image(systemName: "trash")
-                    })
-                    .padding(.trailing, 30)
                 }
                 HStack {
                     Image(systemName: "calendar")
                         .padding(.leading)
-                    Text(viewModel.processingStudyDate())
+                    Text(viewModel.processingStudyDate(timeReport: timeReport))
                         .font(.footnote)
                     Spacer()
                 }
                 .foregroundColor(Color.black)
                 .padding(.leading, 20)
-                if let tags = viewModel.timeReport.tags {
+                if let tags = timeReport.tags {
                     if !tags.isEmpty {
                         HStack {
                             FlexibleView(
@@ -89,18 +101,18 @@ struct TimeReportView: View {
                         Image(systemName: "clock")
                             .padding(.leading, 10)
                             .foregroundColor(Color.black)
-                        Text(viewModel.processingStudyHour())
+                        Text(viewModel.processingStudyHour(timeReport: timeReport))
                             .font(.largeTitle)
                             .bold()
-                            .foregroundColor(Color(UIColor(hex: viewModel.changeColor())))
+                            .foregroundColor(Color(UIColor(hex: viewModel.changeColor(timeReport: timeReport))))
                             .offset(y: 7)
                         Text("時間")
                             .font(.caption)
                             .foregroundColor(Color.black)
-                        Text(viewModel.processingStudyMinute())
+                        Text(viewModel.processingStudyMinute(timeReport: timeReport))
                             .font(.largeTitle)
                             .bold()
-                            .foregroundColor(Color(UIColor(hex: viewModel.changeColor())))
+                            .foregroundColor(Color(UIColor(hex: viewModel.changeColor(timeReport: timeReport))))
                             .offset(y: 7)
                         Text("分")
                             .font(.caption)
@@ -110,10 +122,10 @@ struct TimeReportView: View {
                     HStack(alignment: .bottom) {
                         Image(systemName: "arrow.turn.right.up")
                             .foregroundColor(Color.black)
-                        Text(String(viewModel.timeReport.experienceRecord.experiencePoint))
+                        Text(String(timeReport.experienceRecord.experiencePoint))
                             .font(.largeTitle)
                             .bold()
-                            .foregroundColor(Color(UIColor(hex: viewModel.changeColor())))
+                            .foregroundColor(Color(UIColor(hex: viewModel.changeColor(timeReport: timeReport))))
                             .offset(y: 7)
                         Text("EXP")
                             .font(.caption)
@@ -122,18 +134,27 @@ struct TimeReportView: View {
                     .frame(width: screen.width * 1 / 2)
                 }
                 .padding(.top, 5)
-                if !viewModel.timeReport.memo.isEmpty {
-                    Text(viewModel.timeReport.memo)
-                        .padding(.top, 15)
-                        .padding(.leading, 30)
-                        .padding(.trailing, 30)
-                        .foregroundColor(Color.black)
+                if !timeReport.memo.isEmpty {
+                    HStack {
+                        Text(timeReport.memo)
+                            .padding(.top, 15)
+                            .padding(.leading, 50)
+                            .padding(.trailing, 30)
+                            .foregroundColor(Color.black)
+                        Spacer()
+                    }
                 }
                 HStack {
                     Image(systemName: "ellipsis.bubble")
                         .foregroundColor(Color.black)
+                    Text(String(timeReport.commentsCount))
+                        .foregroundColor(Color.black)
+                        .font(.caption)
                     Spacer()
-                    Image(systemName: "heart")
+                    TimeReportLikeButtonView(timeReport: timeReport, count: $changeLikesCount)
+                    Text(String(likesCount.likesCount))
+                        .foregroundColor(Color.black)
+                        .font(.caption)
                 }
                 .padding(.top, 15)
                 .padding(.leading, 35)
@@ -156,10 +177,19 @@ struct TimeReportView: View {
                 case .confirmDelete:
                     return Alert(title: Text("確認"), message: Text("削除しますか？\n（削除した場合、レベルが下がる恐れがあります。）"),
                                                                   primaryButton: .destructive(Text("削除"), action: {
-                                                                    viewModel.delete()
+                                                                    viewModel.delete(timeReportId: timeReport.id)
                                                                   }), secondaryButton: .cancel(Text("キャンセル")))
                 }
             })
+            .onChange(of: changeLikesCount) { changeLikesCount in
+                if changeLikesCount == 0 {
+                    likesCount.likesCount -= 1
+                    self.changeLikesCount = -1
+                } else if changeLikesCount == 1 {
+                    likesCount.likesCount += 1
+                    self.changeLikesCount = -1
+                }
+            }
         }
     }
         
@@ -168,7 +198,7 @@ struct TimeReportView: View {
         var height = CGFloat.zero
     
         return ZStack(alignment: .topLeading) {
-            if let tagList = viewModel.timeReport.tags {
+            if let tagList = timeReport.tags {
                 ForEach(tagList, id: \.self) { tag in
                     TagView(name: tag.name)
                         .padding([.horizontal, .vertical], 4)
@@ -198,8 +228,10 @@ struct TimeReportView: View {
         }
 }
 
-//struct TimeReportView_Previews: PreviewProvider {
-//    static var previews: some View {
-//TimeReportView(viewModel: TimeReportViewModel(timeReport: TimeReport(id: 1, userId: 1, studyTime: "2000-01-01T23:01:00.000+09:00", studyDate: "2020-11-21T18:41:00.000+09:00", memo: "勉強した", createdAt: "2020-11-21T11:19:55.927+09:00")), connecting: .constant(false))
-//    }
-//}
+class LikesCount: ObservableObject {
+    @Published var likesCount: Int
+    
+    init(likesCount: Int) {
+        self.likesCount = likesCount
+    }
+}

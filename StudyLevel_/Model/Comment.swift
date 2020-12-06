@@ -14,7 +14,8 @@ struct Comment: Decodable {
     var content: String
     var createdAt: String
     var updatedAt: String
-    var likeCount: Int
+    var likesCount: Int
+    var creator: User
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -23,6 +24,7 @@ struct Comment: Decodable {
         case content
         case createdAt = "created_at"
         case updatedAt = "updated_at"
-        case likeCount = "like_count"
+        case likesCount = "likes_count"
+        case creator = "user"
     }
 }

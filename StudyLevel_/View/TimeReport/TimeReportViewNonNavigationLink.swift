@@ -8,20 +8,33 @@
 import SwiftUI
 
 struct TimeReportViewNonNavigationLink: View {
-    @ObservedObject var viewModel: TimeReportViewModel
+    @StateObject var viewModel: TimeReportViewModel = TimeReportViewModel()
+    @Binding var navigationBarHidden: Bool
     @State var screen: CGSize = UIScreen.main.bounds.size
     @State var editFormAppear = false
-    @Binding var reload: Bool
-    @Binding var connecting: Bool
+    var timeReport: TimeReport {
+        didSet {
+            timeReport.creator.avatarURL = timeReport.creator.avatarURL?.replacingOccurrences(of: "localhost", with: "192.168.11.10")
+            likesCount = timeReport.likesCount
+        }
+    }
+    @State var changeLikesCount: Int = -1
+    @State var likesCount = 0
     
+    init(timeReport: TimeReport, navigationBarHidden: Binding<Bool>) {
+        self.timeReport = timeReport
+        self.timeReport.creator.avatarURL = timeReport.creator.avatarURL?.replacingOccurrences(of: "localhost", with: "192.168.11.10")
+        self._navigationBarHidden = navigationBarHidden
+        _likesCount = State(initialValue: timeReport.likesCount)
+    }
     
     var body: some View {
         VStack {
             HStack {
                 VStack {
-                    if let urlString = viewModel.timeReport.creator.avatarURL {
+                    if let urlString = timeReport.creator.avatarURL {
                         if let url = URL(string: urlString) {
-                            AvaterView(container: ImageContainer(from: url, userId: viewModel.timeReport.creator.id),
+                            AvaterView(container: ImageContainer(from: url, userId: timeReport.creator.id),
                                        size: 30)
                         } else {
                             DefaultAvatarView(size: 30)
@@ -34,35 +47,42 @@ struct TimeReportViewNonNavigationLink: View {
                 .padding(.leading, 20)
                 VStack {
                     HStack {
-                        Text(viewModel.timeReport.creator.name)
+                        Text(timeReport.creator.name)
                             .foregroundColor(.primary)
                             .font(.callout)
                             .bold()
                         Spacer()
                     }
                     HStack {
-                        Text("@" + (viewModel.timeReport.creator.screenName))
+                        Text("@" + (timeReport.creator.screenName))
                             .foregroundColor(.secondary)
                             .font(.caption)
                         Spacer()
                     }
                 }
                 Spacer()
-                NavigationLink(destination: EditTimeReportView(timeReportFormViewModel: TimeReportFormViewModel(timeReport: viewModel.timeReport))) {
-                    Image(systemName: "square.and.pencil")
+                if viewModel.displayEditButton(creatorId: timeReport.creator.id) {
+                    NavigationLink(
+                        destination: EditTimeReportView(timeReportFormViewModel: TimeReportFormViewModel(timeReport: timeReport), navigationBarHidden: $navigationBarHidden)
+                    ) {
+                        Image(systemName: "square.and.pencil")
+                    }
+                    .padding(.trailing, 20)
+                    .simultaneousGesture(TapGesture().onEnded {
+                         navigationBarHidden = true
+                    })
                 }
-                .padding(.trailing, 20)                
             }
             HStack {
                 Image(systemName: "calendar")
                     .padding(.leading)
-                Text(viewModel.processingStudyDate())
+                Text(viewModel.processingStudyDate(timeReport: timeReport))
                     .font(.footnote)
                 Spacer()
             }
             .foregroundColor(Color.black)
             .padding(.leading, 20)
-            if let tags = viewModel.timeReport.tags {
+            if let tags = timeReport.tags {
                 if !tags.isEmpty {
                     HStack {
                         FlexibleView(
@@ -83,18 +103,18 @@ struct TimeReportViewNonNavigationLink: View {
                     Image(systemName: "clock")
                         .padding(.leading, 10)
                         .foregroundColor(Color.black)
-                    Text(viewModel.processingStudyHour())
+                    Text(viewModel.processingStudyHour(timeReport: timeReport))
                         .font(.largeTitle)
                         .bold()
-                        .foregroundColor(Color(UIColor(hex: viewModel.changeColor())))
+                        .foregroundColor(Color(UIColor(hex: viewModel.changeColor(timeReport: timeReport))))
                         .offset(y: 7)
                     Text("時間")
                         .font(.caption)
                         .foregroundColor(Color.black)
-                    Text(viewModel.processingStudyMinute())
+                    Text(viewModel.processingStudyMinute(timeReport: timeReport))
                         .font(.largeTitle)
                         .bold()
-                        .foregroundColor(Color(UIColor(hex: viewModel.changeColor())))
+                        .foregroundColor(Color(UIColor(hex: viewModel.changeColor(timeReport: timeReport))))
                         .offset(y: 7)
                     Text("分")
                         .font(.caption)
@@ -104,10 +124,10 @@ struct TimeReportViewNonNavigationLink: View {
                 HStack(alignment: .bottom) {
                     Image(systemName: "arrow.turn.right.up")
                         .foregroundColor(Color.black)
-                    Text(String(viewModel.timeReport.experienceRecord.experiencePoint))
+                    Text(String(timeReport.experienceRecord.experiencePoint))
                         .font(.largeTitle)
                         .bold()
-                        .foregroundColor(Color(UIColor(hex: viewModel.changeColor())))
+                        .foregroundColor(Color(UIColor(hex: viewModel.changeColor(timeReport: timeReport))))
                         .offset(y: 7)
                     Text("EXP")
                         .font(.caption)
@@ -116,8 +136,8 @@ struct TimeReportViewNonNavigationLink: View {
                 .frame(width: screen.width * 1 / 2)
             }
             .padding(.top, 5)
-            if !viewModel.timeReport.memo.isEmpty {
-                Text(viewModel.timeReport.memo)
+            if !timeReport.memo.isEmpty {
+                Text(timeReport.memo)
                     .padding(.top, 15)
                     .padding(.leading, 30)
                     .padding(.trailing, 30)
@@ -126,8 +146,14 @@ struct TimeReportViewNonNavigationLink: View {
             HStack {
                 Image(systemName: "ellipsis.bubble")
                     .foregroundColor(Color.black)
+                Text(String(timeReport.commentsCount))
+                    .foregroundColor(Color.black)
+                    .font(.caption)
                 Spacer()
-                Image(systemName: "heart")
+                TimeReportLikeButtonView(timeReport: timeReport, count: $changeLikesCount)
+                Text(String(likesCount))
+                    .foregroundColor(Color.black)
+                    .font(.caption)
             }
             .padding(.top, 15)
             .padding(.leading, 35)
@@ -138,22 +164,20 @@ struct TimeReportViewNonNavigationLink: View {
         }
         .alert(isPresented: $viewModel.aleat, content: {
             switch (viewModel.aleatType ?? .error) {
-            case .deleteSuccess:
-                return Alert(title: Text("完了"),
-                message: Text("記録を削除しました。"),
-                dismissButton: .default(Text("OK"), action: {
-                    reload = true
-                }))
-            case .error:
-                return Alert(title: Text("エラー"),
-                             message: Text(viewModel.errorMessage))
-            case .confirmDelete:
-                return Alert(title: Text("確認"), message: Text("削除しますか？\n（削除した場合、レベルが下がる恐れがあります。）"),
-                                                              primaryButton: .destructive(Text("削除"), action: {
-                                                                viewModel.delete()
-                                                              }), secondaryButton: .cancel(Text("キャンセル")))
+                default:
+                    return Alert(title: Text("エラー"),
+                                 message: Text(viewModel.errorMessage))
             }
         })
+        .onChange(of: changeLikesCount) { changeLikesCount in
+            if changeLikesCount == 0 {
+                likesCount -= 1
+                self.changeLikesCount = -1
+            } else if changeLikesCount == 1 {
+                likesCount += 1
+                self.changeLikesCount = -1
+            }
+        }
     }
         
     private func generateTags() -> some View {
@@ -161,7 +185,7 @@ struct TimeReportViewNonNavigationLink: View {
         var height = CGFloat.zero
     
         return ZStack(alignment: .topLeading) {
-            if let tagList = viewModel.timeReport.tags {
+            if let tagList = timeReport.tags {
                 ForEach(tagList, id: \.self) { tag in
                     TagView(name: tag.name)
                         .padding([.horizontal, .vertical], 4)

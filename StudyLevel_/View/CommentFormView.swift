@@ -9,7 +9,8 @@ import SwiftUI
 
 struct CommentFormView: View {
     var timeReportId: Int
-    @ObservedObject var viewModel = CommentFormViewModel()
+    @ObservedObject var viewModel: CommentFormViewModel
+    @Binding var reload: Bool
     @State var screen: CGSize = UIScreen.main.bounds.size
     
     var body: some View {
@@ -50,12 +51,25 @@ struct CommentFormView: View {
                 })
             }.padding(.trailing, 30)
             .padding(.top)
+            Divider()
+        }
+        .alert(isPresented: $viewModel.aleat) {
+            switch(viewModel.aleatType) {
+            case .createSuccess:
+                return Alert(title: Text("完了"), message: Text("コメントを投稿しました。"), dismissButton: .default(Text("OK"), action: {
+                    reload = true
+                }))
+            case .error:
+                return Alert(title: Text("エラー"), message: Text(viewModel.errorMessage))
+            case .none:
+                return Alert(title: Text("エラー"))
+            }
         }
     }
 }
 
 struct CommentForm_Previews: PreviewProvider {
     static var previews: some View {
-        CommentFormView(timeReportId: 1)
+        CommentFormView(timeReportId: 0, viewModel: CommentFormViewModel(), reload: .constant(true))
     }
 }

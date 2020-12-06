@@ -22,12 +22,27 @@ class ContentViewModel: ObservableObject {
         switch result {
         case .success(let user):
             id = user.id
+            likesSetToRealm()
         case .failure(StudyLevelClientError.communicationFailed):
             error = true
             errorMessage = "通信に失敗しました。"
         case .failure(_):
             error = true
             errorMessage = "エラーが発生しました。"
+        }
+    }
+    
+    private func likesSetToRealm() {
+        let request = LikesRequest().index(userId: id)
+        StudyLevelClient().send(request: request) { result in
+            switch (result) {
+            case .success(let likes):
+                LikeDB().deleteAll()
+                for like in likes {
+                    LikeDB().createAndSave(like: like)
+                }
+            case .failure(_): break
+            }
         }
     }
 }

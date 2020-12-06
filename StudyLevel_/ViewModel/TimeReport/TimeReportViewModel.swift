@@ -9,14 +9,18 @@ import Foundation
 import SwiftUI
 
 class TimeReportViewModel: ObservableObject {
-    @Published var timeReport: TimeReport
     @Published var errorMessage = ""
     @Published var aleat = false
     @Published var aleatType: AleatType? = nil
     
-    init(timeReport: TimeReport) {
-        self.timeReport = timeReport
-        self.timeReport.creator.avatarURL = timeReport.creator.avatarURL?.replacingOccurrences(of: "localhost", with: "192.168.11.10")
+    func displayEditButton(creatorId: Int) -> Bool {
+        guard let id = CurrentUser().currentUser()?.id else {
+            return false
+        }
+        if id == creatorId {
+            return true
+        }
+        return false
     }
     
     func confirmDelete() {
@@ -24,8 +28,8 @@ class TimeReportViewModel: ObservableObject {
         aleat = true
     }
     
-    func delete() {
-        let request = TimeReportRequest().delete(timeReportId: timeReport.id)
+    func delete(timeReportId: Int) {
+        let request = TimeReportRequest().delete(timeReportId: timeReportId)
         StudyLevelClient().send(request: request) { result in
             switch result {
             case .success(_):
@@ -43,7 +47,7 @@ class TimeReportViewModel: ObservableObject {
         }
     }
     
-    func processingStudyDate() -> String {
+    func processingStudyDate(timeReport: TimeReport) -> String {
         let studyDate = timeReport.studyDate
         let dateArray = studyDate.split(separator: "T")[0].split(separator: "-")
         let date = "\(dateArray[0])年\(dateArray[1])月\(dateArray[2])日"
@@ -52,7 +56,7 @@ class TimeReportViewModel: ObservableObject {
         return date + " " + time
     }
     
-    func processingStudyHour() -> String {
+    func processingStudyHour(timeReport: TimeReport) -> String {
         let studyTime = timeReport.studyTime
         var hour: String = String(processingTimeArray(date: studyTime)[0])
         if hour.first == "0" {
@@ -63,13 +67,13 @@ class TimeReportViewModel: ObservableObject {
         return hour
     }
     
-    func processingStudyMinute() -> String {
+    func processingStudyMinute(timeReport: TimeReport) -> String {
         let studyTime = timeReport.studyTime
         return String(processingTimeArray(date: studyTime)[1])
     }
     
-    func changeColor() -> String {
-        let time = Int(processingStudyHour())! * 60 + Int(processingStudyMinute())!
+    func changeColor(timeReport: TimeReport) -> String {
+        let time = Int(processingStudyHour(timeReport: timeReport))! * 60 + Int(processingStudyMinute(timeReport: timeReport))!
         if time >= 180 {
             return "FF6F00"
         } else if time >= 120 {
