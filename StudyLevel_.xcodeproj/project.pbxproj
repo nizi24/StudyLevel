@@ -87,6 +87,9 @@
 		6AA0F0CE2572096C00F59074 /* TimeReportFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA0F0CD2572096C00F59074 /* TimeReportFormView.swift */; };
 		6AA0F0D625720A4000F59074 /* CreateTimeReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA0F0D525720A4000F59074 /* CreateTimeReportViewModel.swift */; };
 		6AA0F0DE257262F100F59074 /* TimeReportRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA0F0DD257262F100F59074 /* TimeReportRequest.swift */; };
+		6AB13DB7257D033000FFB191 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB13DB6257D033000FFB191 /* FeedView.swift */; };
+		6AB13DC0257D034F00FFB191 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB13DBF257D034F00FFB191 /* FeedViewModel.swift */; };
+		6AB13DC5257D0D9F00FFB191 /* TimelineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB13DC4257D0D9F00FFB191 /* TimelineViewModel.swift */; };
 		6AB298ED25614DE8003D2792 /* StudyLevel_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB298EC25614DE8003D2792 /* StudyLevel_App.swift */; };
 		6AB298EF25614DE8003D2792 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB298EE25614DE8003D2792 /* ContentView.swift */; };
 		6AB298F125614DEA003D2792 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AB298F025614DEA003D2792 /* Assets.xcassets */; };
@@ -210,6 +213,9 @@
 		6AA0F0CD2572096C00F59074 /* TimeReportFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeReportFormView.swift; sourceTree = "<group>"; };
 		6AA0F0D525720A4000F59074 /* CreateTimeReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTimeReportViewModel.swift; sourceTree = "<group>"; };
 		6AA0F0DD257262F100F59074 /* TimeReportRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeReportRequest.swift; sourceTree = "<group>"; };
+		6AB13DB6257D033000FFB191 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		6AB13DBF257D034F00FFB191 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		6AB13DC4257D0D9F00FFB191 /* TimelineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewModel.swift; sourceTree = "<group>"; };
 		6AB298E925614DE8003D2792 /* StudyLevel_.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudyLevel_.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AB298EC25614DE8003D2792 /* StudyLevel_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyLevel_App.swift; sourceTree = "<group>"; };
 		6AB298EE25614DE8003D2792 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -278,6 +284,9 @@
 		6A0B8C8025615831009BD8EC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6AB13DB5257D032100FFB191 /* Feed */,
+				6AB13DB2257D02EB00FFB191 /* Like */,
+				6AB13DB1257D02D800FFB191 /* Comment */,
 				6A4CC98A25789365005565D4 /* TimeReport */,
 				6A446DA7256A330C00AC93DF /* TimeReportForm */,
 				6A2B4EBB2566A4B300D7CE7F /* MyPage */,
@@ -290,10 +299,6 @@
 				6A12468F256805C60095CB13 /* DefaultAvatarView.swift */,
 				6A446D9D256A25D200AC93DF /* TagView.swift */,
 				6A446DA2256A2CB400AC93DF /* FlexibleView.swift */,
-				6A4CC99225789C6A005565D4 /* CommentFormView.swift */,
-				6A4CC9AD2578B13D005565D4 /* CommentView.swift */,
-				6A87F762257BD84A00781F99 /* TimeReportLikeButtonView.swift */,
-				6A87F77A257BDD4E00781F99 /* CommentLikeButtonView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -301,6 +306,9 @@
 		6A0B8C8125615839009BD8EC /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				6AB13DBE257D033F00FFB191 /* Feed */,
+				6AB13DB4257D031100FFB191 /* Like */,
+				6AB13DB3257D030400FFB191 /* Comment */,
 				6A4CC98B2578937C005565D4 /* TimeReport */,
 				6A446DF9256B5C9B00AC93DF /* TimeReportForm */,
 				6A12464E25674D7A0095CB13 /* Auth */,
@@ -313,9 +321,6 @@
 				6A446DCA256A8B2100AC93DF /* ExtensionStringRegex.swift */,
 				6A932EA9256FDD9500D0B4AE /* KeyboardObserver.swift */,
 				6A4CC9732577B84F005565D4 /* AleatItem.swift */,
-				6A4CC99A2578A5A4005565D4 /* CommentFormViewModel.swift */,
-				6A4CC9C4257912FE005565D4 /* CommentViewModel.swift */,
-				6A87F767257BD86700781F99 /* LikeButtonViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -475,6 +480,58 @@
 				6A87F750257BBC5300781F99 /* LikesRequest.swift */,
 			);
 			path = Requests;
+			sourceTree = "<group>";
+		};
+		6AB13DB1257D02D800FFB191 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				6A4CC9AD2578B13D005565D4 /* CommentView.swift */,
+				6A4CC99225789C6A005565D4 /* CommentFormView.swift */,
+			);
+			path = Comment;
+			sourceTree = "<group>";
+		};
+		6AB13DB2257D02EB00FFB191 /* Like */ = {
+			isa = PBXGroup;
+			children = (
+				6A87F77A257BDD4E00781F99 /* CommentLikeButtonView.swift */,
+				6A87F762257BD84A00781F99 /* TimeReportLikeButtonView.swift */,
+			);
+			path = Like;
+			sourceTree = "<group>";
+		};
+		6AB13DB3257D030400FFB191 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				6A4CC99A2578A5A4005565D4 /* CommentFormViewModel.swift */,
+				6A4CC9C4257912FE005565D4 /* CommentViewModel.swift */,
+			);
+			path = Comment;
+			sourceTree = "<group>";
+		};
+		6AB13DB4257D031100FFB191 /* Like */ = {
+			isa = PBXGroup;
+			children = (
+				6A87F767257BD86700781F99 /* LikeButtonViewModel.swift */,
+			);
+			path = Like;
+			sourceTree = "<group>";
+		};
+		6AB13DB5257D032100FFB191 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				6AB13DB6257D033000FFB191 /* FeedView.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		6AB13DBE257D033F00FFB191 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				6AB13DC4257D0D9F00FFB191 /* TimelineViewModel.swift */,
+				6AB13DBF257D034F00FFB191 /* FeedViewModel.swift */,
+			);
+			path = Feed;
 			sourceTree = "<group>";
 		};
 		6AB298E025614DE8003D2792 = {
@@ -897,6 +954,7 @@
 				6A446DCB256A8B2100AC93DF /* ExtensionStringRegex.swift in Sources */,
 				6A446DB1256A3BAF00AC93DF /* WeeklyTarget.swift in Sources */,
 				6A2B4E9325665A5800D7CE7F /* MenuViewModel.swift in Sources */,
+				6AB13DC0257D034F00FFB191 /* FeedViewModel.swift in Sources */,
 				6A583DD22563E1AD006FE098 /* StudyLevelClient.swift in Sources */,
 				6A4CC9AE2578B13D005565D4 /* CommentView.swift in Sources */,
 				6A12467B2567FA560095CB13 /* ImageContainer.swift in Sources */,
@@ -905,11 +963,13 @@
 				6A583DE12564019D006FE098 /* UserRequest.swift in Sources */,
 				6A12464925674D540095CB13 /* ExperienceProgressView.swift in Sources */,
 				6A1246802567FB320095CB13 /* AvaterView.swift in Sources */,
+				6AB13DB7257D033000FFB191 /* FeedView.swift in Sources */,
 				6A446DFB256B5CAB00AC93DF /* TimeReportFormViewModel.swift in Sources */,
 				6A12465F256751F20095CB13 /* RequiredEXP.swift in Sources */,
 				6A446DF0256A9E8E00AC93DF /* TagDB.swift in Sources */,
 				6A0B8C8C256158FB009BD8EC /* SignupViewModel.swift in Sources */,
 				6A4CC9C5257912FE005565D4 /* CommentViewModel.swift in Sources */,
+				6AB13DC5257D0D9F00FFB191 /* TimelineViewModel.swift in Sources */,
 				6A446DD1256A941400AC93DF /* UserDB.swift in Sources */,
 				6A6811A02565FA3A00510D73 /* CurrentUser.swift in Sources */,
 				6A87F751257BBC5300781F99 /* LikesRequest.swift in Sources */,

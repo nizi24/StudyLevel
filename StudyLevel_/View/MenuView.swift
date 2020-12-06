@@ -25,15 +25,11 @@ struct MenuView: View {
                     EmptyView()
                 })
             TabView {
-                Button(action: {
-                    viewModel.logout()
-                }, label: {
-                    Text("Logout")
-                })
-                    .tabItem {
+                FeedView()
+                .tabItem {
                         VStack {
                             Image(systemName: "list.bullet")
-                            Text("Home")
+                            Text("ホーム")
                         }
                     }
                 CreateTimeReportView()
