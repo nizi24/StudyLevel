@@ -1,18 +1,18 @@
 //
-//  TimelineViewModel.swift
+//  TagFeedViewModel.swift
 //  StudyLevel_
 //
-//  Created by Yuu Nishida on 2020/12/06.
+//  Created by Yuu Nishida on 2020/12/07.
 //
 
 import Foundation
 
-class TimelineViewModel: ObservableObject, TimeReportsViewModelProtocol {
+class TagFeedViewModel: ObservableObject, TimeReportsViewModelProtocol {
     @Published var timeReports: [TimeReport]?
     @Published var connecting = false
     @Published var error = false
     @Published var errorMessage = ""
-    @Published var followingCount: Int?
+    @Published var tagFollowingCount: Int?
     @Published var message = ""
     @Published var subMessage = ""
     
@@ -26,15 +26,15 @@ class TimelineViewModel: ObservableObject, TimeReportsViewModelProtocol {
             errorMessage = "認証に失敗しました"
             return
         }
-        let request = FollowCountRequest().followingCount(id: id)
+        let request = FollowCountRequest().tagFollowingCount(userId: id)
         StudyLevelClient().send(request: request) { [weak self] result in
             switch result {
             case .success(let followingCount):
                 DispatchQueue.main.async {
-                    self?.followingCount = followingCount
+                    self?.tagFollowingCount = followingCount
                     if followingCount == 0 {
-                        self?.message = "まだユーザーをフォローしていません。"
-                        self?.subMessage = "タイムラインにはフォローしているユーザーの投稿が表示されます。"
+                        self?.message = "まだタグをフォローしていません。"
+                        self?.subMessage = "タグフィードにはフォローしているタグがついている全てのユーザーの投稿が表示されます。"
                     }
                 }
             case .failure(_):
@@ -54,7 +54,7 @@ class TimelineViewModel: ObservableObject, TimeReportsViewModelProtocol {
             return
         }
         connecting = true
-        let request = TimeReportsRequest().timeline(userId: id, limit: timeReports?.count ?? 30)
+        let request = TimeReportsRequest().tagFeed(userId: id, limit: timeReports?.count ?? 30)
         StudyLevelClient().send(request: request) { [weak self] result in
             switch (result) {
             case .success(let timeReports):
@@ -82,7 +82,7 @@ class TimelineViewModel: ObservableObject, TimeReportsViewModelProtocol {
             return
         }
         connecting = true
-        let request = TimeReportsRequest().timeline(userId: id, offset: timeReports?.count ?? 0)
+        let request = TimeReportsRequest().tagFeed(userId: id, offset: timeReports?.count ?? 0)
         StudyLevelClient().send(request: request) { [weak self] result in
             switch result {
             case .success(let timeReports):

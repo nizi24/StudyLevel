@@ -11,7 +11,6 @@ struct MyPageView: View {
     @ObservedObject var viewModel = MyPageViewModel()
     @State var screen: CGSize = UIScreen.main.bounds.size
     @State var title = "通信中・・・"
-    @State var isFirst = true
     @State var reload = false
         
     var body: some View {
