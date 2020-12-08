@@ -17,7 +17,7 @@ struct ModalView<UnderContent, ModalContent>: View where UnderContent: View, Mod
             underContent()
                 .blur(radius: isShowing ? 3 : 0)
                 .animation(.easeIn)
-            
+
             if isShowing {
                 ZStack {
                     VStack {

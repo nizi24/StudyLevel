@@ -14,21 +14,25 @@ struct LevelUpView<Content>: View where Content: View {
     
     var body: some View {
         ModalView(isShowing: $isShowing, underContent: { content() }, modalContent: {
-            VStack {
-                HStack {
-                    Text("Level UP!!")
-                        .foregroundColor(Color(UIColor(hex: "FFD54F")))
+            ZStack {
+                VStack {
+                    HStack {
+                        Text("Level UP!!")
+                            .foregroundColor(Color(UIColor(hex: "FFD54F")))
+                            .bold()
+                            .padding(.leading)
+                        LottieView(filename: "8804-level-up-confetti-animation")
+                            .frame(width: 100, height: 100)
+                    }
+                    Text("Lv.\(level)")
+                        .foregroundColor(Color(UIColor(hex: "FF6F00")))
                         .bold()
-                        .padding(.vertical, 20)
-                        .padding(.horizontal, 40)
-                    
+                        .padding(.bottom)
                 }
-                Text("Lv.\(level)")
-                    .foregroundColor(Color(UIColor(hex: "FF6F00")))
-                    .bold()
-                    .padding()
+                .font(.largeTitle)
+                LottieView(filename: "34524-confetti")
+                    .frame(width: 300, height: 150)
             }
-            .font(.largeTitle)
         })
     }
 }

@@ -41,6 +41,8 @@
 		6A35E8242594C884003E776B /* LevelUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A35E8232594C884003E776B /* LevelUpViewModel.swift */; };
 		6A35E8532595C8B8003E776B /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A35E8522595C8B8003E776B /* LottieView.swift */; };
 		6A35E8632595CBE8003E776B /* 8804-level-up-confetti-animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A35E8622595CBE8003E776B /* 8804-level-up-confetti-animation.json */; };
+		6A35E8682595D15A003E776B /* 28893-book-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A35E8672595D15A003E776B /* 28893-book-loading.json */; };
+		6A43DB392595DCDD00FB16C0 /* 13450-like-animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A43DB382595DCDD00FB16C0 /* 13450-like-animation.json */; };
 		6A446D9E256A25D200AC93DF /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A446D9D256A25D200AC93DF /* TagView.swift */; };
 		6A446DA3256A2CB400AC93DF /* FlexibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A446DA2256A2CB400AC93DF /* FlexibleView.swift */; };
 		6A446DAC256A3B7600AC93DF /* WeeklyTargetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A446DAB256A3B7600AC93DF /* WeeklyTargetRequest.swift */; };
@@ -194,6 +196,7 @@
 		6AEF717C2563C18B0078E333 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEF717B2563C18B0078E333 /* Request.swift */; };
 		6AEF71812563C22D0078E333 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEF71802563C22D0078E333 /* HTTPMethod.swift */; };
 		6AEF71862563DF200078E333 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEF71852563DF200078E333 /* HTTPClient.swift */; };
+		6AF7CB3625962680004EF6AA /* 34524-confetti.json in Resources */ = {isa = PBXBuildFile; fileRef = 6AF7CB3525962680004EF6AA /* 34524-confetti.json */; };
 		D68CB4876A9E57A35CC09F11 /* Pods_StudyLevel_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77C25CA2DA9D70E9476082DE /* Pods_StudyLevel_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -264,6 +267,8 @@
 		6A35E8232594C884003E776B /* LevelUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelUpViewModel.swift; sourceTree = "<group>"; };
 		6A35E8522595C8B8003E776B /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		6A35E8622595CBE8003E776B /* 8804-level-up-confetti-animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "8804-level-up-confetti-animation.json"; sourceTree = "<group>"; };
+		6A35E8672595D15A003E776B /* 28893-book-loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "28893-book-loading.json"; sourceTree = "<group>"; };
+		6A43DB382595DCDD00FB16C0 /* 13450-like-animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "13450-like-animation.json"; sourceTree = "<group>"; };
 		6A446D9D256A25D200AC93DF /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		6A446DA2256A2CB400AC93DF /* FlexibleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleView.swift; sourceTree = "<group>"; };
 		6A446DAB256A3B7600AC93DF /* WeeklyTargetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyTargetRequest.swift; sourceTree = "<group>"; };
@@ -423,6 +428,7 @@
 		6AEF717B2563C18B0078E333 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		6AEF71802563C22D0078E333 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		6AEF71852563DF200078E333 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		6AF7CB3525962680004EF6AA /* 34524-confetti.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "34524-confetti.json"; sourceTree = "<group>"; };
 		77C25CA2DA9D70E9476082DE /* Pods_StudyLevel_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StudyLevel_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B986E309B24A8BB73BDC450 /* Pods_StudyLevel__StudyLevel_UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StudyLevel__StudyLevel_UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C33AF2BDAD62125C05737F81 /* Pods-StudyLevel_-StudyLevel_UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyLevel_-StudyLevel_UITests.debug.xcconfig"; path = "Target Support Files/Pods-StudyLevel_-StudyLevel_UITests/Pods-StudyLevel_-StudyLevel_UITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -889,6 +895,9 @@
 				6AB298F025614DEA003D2792 /* Assets.xcassets */,
 				6AB298F525614DEA003D2792 /* Info.plist */,
 				6A35E8622595CBE8003E776B /* 8804-level-up-confetti-animation.json */,
+				6A35E8672595D15A003E776B /* 28893-book-loading.json */,
+				6A43DB382595DCDD00FB16C0 /* 13450-like-animation.json */,
+				6AF7CB3525962680004EF6AA /* 34524-confetti.json */,
 				6AB298F225614DEA003D2792 /* Preview Content */,
 			);
 			path = StudyLevel_;
@@ -1103,10 +1112,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AF7CB3625962680004EF6AA /* 34524-confetti.json in Resources */,
+				6A35E8682595D15A003E776B /* 28893-book-loading.json in Resources */,
 				6AB298F425614DEA003D2792 /* Preview Assets.xcassets in Resources */,
 				6A10FDB5256154EE00B98D18 /* GoogleService-Info.plist in Resources */,
 				6A35E8632595CBE8003E776B /* 8804-level-up-confetti-animation.json in Resources */,
 				6AB298F125614DEA003D2792 /* Assets.xcassets in Resources */,
+				6A43DB392595DCDD00FB16C0 /* 13450-like-animation.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1582,6 +1594,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yunishida.StudyLevel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "StudyLevel Dev";
@@ -1609,6 +1622,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yunishida.StudyLevel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "StudyLevel Dev";

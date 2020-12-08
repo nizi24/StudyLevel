@@ -15,6 +15,7 @@ struct ContentView: View {
         if CurrentUser().isLogin() {
             if viewModel.error {
                 Text(viewModel.errorMessage)
+                Text("再起動してください。")
             } else {
                 LevelUpView(isShowing: $levelUpViewModel.isShowing, level: levelUpViewModel.level) {
                     MenuView(contentViewModel: viewModel)
