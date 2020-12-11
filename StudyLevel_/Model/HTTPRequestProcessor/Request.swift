@@ -51,5 +51,3 @@ extension Request {
         }
     }
 }
-
-
