@@ -90,7 +90,7 @@ struct TimeReportFormView: View {
                                     spacing: 15,
                                     alignment: .leading
                                   ) { item in
-                                    TagView(name: item, showX: true, timeReportFormmViewModel: viewModel)
+                                    TagView(name: item, showX: true, timeReportFormViewModel: viewModel)
                                   }
                                 Spacer()
                             }

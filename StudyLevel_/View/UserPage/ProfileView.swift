@@ -42,7 +42,7 @@ struct ProfileView: View {
                     }
                 }
                 if let currentUserId = CurrentUser().currentUser()?.id, currentUserId != userId {
-                    FollowButtonView(targetUserId: userId, following: $viewModel.isFollowing, followerCount: $viewModel.followerCount)
+                    FollowButtonView(viewModel: FollowButtonViewModel(), targetId: userId, following: $viewModel.isFollowing, followerCount: $viewModel.followerCount)
                         .padding(.trailing, 20)
                 }
                 Spacer()
@@ -52,14 +52,14 @@ struct ProfileView: View {
                 .padding()
             HStack {
                 HStack {
-                    Text(String(viewModel.followingCount ?? 10))
+                    Text(String(viewModel.followingCount))
                         .bold()
                     Text("フォロー")
                         .font(.footnote)
                 }
                 .padding(.trailing, 20)
                 HStack {
-                Text(String(viewModel.followerCount ?? 10))
+                Text(String(viewModel.followerCount))
                     .bold()
                 Text("フォロワー")
                     .font(.footnote)

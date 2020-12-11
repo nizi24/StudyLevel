@@ -87,7 +87,7 @@ struct TimeReportViewNonNavigationLink: View {
                             spacing: 15,
                             alignment: .leading
                           ) { item in
-                            TagView(name: item.name)
+                            TagView(id: item.id, name: item.name)
                           }
                         Spacer()
                     }
@@ -184,7 +184,7 @@ struct TimeReportViewNonNavigationLink: View {
         return ZStack(alignment: .topLeading) {
             if let tagList = timeReport.tags {
                 ForEach(tagList, id: \.self) { tag in
-                    TagView(name: tag.name)
+                    TagView(id: tag.id, name: tag.name)
                         .padding([.horizontal, .vertical], 4)
                         .alignmentGuide(.leading, computeValue: { d in
                             if abs(width - d.width) > 330 {

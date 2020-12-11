@@ -1326,5 +1326,53 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DFF52AD4-D9BF-493D-B688-15E08E0D09FF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyLevel_/ViewModel/TagPage/TagPageViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "getTagPage()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DFF52AD4-D9BF-493D-B688-15E08E0D09FF - cca1fa86596b2bf2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;StudyLevel_.TagPage, Swift.Error&gt;) -&gt; () in StudyLevel_.TagPageViewModel.getTagPage() -&gt; ()"
+                  moduleName = "StudyLevel_"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yuunishida/StudyLevel_/StudyLevel_/ViewModel/TagPage/TagPageViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "240">
+               </Location>
+               <Location
+                  uuid = "DFF52AD4-D9BF-493D-B688-15E08E0D09FF - cca1fa86596b2bf2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;StudyLevel_.TagPage, Swift.Error&gt;) -&gt; () in StudyLevel_.TagPageViewModel.getTagPage() -&gt; ()"
+                  moduleName = "StudyLevel_"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yuunishida/StudyLevel_/StudyLevel_/ViewModel/TagPage/TagPageViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "280">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

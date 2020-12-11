@@ -11,10 +11,25 @@ struct TimeReportsView<ViewModel>: View where ViewModel: TimeReportsViewModelPro
     @Binding var error: Bool
     @Binding var errorMessage: String
     @ObservedObject var viewModel: ViewModel
+    @Binding var bindReload: Bool
     @State var screen: CGSize = UIScreen.main.bounds.size
     @State var reload = false
     @State var title = "通信中・・・"
     
+    init(error: Binding<Bool>, errorMessage: Binding<String>, viewModel: ViewModel) {
+        self._error = error
+        self._errorMessage = errorMessage
+        _viewModel = ObservedObject(initialValue: viewModel)
+        self._bindReload = .constant(false)
+    }
+    
+    init(error: Binding<Bool>, errorMessage: Binding<String>, viewModel: ViewModel, reload: Binding<Bool>) {
+        self._error = error
+        self._errorMessage = errorMessage
+        _viewModel = ObservedObject(initialValue: viewModel)
+        _bindReload = reload
+    }
+
     var body: some View {
         VStack {
             LoadingView(title: $title, isShowing: $viewModel.connecting) {
@@ -63,6 +78,7 @@ struct TimeReportsView<ViewModel>: View where ViewModel: TimeReportsViewModelPro
                 if reload {
                     viewModel.getTimeReports()
                     self.reload = false
+                    self.bindReload = true
                 }
             }
             .onChange(of: viewModel.error) { error in
