@@ -668,7 +668,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "25"
                   endingLineNumber = "25"
-                  offsetFromSymbolStart = "688">
+                  offsetFromSymbolStart = "602">
                </Location>
                <Location
                   uuid = "B4AD2790-77B0-4701-8148-B21FBA2A9B12 - b89b62bd8d49c3f4"
@@ -683,7 +683,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "25"
                   endingLineNumber = "25"
-                  offsetFromSymbolStart = "732">
+                  offsetFromSymbolStart = "651">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1372,6 +1372,22 @@
                   offsetFromSymbolStart = "280">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BFAFF1C2-2E74-4E62-BBBA-1B24A7E44CEB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyLevel_/View/Feed/RankingView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
