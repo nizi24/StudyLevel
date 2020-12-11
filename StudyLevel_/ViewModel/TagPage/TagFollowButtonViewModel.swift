@@ -1,5 +1,5 @@
 //
-//  FollowButtonViewModel.swift
+//  TagFollowButtonViewModel.swift
 //  StudyLevel_
 //
 //  Created by Yuu Nishida on 2020/12/11.
@@ -7,14 +7,14 @@
 
 import Foundation
 
-class FollowButtonViewModel: ObservableObject, FollowButtonViewModelProtocol {
+class TagFollowButtonViewModel: ObservableObject, FollowButtonViewModelProtocol {
     @Published var i = 0
     
     func follow(targetId: Int) {
         guard let userId = CurrentUser().currentUser()?.id else {
             return
         }
-        let request = FollowRequest().follow(userId: targetId, currentUserId: userId)
+        let request = FollowRequest().follow(tagId: targetId, currentUserId: userId)
         StudyLevelClient().send(request: request) { result in
             switch (result) {
             case .success(_):
@@ -30,7 +30,7 @@ class FollowButtonViewModel: ObservableObject, FollowButtonViewModelProtocol {
         guard let userId = CurrentUser().currentUser()?.id else {
             return
         }
-        let request = FollowRequest().unfollow(userId: targetId, currentUserId: userId)
+        let request = FollowRequest().unfollow(tagId: targetId, currentUserId: userId)
         StudyLevelClient().send(request: request) { result in
             switch (result) {
             case .success(_):

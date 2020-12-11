@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct FollowButtonView: View {
-    @ObservedObject var viewModel = FollowButtonViewModel()
-    var targetUserId: Int
+struct FollowButtonView<ViewModel>: View where ViewModel: FollowButtonViewModelProtocol {
+    @ObservedObject var viewModel: ViewModel
+    var targetId: Int
     @Binding var following: Bool
     @Binding var followerCount: Int
     
@@ -17,7 +17,7 @@ struct FollowButtonView: View {
         VStack {
             if following {
                 Button(action: {
-                    viewModel.unfollow(targetUserId: targetUserId)
+                    viewModel.unfollow(targetId: targetId)
                 }, label: {
                     Text("フォロー中")
                         .font(.caption)
@@ -27,7 +27,7 @@ struct FollowButtonView: View {
                 .foregroundColor(Color.white)
             } else {
                 Button(action: {
-                    viewModel.follow(targetUserId: targetUserId)
+                    viewModel.follow(targetId: targetId)
                 }, label: {
                     Text("フォロー")
                         .font(.caption)
@@ -48,11 +48,5 @@ struct FollowButtonView: View {
                 viewModel.i = 0
             }
         }
-    }
-}
-
-struct FollowButtonView_Previews: PreviewProvider {
-    static var previews: some View {
-        FollowButtonView(targetUserId: 0, following: .constant(true), followerCount: .constant(1))
     }
 }

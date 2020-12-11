@@ -72,4 +72,21 @@ class TimeReportsRequest: Request {
         return self
     }
 
+    func index(tagId: Int) -> Self {
+        path = "/v2/tags/\(tagId)/time_reports"
+        return self
+    }
+    
+    func index(tagId: Int, offset: Int) -> Self {
+        path = "/v2/tags/\(tagId)/time_reports"
+        queryItems = [URLQueryItem(name: "offset", value: String(offset))]
+        return self
+    }
+    
+    func index(tagId: Int, limit: Int) -> Self {
+        path = "/v2/tags/\(tagId)/time_reports"
+        queryItems = [URLQueryItem(name: "limit", value: String(limit))]
+        return self
+    }
+
 }

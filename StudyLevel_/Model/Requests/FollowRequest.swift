@@ -36,5 +36,27 @@ class FollowRequest: Request {
         }
         return self
     }
-
+    
+    func follow(tagId: Int, currentUserId: Int) -> Self {
+        path = "/v1/tags/\(tagId)/follow"
+        let params = ["user_id": currentUserId]
+        do {
+            body = try JSONEncoder().encode(params)
+        } catch {
+            fatalError()
+        }
+        return self
+    }
+    
+    func unfollow(tagId: Int, currentUserId: Int) -> Self {
+        path = "/v1/tags/\(tagId)/unfollow"
+        method = .delete
+        let params = ["user_id": currentUserId]
+        do {
+            body = try JSONEncoder().encode(params)
+        } catch {
+            fatalError()
+        }
+        return self
+    }
 }
