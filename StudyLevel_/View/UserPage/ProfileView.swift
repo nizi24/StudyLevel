@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @ObservedObject var viewModel: MyPageViewModel
+    @ObservedObject var viewModel: UserPageViewModel
+    var userId: Int
     
     var body: some View {
         VStack {
@@ -40,9 +41,13 @@ struct ProfileView: View {
                         Spacer()
                     }
                 }
+                if let currentUserId = CurrentUser().currentUser()?.id, currentUserId != userId {
+                    FollowButtonView(targetUserId: userId, following: $viewModel.isFollowing, followerCount: $viewModel.followerCount)
+                        .padding(.trailing, 20)
+                }
                 Spacer()
             }
-            Text(viewModel.user?.profile ?? "このアプリの作者です。 ツイッターでも学習報告してますが、こちらでも毎日学習報告する予定。")
+            Text(viewModel.user?.profile ?? "")
                 .font(.footnote)
                 .padding()
             HStack {
@@ -68,6 +73,6 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(viewModel: MyPageViewModel())
+        ProfileView(viewModel: UserPageViewModel(id: 1), userId: 1)
     }
 }

@@ -27,16 +27,5 @@ struct User: Decodable {
         case profile
         case guest
         case avatarURL = "avatar_url"
-    }
-    
-    init(userDB: UserDB) {
-        id = userDB.id
-        name = userDB.name
-        screenName = userDB.screenName
-        createdAt = userDB.createdAt
-        updatedAt = userDB.createdAt
-        profile = userDB.profile
-        guest = userDB.guest
-        avatarURL = String(userDB.avatarURL ?? "")
-    }
+    }    
 }

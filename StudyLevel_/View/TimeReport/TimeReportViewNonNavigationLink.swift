@@ -9,7 +9,6 @@ import SwiftUI
 
 struct TimeReportViewNonNavigationLink: View {
     @StateObject var viewModel: TimeReportViewModel = TimeReportViewModel()
-    @Binding var navigationBarHidden: Bool
     @State var screen: CGSize = UIScreen.main.bounds.size
     @State var editFormAppear = false
     var timeReport: TimeReport {
@@ -21,10 +20,9 @@ struct TimeReportViewNonNavigationLink: View {
     @State var changeLikesCount: Int = -1
     @State var likesCount = 0
     
-    init(timeReport: TimeReport, navigationBarHidden: Binding<Bool>) {
+    init(timeReport: TimeReport) {
         self.timeReport = timeReport
         self.timeReport.creator.avatarURL = timeReport.creator.avatarURL?.replacingOccurrences(of: "localhost", with: "192.168.11.10")
-        self._navigationBarHidden = navigationBarHidden
         _likesCount = State(initialValue: timeReport.likesCount)
     }
     
@@ -45,32 +43,31 @@ struct TimeReportViewNonNavigationLink: View {
                 }
                 .padding()
                 .padding(.leading, 20)
-                VStack {
-                    HStack {
-                        Text(timeReport.creator.name)
-                            .foregroundColor(.primary)
-                            .font(.callout)
-                            .bold()
-                        Spacer()
-                    }
-                    HStack {
-                        Text("@" + (timeReport.creator.screenName))
-                            .foregroundColor(.secondary)
-                            .font(.caption)
-                        Spacer()
+                NavigationLink(destination: UserPageView(id: timeReport.userId, error: $viewModel.aleat, errorMessage: $viewModel.errorMessage)) {
+                    VStack {
+                        HStack {
+                            Text(timeReport.creator.name)
+                                .foregroundColor(.primary)
+                                .font(.callout)
+                                .bold()
+                            Spacer()
+                        }
+                        HStack {
+                            Text("@" + (timeReport.creator.screenName))
+                                .foregroundColor(.secondary)
+                                .font(.caption)
+                            Spacer()
+                        }
                     }
                 }
                 Spacer()
                 if viewModel.displayEditButton(creatorId: timeReport.creator.id) {
                     NavigationLink(
-                        destination: EditTimeReportView(timeReportFormViewModel: TimeReportFormViewModel(timeReport: timeReport), navigationBarHidden: $navigationBarHidden)
+                        destination: EditTimeReportView(timeReportFormViewModel: TimeReportFormViewModel(timeReport: timeReport))
                     ) {
                         Image(systemName: "square.and.pencil")
                     }
                     .padding(.trailing, 20)
-                    .simultaneousGesture(TapGesture().onEnded {
-                         navigationBarHidden = true
-                    })
                 }
             }
             HStack {
@@ -163,7 +160,7 @@ struct TimeReportViewNonNavigationLink: View {
             Text("")
         }
         .alert(isPresented: $viewModel.aleat, content: {
-            switch (viewModel.aleatType ?? .error) {
+            switch (viewModel.aleatType) {
                 default:
                     return Alert(title: Text("エラー"),
                                  message: Text(viewModel.errorMessage))

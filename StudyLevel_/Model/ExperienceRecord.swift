@@ -21,12 +21,4 @@ struct ExperienceRecord: Decodable {
         case experiencePoint = "experience_point"
         case bonusMultiplier = "bonus_multiplier"
     }
-    
-    init(experienceRecordDB: ExperienceRecordDB) {
-        id = experienceRecordDB.id
-        userId = experienceRecordDB.userId
-        timeReportId = experienceRecordDB.timeReportId
-        experiencePoint = experienceRecordDB.experiencePoint
-        bonusMultiplier = experienceRecordDB.bonusMultiplier
-    }
 }

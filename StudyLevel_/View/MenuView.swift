@@ -15,6 +15,8 @@ extension UIApplication {
 
 struct MenuView: View {
     @ObservedObject var viewModel = MenuViewModel()
+    @State var error = false
+    @State var errorMessage = ""
     
     var body: some View {
         ZStack {
@@ -39,13 +41,22 @@ struct MenuView: View {
                             Text("記録する")
                         }
                     }
-                MyPageView()
+                if let currentUserId = CurrentUser().currentUser()?.id {
+                    NavigationView {
+                        UserPageView(id: currentUserId, error: $error, errorMessage: $errorMessage)
+                    }
                     .tabItem {
                         VStack {
                             Image(systemName: "person.crop.circle")
                             Text("マイページ")
                         }
                     }
+                    .alert(isPresented: $error) {
+                        Alert(title: Text("エラー"), message: Text(errorMessage), dismissButton: .default(Text("OK"), action: {
+                            error = false
+                        }))
+                    }
+                }
                 NotificationView()
                     .tabItem {
                         VStack {

@@ -36,19 +36,21 @@ struct CommentView: View {
                 }
                 .padding()
                 .padding(.leading, 20)
-                VStack {
-                    HStack {
-                        Text(comment.creator.name)
-                            .foregroundColor(.primary)
-                            .font(.callout)
-                            .bold()
-                        Spacer()
-                    }
-                    HStack {
-                        Text("@" + (comment.creator.screenName))
-                            .foregroundColor(.secondary)
-                            .font(.caption)
-                        Spacer()
+                NavigationLink(destination: UserPageView(id: comment.userId, error: $viewModel.aleat, errorMessage: $viewModel.errorMessage)) {
+                    VStack {
+                        HStack {
+                            Text(comment.creator.name)
+                                .foregroundColor(.primary)
+                                .font(.callout)
+                                .bold()
+                            Spacer()
+                        }
+                        HStack {
+                            Text("@" + (comment.creator.screenName))
+                                .foregroundColor(.secondary)
+                                .font(.caption)
+                            Spacer()
+                        }
                     }
                 }
                 Spacer()

@@ -7,38 +7,37 @@
 
 import Foundation
 
-class MyPageViewModel: ObservableObject {
+class UserPageViewModel: ObservableObject {
+    var id: Int
     @Published var error = false
     @Published var errorMessage = ""
     @Published var user: User? = nil
     @Published var experience: Experience? = nil
     @Published var requiredEXP: RequiredEXP? = nil
-    @Published var followingCount: Int?
-    @Published var followerCount: Int?
+    @Published var followingCount: Int = 0
+    @Published var followerCount: Int = 0
+    @Published var isFollowing: Bool = false
     @Published var weeklyTarget: WeeklyTarget?
     @Published var timeReports: [TimeReport]?
     @Published var connecting: Bool
     
-    init() {
+    init(id: Int) {
+        self.id = id
         connecting = false
     }
-    
+        
     func getToServer() {
         connecting = true
         getUser()
         getExperience()
         getFollowingCount()
         getFollowerCount()
+        getIsFollowing()
         getTimeReports()
         getWeeklyTarget()
     }
     
     private func getUser() {
-        guard let id = CurrentUser().currentUser()?.id else {
-            error = true
-            errorMessage = "認証に失敗しました"
-            return
-        }
         let request = UserRequest().show(id: id)
         StudyLevelClient().send(request: request) { [weak self] result in
             switch result {
@@ -59,11 +58,6 @@ class MyPageViewModel: ObservableObject {
     }
     
     private func getExperience() {
-        guard let id = CurrentUser().currentUser()?.id else {
-            error = true
-            errorMessage = "認証に失敗しました"
-            return
-        }
         let request = ExperienceRequest().show(userId: id)
         StudyLevelClient().send(request: request) { [weak self] result in
             switch result {
@@ -108,11 +102,6 @@ class MyPageViewModel: ObservableObject {
     }
     
     private func getFollowingCount() {
-        guard let id = CurrentUser().currentUser()?.id else {
-            error = true
-            errorMessage = "認証に失敗しました"
-            return
-        }
         let request = FollowCountRequest().followingCount(id: id)
         StudyLevelClient().send(request: request) { [weak self] result in
             switch result {
@@ -131,11 +120,6 @@ class MyPageViewModel: ObservableObject {
     }
     
     private func getFollowerCount() {
-        guard let id = CurrentUser().currentUser()?.id else {
-            error = true
-            errorMessage = "認証に失敗しました"
-            return
-        }
         let request = FollowCountRequest().followerCount(id: id)
         StudyLevelClient().send(request: request) { [weak self] result in
             switch result {
@@ -153,12 +137,28 @@ class MyPageViewModel: ObservableObject {
         }
     }
     
-    private func getWeeklyTarget() {
-        guard let id = CurrentUser().currentUser()?.id else {
-            error = true
-            errorMessage = "認証に失敗しました"
+    private func getIsFollowing() {
+        guard let userId = CurrentUser().currentUser()?.id else {
             return
         }
+        let request = IsFollowingRequest().is_following(targetUserId: id, currentUserId: userId)
+        StudyLevelClient().send(request: request) { [weak self] result in
+            switch result {
+            case .success(let isFollowing):
+                DispatchQueue.main.async {
+                    self?.isFollowing = isFollowing
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self?.connecting = false
+                    self?.error = true
+                    self?.errorMessage = "通信に失敗しました。"
+                }
+            }
+        }
+    }
+    
+    private func getWeeklyTarget() {
         let request = WeeklyTargetRequest().show(userId: id)
         StudyLevelClient().send(request: request) { [weak self] result in
             switch result {
@@ -172,11 +172,6 @@ class MyPageViewModel: ObservableObject {
     }
     
     private func getTimeReports() {
-        guard let id = CurrentUser().currentUser()?.id else {
-            error = true
-            errorMessage = "認証に失敗しました"
-            return
-        }
         let request = TimeReportsRequest().index(userId: id, limit: timeReports?.count ?? 30)
         StudyLevelClient().send(request: request) { [weak self] result in
             switch result {
@@ -196,11 +191,6 @@ class MyPageViewModel: ObservableObject {
     }
     
     func getTimeReportMore() {
-        guard let id = CurrentUser().currentUser()?.id else {
-            error = true
-            errorMessage = "認証に失敗しました"
-            return
-        }
         connecting = true
         let request = TimeReportsRequest().index(userId: id, offset: timeReports?.count ?? 0)
         StudyLevelClient().send(request: request) { [weak self] result in
