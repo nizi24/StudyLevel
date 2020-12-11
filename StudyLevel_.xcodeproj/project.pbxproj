@@ -77,6 +77,11 @@
 		6A6AE12D25838D5B0025CE18 /* TagProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6AE12C25838D5B0025CE18 /* TagProfileView.swift */; };
 		6A6AE1372583980D0025CE18 /* TagFollowButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6AE1362583980D0025CE18 /* TagFollowButtonViewModel.swift */; };
 		6A6AE13C2583990A0025CE18 /* FollowButtonViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6AE13B2583990A0025CE18 /* FollowButtonViewModelProtocol.swift */; };
+		6A6AE14D25839F530025CE18 /* RankingUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6AE14C25839F530025CE18 /* RankingUser.swift */; };
+		6A6AE1582583A0820025CE18 /* RankingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6AE1572583A0820025CE18 /* RankingRequest.swift */; };
+		6A6AE15D2583A31B0025CE18 /* RankingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6AE15C2583A31B0025CE18 /* RankingView.swift */; };
+		6A6AE1622583A3300025CE18 /* RankingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6AE1612583A3300025CE18 /* RankingViewModel.swift */; };
+		6A6AE1672583B4E50025CE18 /* RankingUserListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6AE1662583B4E50025CE18 /* RankingUserListItem.swift */; };
 		6A6B574A2575212500D1B170 /* EditTimeReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6B57492575212500D1B170 /* EditTimeReportView.swift */; };
 		6A6B574F2575215600D1B170 /* EditTimeReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6B574E2575215600D1B170 /* EditTimeReportViewModel.swift */; };
 		6A87F742257A560300781F99 /* CommentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A87F741257A560300781F99 /* CommentRequest.swift */; };
@@ -213,6 +218,11 @@
 		6A6AE12C25838D5B0025CE18 /* TagProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagProfileView.swift; sourceTree = "<group>"; };
 		6A6AE1362583980D0025CE18 /* TagFollowButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFollowButtonViewModel.swift; sourceTree = "<group>"; };
 		6A6AE13B2583990A0025CE18 /* FollowButtonViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowButtonViewModelProtocol.swift; sourceTree = "<group>"; };
+		6A6AE14C25839F530025CE18 /* RankingUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingUser.swift; sourceTree = "<group>"; };
+		6A6AE1572583A0820025CE18 /* RankingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingRequest.swift; sourceTree = "<group>"; };
+		6A6AE15C2583A31B0025CE18 /* RankingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingView.swift; sourceTree = "<group>"; };
+		6A6AE1612583A3300025CE18 /* RankingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewModel.swift; sourceTree = "<group>"; };
+		6A6AE1662583B4E50025CE18 /* RankingUserListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingUserListItem.swift; sourceTree = "<group>"; };
 		6A6B57492575212500D1B170 /* EditTimeReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTimeReportView.swift; sourceTree = "<group>"; };
 		6A6B574E2575215600D1B170 /* EditTimeReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTimeReportViewModel.swift; sourceTree = "<group>"; };
 		6A87F741257A560300781F99 /* CommentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRequest.swift; sourceTree = "<group>"; };
@@ -365,6 +375,7 @@
 				6A4CC9B22578B187005565D4 /* Comment.swift */,
 				6A87F74B257BAB4100781F99 /* Like.swift */,
 				6A6AE11A258389310025CE18 /* TagPage.swift */,
+				6A6AE14C25839F530025CE18 /* RankingUser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -499,6 +510,7 @@
 				6A6AE0EC258316C90025CE18 /* IsFollowingRequest.swift */,
 				6A6AE0F425831E3A0025CE18 /* FollowRequest.swift */,
 				6A6AE11F25838A3C0025CE18 /* TagPageRequest.swift */,
+				6A6AE1572583A0820025CE18 /* RankingRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -561,6 +573,8 @@
 			children = (
 				6AB13DB6257D033000FFB191 /* FeedView.swift */,
 				6AB13DD1257D0F5300FFB191 /* TimeReportsView.swift */,
+				6A6AE15C2583A31B0025CE18 /* RankingView.swift */,
+				6A6AE1662583B4E50025CE18 /* RankingUserListItem.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -573,6 +587,7 @@
 				6AB13DD9257D0F7100FFB191 /* NewestTimeReportsViewModel.swift */,
 				6AB13DDE257E4E4F00FFB191 /* TimeReportsViewModelProtocol.swift */,
 				6AB13DF4257E5BB200FFB191 /* TagFeedViewModel.swift */,
+				6A6AE1612583A3300025CE18 /* RankingViewModel.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -935,6 +950,7 @@
 			files = (
 				6A87F74C257BAB4100781F99 /* Like.swift in Sources */,
 				6A6811932565F5F900510D73 /* SignupOrLoginView.swift in Sources */,
+				6A6AE1622583A3300025CE18 /* RankingViewModel.swift in Sources */,
 				6A87F763257BD84A00781F99 /* TimeReportLikeButtonView.swift in Sources */,
 				6A0B8C8425615868009BD8EC /* SignupView.swift in Sources */,
 				6A12463225673ED30095CB13 /* ExperienceRequest.swift in Sources */,
@@ -962,7 +978,9 @@
 				6AEF716A2563AA080078E333 /* User.swift in Sources */,
 				6ABF38F72568F715009CAEF3 /* TimeReportViewModel.swift in Sources */,
 				6A446DAC256A3B7600AC93DF /* WeeklyTargetRequest.swift in Sources */,
+				6A6AE1582583A0820025CE18 /* RankingRequest.swift in Sources */,
 				6ABF38C12568F100009CAEF3 /* ExperienceRecord.swift in Sources */,
+				6A6AE15D2583A31B0025CE18 /* RankingView.swift in Sources */,
 				6AB13DF5257E5BB200FFB191 /* TagFeedViewModel.swift in Sources */,
 				6A12469A25689E2B0095CB13 /* FollowCountRequest.swift in Sources */,
 				6A2B4E8E256659A500D7CE7F /* MenuView.swift in Sources */,
@@ -1002,6 +1020,7 @@
 				6A4CC98625789274005565D4 /* TimeReportViewNonNavigationLink.swift in Sources */,
 				6A4CC9742577B84F005565D4 /* AleatItem.swift in Sources */,
 				6A2B4EA725669F2F00D7CE7F /* UserPageView.swift in Sources */,
+				6A6AE1672583B4E50025CE18 /* RankingUserListItem.swift in Sources */,
 				6ABF38F22568F643009CAEF3 /* TimeReportView.swift in Sources */,
 				6AEF717C2563C18B0078E333 /* Request.swift in Sources */,
 				6A446DCB256A8B2100AC93DF /* ExtensionStringRegex.swift in Sources */,
@@ -1022,6 +1041,7 @@
 				6A12465F256751F20095CB13 /* RequiredEXP.swift in Sources */,
 				6A0B8C8C256158FB009BD8EC /* SignupViewModel.swift in Sources */,
 				6A4CC9C5257912FE005565D4 /* CommentViewModel.swift in Sources */,
+				6A6AE14D25839F530025CE18 /* RankingUser.swift in Sources */,
 				6AB13DC5257D0D9F00FFB191 /* TimelineViewModel.swift in Sources */,
 				6A6811A02565FA3A00510D73 /* CurrentUser.swift in Sources */,
 				6A87F751257BBC5300781F99 /* LikesRequest.swift in Sources */,
