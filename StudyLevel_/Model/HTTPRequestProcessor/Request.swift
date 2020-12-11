@@ -31,7 +31,8 @@ extension Request {
         case .get:
             components?.queryItems = queryItems
         case .post: fallthrough
-        case .patch:
+        case .patch: fallthrough
+        case .delete:
             urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         default: break
         }

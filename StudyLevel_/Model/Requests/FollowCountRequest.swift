@@ -16,13 +16,16 @@ class FollowCountRequest: Request {
     
     func followingCount(id: Int) -> Self {
         path = "/v2/users/\(id)/following_count"
-        method = .get
         return self
     }
     
     func followerCount(id: Int) -> Self {
         path = "/v2/users/\(id)/follower_count"
-        method = .get
+        return self
+    }
+    
+    func tagFollowingCount(userId: Int) -> Self {
+        path = "/v2/users/\(userId)/tag_following_count"
         return self
     }
 }

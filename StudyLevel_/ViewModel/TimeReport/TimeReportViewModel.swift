@@ -11,7 +11,7 @@ import SwiftUI
 class TimeReportViewModel: ObservableObject {
     @Published var errorMessage = ""
     @Published var aleat = false
-    @Published var aleatType: AleatType? = nil
+    @Published var aleatType: AleatType = .error
     
     func displayEditButton(creatorId: Int) -> Bool {
         guard let id = CurrentUser().currentUser()?.id else {

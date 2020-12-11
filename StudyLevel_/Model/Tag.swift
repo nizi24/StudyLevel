@@ -19,11 +19,4 @@ struct Tag: Decodable, Hashable {
         case createdAt = "created_at"
         case updatedAt = "updated_at"
     }
-    
-    init(tagDB: TagDB) {
-        id = tagDB.id
-        name = tagDB.name
-        createdAt = tagDB.createdAt
-        updatedAt = tagDB.updatedAt
-    }
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ExperienceProgressView: View {
-    @ObservedObject var viewModel: MyPageViewModel
+    @ObservedObject var viewModel: UserPageViewModel
     @State var screen: CGSize = UIScreen.main.bounds.size
     
     var body: some View {
@@ -47,6 +47,6 @@ struct ExperienceProgressView: View {
 
 struct ExperienceProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        ExperienceProgressView(viewModel: MyPageViewModel())
+        ExperienceProgressView(viewModel: UserPageViewModel(id: 1))
     }
 }

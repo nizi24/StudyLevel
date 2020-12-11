@@ -17,13 +17,4 @@ struct RequiredEXP: Decodable {
         case totalExperience = "total_experience"
         case requiredEXP = "required_exp"
     }
-    
-    init?(requiredEXPDB: RequiredEXPDB?) {
-        guard let requiredEXPDB = requiredEXPDB else {
-            return nil
-        }
-        level = requiredEXPDB.level
-        totalExperience = requiredEXPDB.totalExperience
-        requiredEXP = requiredEXPDB.requiredEXP
-    }
 }

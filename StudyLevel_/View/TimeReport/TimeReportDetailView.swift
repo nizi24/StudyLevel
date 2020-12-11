@@ -9,46 +9,46 @@ import SwiftUI
 
 struct TimeReportDetailView: View {
     @StateObject var viewModel: TimeReportDetailViewModel
+    @Binding var error: Bool
+    @Binding var errorMessage: String
     @ObservedObject var commentFormViewModel = CommentFormViewModel()
     @State var reload = false
     @State var title = "通信中・・・"
     @StateObject var keyboardObserver = KeyboardObserver()
     @State var screen: CGSize = UIScreen.main.bounds.size
-    @State var navigationBarHidden = false
     @Environment(\.presentationMode) var presentationMode
-    
+            
     var body: some View {
         LoadingView(title: $title, isShowing: $viewModel.connecting) {
             ZStack {
-                NavigationView {
-                    ScrollView(.vertical) {
-                        TimeReportViewNonNavigationLink(timeReport: viewModel.timeReport, navigationBarHidden: $navigationBarHidden)
-                        CommentFormView(timeReportId: viewModel.timeReport.id, viewModel: commentFormViewModel, reload: $reload)
-                        if let comments = viewModel.comments {
-                            ForEach(comments.indices, id: \.self) { i in
-                                CommentView(comment: $viewModel.comments[i], reload: $reload)
-                            }
+                ScrollView(.vertical) {
+                    TimeReportViewNonNavigationLink(timeReport: viewModel.timeReport)
+                    CommentFormView(timeReportId: viewModel.timeReport.id, viewModel: commentFormViewModel, reload: $reload)
+                    if let comments = viewModel.comments {
+                        ForEach(comments.indices, id: \.self) { i in
+                            CommentView(comment: $viewModel.comments[i], reload: $reload)
                         }
                     }
-                    .navigationBarHidden(true)
-                    .onAppear {
+                }
+                .onAppear {
+                    viewModel.reload()
+                    keyboardObserver.addObserver()
+                }.onDisappear {
+                    keyboardObserver.removeObserver()
+                }
+                .onChange(of: viewModel.error) { error in
+                    if error {
+                        self.error = true
+                        self.errorMessage = viewModel.errorMessage
+                        viewModel.error = false
+                    }
+                }
+                .onChange(of: reload, perform: { reload in
+                    if reload {
+                        self.reload = false
                         viewModel.reload()
-                        keyboardObserver.addObserver()
-                        navigationBarHidden = false
-                    }.onDisappear {
-                        keyboardObserver.removeObserver()
                     }
-                    .onChange(of: reload, perform: { reload in
-                        if reload {
-                            self.reload = false
-                            viewModel.reload()
-                        }
-                    })
-                }
-                .alert(isPresented: $viewModel.error) {
-                    Alert(title: Text("エラー"), message: Text(viewModel.errorMessage))
-                }
-                .navigationBarHidden(navigationBarHidden)
+                })
                 if keyboardObserver.isShowing {
                     Button(action: {
                         UIApplication.shared.endEditing()

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WeeklyTargetView: View {
-    @ObservedObject var viewModel: MyPageViewModel
+    @ObservedObject var viewModel: UserPageViewModel
     @State var screen: CGSize = UIScreen.main.bounds.size
     
     var body: some View {
@@ -34,6 +34,6 @@ struct WeeklyTargetView: View {
 
 struct WeeklyTargetView_Previews: PreviewProvider {
     static var previews: some View {
-        WeeklyTargetView(viewModel: MyPageViewModel())
+        WeeklyTargetView(viewModel: UserPageViewModel(id: 1))
     }
 }

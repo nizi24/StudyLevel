@@ -28,7 +28,7 @@ class UserDB: Object {
             return "id"
     }
     
-    func create(viewModel: MyPageViewModel) -> Self {
+    func create(viewModel: UserPageViewModel) -> Self {
         self.id = viewModel.user!.id
         self.name = viewModel.user!.name
         self.screenName = viewModel.user!.screenName

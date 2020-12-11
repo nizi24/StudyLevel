@@ -8,24 +8,26 @@
 import SwiftUI
 
 struct TimeReportView: View {
-    @ObservedObject var viewModel = TimeReportViewModel()
+    @StateObject var viewModel = TimeReportViewModel()
     @State var screen: CGSize = UIScreen.main.bounds.size
     @State var editFormAppear = false
     @Binding var reload: Bool
     var timeReport: TimeReport
     @State var changeLikesCount: Int = -1
     @ObservedObject var likesCount: LikesCount
+    var currentPageUserId: Int?
 
-    init(timeReport: TimeReport, reload: Binding<Bool>) {
+    init(timeReport: TimeReport, reload: Binding<Bool>, currentPageUserId: Int?) {
         self.timeReport = timeReport
         self._reload = reload
+        self.currentPageUserId = currentPageUserId
         likesCount = LikesCount(likesCount: timeReport.likesCount)
         changeLikesCount = -1
         self.timeReport.creator.avatarURL = timeReport.creator.avatarURL?.replacingOccurrences(of: "localhost", with: "192.168.11.10")
     }
     
     var body: some View {
-        NavigationLink(destination: TimeReportDetailView(viewModel: TimeReportDetailViewModel(timeReport: timeReport, likesCount: likesCount.likesCount))) {
+        NavigationLink(destination: TimeReportDetailView(viewModel: TimeReportDetailViewModel(timeReport: timeReport, likesCount: likesCount.likesCount), error: $viewModel.aleat, errorMessage: $viewModel.errorMessage)) {
             VStack {
                 HStack {
                     VStack {
@@ -42,24 +44,62 @@ struct TimeReportView: View {
                     }
                     .padding()
                     .padding(.leading, 20)
-                    VStack {
-                        HStack {
-                            Text(timeReport.creator.name)
-                                .foregroundColor(.primary)
-                                .font(.callout)
-                                .bold()
-                            Spacer()
+                    if currentPageUserId == nil {
+                        NavigationLink(destination: UserPageView(id: timeReport.userId, error: $viewModel.aleat, errorMessage: $viewModel.errorMessage)) {
+                            VStack {
+                                HStack {
+                                    Text(timeReport.creator.name)
+                                        .foregroundColor(.primary)
+                                        .font(.callout)
+                                        .bold()
+                                    Spacer()
+                                }
+                                HStack {
+                                    Text("@" + (timeReport.creator.screenName))
+                                        .foregroundColor(.secondary)
+                                        .font(.caption)
+                                    Spacer()
+                                }
+                            }
                         }
-                        HStack {
-                            Text("@" + (timeReport.creator.screenName))
-                                .foregroundColor(.secondary)
-                                .font(.caption)
-                            Spacer()
+                    } else if let currentPageUserId = currentPageUserId, currentPageUserId != timeReport.userId {
+                        NavigationLink(destination: UserPageView(id: timeReport.userId, error: $viewModel.aleat, errorMessage: $viewModel.errorMessage)) {
+                            VStack {
+                                HStack {
+                                    Text(timeReport.creator.name)
+                                        .foregroundColor(.primary)
+                                        .font(.callout)
+                                        .bold()
+                                    Spacer()
+                                }
+                                HStack {
+                                    Text("@" + (timeReport.creator.screenName))
+                                        .foregroundColor(.secondary)
+                                        .font(.caption)
+                                    Spacer()
+                                }
+                            }
+                        }
+                    } else {
+                        VStack {
+                            HStack {
+                                Text(timeReport.creator.name)
+                                    .foregroundColor(.primary)
+                                    .font(.callout)
+                                    .bold()
+                                Spacer()
+                            }
+                            HStack {
+                                Text("@" + (timeReport.creator.screenName))
+                                    .foregroundColor(.secondary)
+                                    .font(.caption)
+                                Spacer()
+                            }
                         }
                     }
                     Spacer()
                     if viewModel.displayEditButton(creatorId: timeReport.creator.id) {
-                        NavigationLink(destination: EditTimeReportView(timeReportFormViewModel: TimeReportFormViewModel(timeReport: timeReport), navigationBarHidden: .constant(false))) {
+                        NavigationLink(destination: EditTimeReportView(timeReportFormViewModel: TimeReportFormViewModel(timeReport: timeReport))) {
                             Image(systemName: "square.and.pencil")
                         }
                         .padding(.trailing, 20)
@@ -164,7 +204,7 @@ struct TimeReportView: View {
                 Text("")
             }
             .alert(isPresented: $viewModel.aleat, content: {
-                switch (viewModel.aleatType ?? .error) {
+                switch (viewModel.aleatType) {
                 case .deleteSuccess:
                     return Alert(title: Text("完了"),
                     message: Text("記録を削除しました。"),
