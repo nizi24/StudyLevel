@@ -20,14 +20,31 @@ struct WeeklyTargetView: View {
                 Text(viewModel.processingWeeklyStart())
                 Spacer()
             }
-            HStack {
-                ProgressView(value: viewModel.weeklyTargetProgress(), total: 100)
-                    .scaleEffect(y: 3)
-                Text(viewModel.weeklyTargetProgressNumeretor())
-                    .foregroundColor(.secondary)
-                    .font(.footnote)
+            if viewModel.weeklyTarget != nil {
+                HStack {
+                    ProgressView(value: viewModel.weeklyTargetProgress(), total: 100)
+                        .scaleEffect(y: 3)
+                    Text(viewModel.weeklyTargetProgressNumeretor())
+                        .foregroundColor(.secondary)
+                        .font(.footnote)
+                }
+                .frame(width: screen.width * 9 / 10)
+            } else {
+                HStack {
+                    if let currentUserId = CurrentUser().currentUser()?.id, currentUserId == viewModel.user?.id {
+                        NavigationLink(destination: WeeklyTargetFormView()) {
+                            Text("目標を設定する")
+                                .font(.caption)
+                                .padding()
+                        }
+                    } else {
+                        Text("まだ目標を設定していません。")
+                            .font(.caption)
+                            .padding()
+                    }
+                    Spacer()
+                }
             }
-            .frame(width: screen.width * 9 / 10)
         }
     }
 }

@@ -26,22 +26,22 @@ struct MenuView: View {
                 label: {
                     EmptyView()
                 })
-            TabView {
-                FeedView()
-                .tabItem {
-                        VStack {
-                            Image(systemName: "list.bullet")
-                            Text("ホーム")
-                        }
-                    }
-                CreateTimeReportView()
+            if let currentUserId = CurrentUser().currentUser()?.id {
+                TabView {
+                    FeedView()
                     .tabItem {
-                        VStack {
-                            Image(systemName: "square.and.pencil")
-                            Text("記録する")
+                            VStack {
+                                Image(systemName: "list.bullet")
+                                Text("ホーム")
+                            }
                         }
-                    }
-                if let currentUserId = CurrentUser().currentUser()?.id {
+                    CreateTimeReportView()
+                        .tabItem {
+                            VStack {
+                                Image(systemName: "square.and.pencil")
+                                Text("記録する")
+                            }
+                        }
                     NavigationView {
                         UserPageView(id: currentUserId, error: $error, errorMessage: $errorMessage)
                     }
@@ -56,23 +56,23 @@ struct MenuView: View {
                             error = false
                         }))
                     }
+                    NotificationView()
+                        .tabItem {
+                            VStack {
+                                Image(systemName: "bell")
+                                Text("通知")
+                            }
+                        }
+                    SettingAndOthersView(isLogin: $viewModel.isNotLogin)
+                        .tabItem {
+                            VStack {
+                                Image(systemName: "gearshape")
+                                Text("設定・その他")
+                            }
+                        }
+                    }
+                    .navigationBarBackButtonHidden(true)
                 }
-                NotificationView()
-                    .tabItem {
-                        VStack {
-                            Image(systemName: "bell")
-                            Text("通知")
-                        }
-                    }
-                OtherMenuView()
-                    .tabItem {
-                        VStack {
-                            Image(systemName: "gearshape")
-                            Text("設定・その他")
-                        }
-                    }
-            }
-            .navigationBarBackButtonHidden(true)
         }
     }
 }

@@ -34,9 +34,11 @@ struct LoginView: View {
                         SecureField("パスワード", text: $viewModel.password)
                             .padding(10)
                     }.frame(height: 300)
-                    Text("・" + viewModel.errorMessage)
-                        .foregroundColor(Color.red)
-                        .padding(.bottom, 10)
+                    if !viewModel.errorMessage.isEmpty {
+                        Text("・" + viewModel.errorMessage)
+                            .foregroundColor(Color.red)
+                            .padding(.bottom, 10)
+                    }
                     Button(action: {
                         viewModel.login()
                     }, label: {
