@@ -12,6 +12,7 @@ class SearchViewModel: ObservableObject {
     @Published var word = ""
     @Published var users: [SearchUser]?
     @Published var tags: [SearchTag]?
+    @Published var timeReports: [TimeReport]?
     
     func searchUser(word: String) {
         let request = SearchUserRequest().search(word: word)
@@ -40,8 +41,31 @@ class SearchViewModel: ObservableObject {
     }
     
     func searchTimeReport(tagName: String) {
-        
+        let request = TimeReportsRequest().search(tagName: tagName)
+        StudyLevelClient().send(request: request) { [weak self] result in
+            switch (result) {
+            case .success(let timeReports):
+                DispatchQueue.main.async {
+                    self?.timeReports = timeReports
+                }
+            case .failure(_): break
+            }
+        }
     }
+    
+    func getTimeReportMore(tagName: String) {
+        let request = TimeReportsRequest().search(tagName: tagName, offset: timeReports?.count ?? 0)
+        StudyLevelClient().send(request: request) { [weak self] result in
+            switch (result) {
+            case .success(let timeReports):
+                DispatchQueue.main.async {
+                    self?.timeReports?.append(contentsOf: timeReports)
+                }
+            case .failure(_): break
+            }
+        }
+    }
+
     
     func levelColor(user: SearchUser) -> String {
         if user.experience.level >= 100 {

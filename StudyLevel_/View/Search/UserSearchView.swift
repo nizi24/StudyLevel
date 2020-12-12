@@ -18,7 +18,11 @@ struct UserSearchView: View {
                 TextField("ユーザーを検索", text: $word)
             }
             .onChange(of: word) { word in
-                viewModel.searchUser(word: word)
+                if !word.isEmpty {
+                    viewModel.searchUser(word: word)
+                } else {
+                    viewModel.users = []
+                }
             }
             .padding()
             Divider()

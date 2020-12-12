@@ -26,9 +26,9 @@ struct SearchView: View {
                     UserSearchView(viewModel: viewModel)
                 } else if viewModel.searchType == .tag {
                     TagSearchView(viewModel: viewModel)
-                }// else if viewModel.searchType == .timeReport {
-    //
-    //            }
+                } else if viewModel.searchType == .timeReport {
+                    TimeReportSearchView(viewModel: viewModel)
+                }
             }
             .onAppear {
                 keyboardObserver.addObserver()

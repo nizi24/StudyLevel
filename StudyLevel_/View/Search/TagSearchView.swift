@@ -18,7 +18,11 @@ struct TagSearchView: View {
                 TextField("タグを検索", text: $word)
             }
             .onChange(of: word) { word in
-                viewModel.searchTag(name: word)
+                if !word.isEmpty {
+                    viewModel.searchTag(name: word)
+                } else {
+                    viewModel.tags = []
+                }
             }
             .padding()
             Divider()
