@@ -73,7 +73,7 @@ class CurrentUser: Object {
         }
     }
     
-    private func removeCurrentUser() {
+    func removeCurrentUser() {
         let realm = try! Realm()
         let presentUser = realm.objects(Self.self)
         try! realm.write {

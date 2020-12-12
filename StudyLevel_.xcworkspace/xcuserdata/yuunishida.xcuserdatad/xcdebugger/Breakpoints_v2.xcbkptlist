@@ -668,7 +668,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "25"
                   endingLineNumber = "25"
-                  offsetFromSymbolStart = "602">
+                  offsetFromSymbolStart = "688">
                </Location>
                <Location
                   uuid = "B4AD2790-77B0-4701-8148-B21FBA2A9B12 - b89b62bd8d49c3f4"
@@ -683,7 +683,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "25"
                   endingLineNumber = "25"
-                  offsetFromSymbolStart = "651">
+                  offsetFromSymbolStart = "732">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1404,6 +1404,22 @@
             endingLineNumber = "61"
             landmarkName = "body"
             landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "162044F6-F8DE-4F36-82B4-E63E10C3A664"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyLevel_/ViewModel/SettingAndOthers/SettingAndOthersViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "logout()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -10,12 +10,4 @@ import FirebaseAuth
 
 class MenuViewModel: ObservableObject {
     @Published var isNotLogin = false
-    
-    func logout() {
-        do {
-            try Auth.auth().signOut()
-            isNotLogin = true
-        } catch {
-        }
-    }
 }
