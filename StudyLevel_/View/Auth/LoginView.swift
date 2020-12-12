@@ -54,6 +54,7 @@ struct LoginView: View {
                 }
             }
         }
+        .navigationBarTitle(Text("ログイン"), displayMode: .inline)
     }
 }
 

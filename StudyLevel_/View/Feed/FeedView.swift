@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FeedView: View {
+    @Binding var isNotLogin: Bool
     @ObservedObject var viewModel = FeedViewModel()
     @State var screen: CGSize = UIScreen.main.bounds.size
     @State var error = false
@@ -39,13 +40,16 @@ struct FeedView: View {
             .navigationBarTitle(viewModel.feedType.rawValue, displayMode: .inline)
         }
         .alert(isPresented: $error) {
-            Alert(title: Text("エラー"), message: Text(errorMessage))
+            if !isNotLogin && !errorMessage.isEmpty {
+                return Alert(title: Text("エラー"), message: Text(errorMessage))
+            }
+            return Alert(title: Text("完了"), message: Text("ログアウトしました。"))
         }
     }
 }
 
 struct FeedView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedView()
+        FeedView(isNotLogin: .constant(false))
     }
 }

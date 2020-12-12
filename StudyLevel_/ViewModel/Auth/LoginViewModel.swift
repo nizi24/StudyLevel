@@ -20,6 +20,9 @@ class LoginViewModel: ObservableObject {
             self.errorMessage = "ログインに失敗しました"
             self.connecting = false
         }, success: {
+            self.email = ""
+            self.password = ""
+            self.errorMessage = ""
             self.isLogin = true
             self.connecting = false
         })
