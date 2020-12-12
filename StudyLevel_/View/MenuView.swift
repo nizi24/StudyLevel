@@ -21,20 +21,22 @@ struct MenuView: View {
     var body: some View {
         ZStack {
             NavigationLink(
-                destination: SignupOrLoginView(),
+                destination: ContentView(),
                 isActive: $viewModel.isNotLogin,
                 label: {
                     EmptyView()
+                        .navigationBarHidden(true)
                 })
             if let currentUserId = CurrentUser().currentUser()?.id {
                 TabView {
-                    FeedView()
+                    FeedView(isNotLogin: $viewModel.isNotLogin)
                     .tabItem {
                             VStack {
                                 Image(systemName: "list.bullet")
                                 Text("ホーム")
                             }
                         }
+                        .navigationBarHidden(true)
                     CreateTimeReportView()
                         .tabItem {
                             VStack {
@@ -42,6 +44,7 @@ struct MenuView: View {
                                 Text("記録する")
                             }
                         }
+                        .navigationBarHidden(true)
                     NavigationView {
                         UserPageView(id: currentUserId, error: $error, errorMessage: $errorMessage)
                     }
@@ -51,6 +54,7 @@ struct MenuView: View {
                             Text("マイページ")
                         }
                     }
+                    .navigationBarHidden(true)
                     .alert(isPresented: $error) {
                         Alert(title: Text("エラー"), message: Text(errorMessage), dismissButton: .default(Text("OK"), action: {
                             error = false
@@ -63,6 +67,7 @@ struct MenuView: View {
                                 Text("通知")
                             }
                         }
+                        .navigationBarHidden(true)
                     SettingAndOthersView(isLogin: $viewModel.isNotLogin)
                         .tabItem {
                             VStack {
@@ -70,9 +75,18 @@ struct MenuView: View {
                                 Text("設定・その他")
                             }
                         }
+                        .navigationBarHidden(true)
                     }
                     .navigationBarBackButtonHidden(true)
-                }
+            } else {
+                SignupOrLoginView()
+                    .navigationBarHidden(true)
+            }
+        }
+        .onChange(of: error) { error in
+            if error && viewModel.isNotLogin {
+                self.error = false
+            }
         }
     }
 }

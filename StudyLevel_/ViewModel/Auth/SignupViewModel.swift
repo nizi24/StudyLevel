@@ -28,13 +28,22 @@ class SignupViewModel: ObservableObject {
             }) { user in
                 self.complete = true
                 self.connecting = false
+                self.reset()
             }
         } else {
             connecting = false
         }
     }
     
-    func createErrorMessages() {
+    private func reset() {
+        name = ""
+        email = ""
+        password = ""
+        confirmationPassword = ""
+        errorMessages = []
+    }
+    
+    private func createErrorMessages() {
         let validationResults = SignupValidation(viewModel: self).isValid()
         for validationResult in validationResults {
             switch validationResult {

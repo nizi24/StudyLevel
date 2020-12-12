@@ -34,7 +34,7 @@ struct SignupOrLoginView: View {
                         .padding()
                     }
                 }
-            }.navigationBarHidden(true)
+            }
         }
     }
 }
