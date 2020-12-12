@@ -31,8 +31,10 @@ struct FeedView: View {
                     TimeReportsView(error: $error, errorMessage: $errorMessage, viewModel: NewestTimeReportsViewModel())
                 }
             }
-            .navigationBarItems(trailing: NavigationLink(destination: RankingView()) {
+            .navigationBarItems(leading: NavigationLink(destination: RankingView()) {
                 Image(systemName: "crown")
+            }, trailing: NavigationLink(destination: SearchView()) {
+                Image(systemName: "magnifyingglass")
             })
             .navigationBarTitle(viewModel.feedType.rawValue, displayMode: .inline)
         }

@@ -88,5 +88,16 @@ class TimeReportsRequest: Request {
         queryItems = [URLQueryItem(name: "limit", value: String(limit))]
         return self
     }
-
+    
+    func search(tagName: String) -> Self {
+        path = "/v2/time_reports/tag_search"
+        queryItems = [URLQueryItem(name: "tag_name", value: tagName)]
+        return self
+    }
+    
+    func search(tagName: String, offset: Int) -> Self {
+        path = "/v2/time_reports/tag_search"
+        queryItems = [URLQueryItem(name: "tag_name", value: tagName), URLQueryItem(name: "offset", value: String(offset))]
+        return self
+    }
 }

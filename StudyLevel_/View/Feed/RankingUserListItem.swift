@@ -13,6 +13,14 @@ struct RankingUserListItem: View {
     @Binding var error: Bool
     @Binding var errorMessage: String
     
+    init(rank: Int, user: RankingUser, error: Binding<Bool>, errorMessage: Binding<String>) {
+        self.rank = rank
+        self.user = user
+        self._error = error
+        self._errorMessage = errorMessage
+        self.user.avatarURL = user.avatarURL?.replacingOccurrences(of: "localhost", with: "192.168.11.10")
+    }
+    
     var body: some View {
         NavigationLink(destination: UserPageView(id: user.id, error: $error, errorMessage: $errorMessage)) {
             HStack {
