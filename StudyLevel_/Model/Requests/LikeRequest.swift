@@ -12,6 +12,7 @@ class LikeRequest: Request {
     var method: HTTPMethod = .post
     var queryItems: [URLQueryItem]?
     var body: Encodable?
+    var contentType: String?
     typealias Response = Like
     
     func create(likeableType: String, likeableId: Int, userId: Int) -> Self {

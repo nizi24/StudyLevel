@@ -47,9 +47,12 @@ struct ProfileView: View {
                 }
                 Spacer()
             }
-            Text(viewModel.user?.profile ?? "")
-                .font(.footnote)
-                .padding()
+            HStack {
+                Text(viewModel.user?.profile ?? "")
+                    .font(.footnote)
+                    .padding()
+                Spacer()
+            }
             HStack {
                 HStack {
                     Text(String(viewModel.followingCount))

@@ -71,6 +71,21 @@ struct UserPageView: View {
                             }
                         }
                         Spacer()
+                        if let currentUserId = CurrentUser().currentUser()?.id, currentUserId ==     id {
+                            EmptyView()
+                                .navigationBarItems(leading: Button(action: {
+                                        viewModel.getToServer()
+                                }, label: { Image(systemName: "goforward") }),
+                                trailing: NavigationLink(destination: ProfileSettingView(name: viewModel.user?.name, screenName: viewModel.user?.screenName, profile: viewModel.user?.profile)) {
+                                    Image(systemName: "gearshape")
+                                })
+                        } else {
+                            EmptyView()
+                                .navigationBarItems(leading: Button(action: {
+                                        viewModel.getToServer()
+                                }, label: { Image(systemName: "goforward") }))
+                        }
+
                     }
                 }
                 .frame(width: screen.width * 19 / 20)
@@ -93,8 +108,5 @@ struct UserPageView: View {
             }
         }
         .navigationBarTitle(Text(viewModel.user?.name ?? "ユーザーページ"), displayMode: .inline)
-        .navigationBarItems(trailing: Button(action: {
-                viewModel.getToServer()
-            }, label: { Image(systemName: "goforward") }))
     }
 }

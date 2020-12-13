@@ -15,6 +15,7 @@ protocol Request {
     var method: HTTPMethod { get }
     var queryItems: [URLQueryItem]? { get }
     var body: Encodable? { get }
+    var contentType: String? { get }
 }
 
 extension Request {
@@ -33,7 +34,11 @@ extension Request {
         case .post: fallthrough
         case .patch: fallthrough
         case .delete:
-            urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            if let contentType = contentType {
+                urlRequest.addValue(contentType + ";boundary=----BoundaryZLdHZy8HNaBmUX0d", forHTTPHeaderField: "Content-Type")
+            } else {
+                urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            }
         default: break
         }
         

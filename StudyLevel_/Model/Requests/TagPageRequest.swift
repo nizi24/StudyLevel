@@ -12,6 +12,7 @@ class TagPageRequest: Request {
     var method: HTTPMethod = .get
     var queryItems: [URLQueryItem]?
     var body: Encodable?
+    var contentType: String?
     typealias Response = TagPage
     
     func show(tagId: Int, currentUserId: Int) -> Self {

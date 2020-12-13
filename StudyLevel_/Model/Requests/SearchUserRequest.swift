@@ -12,6 +12,7 @@ class SearchUserRequest: Request {
     var method: HTTPMethod = .get
     var queryItems: [URLQueryItem]?
     var body: Encodable?
+    var contentType: String?
     typealias Response = [SearchUser]
     
     func search(word: String) -> Self {

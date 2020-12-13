@@ -12,6 +12,7 @@ class FollowRequest: Request {
     var method: HTTPMethod = .post
     var queryItems: [URLQueryItem]?
     var body: Encodable?
+    var contentType: String?
     typealias Response = Int
     
     func follow(userId: Int, currentUserId: Int) -> Self {

@@ -13,6 +13,7 @@ class TimeReportsRequest: Request {
     var method: HTTPMethod = .get
     var queryItems: [URLQueryItem]?
     var body: Encodable?
+    var contentType: String?
     
     func index() -> Self {
         path = "/v2/time_reports"

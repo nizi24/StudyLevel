@@ -12,6 +12,7 @@ class WeeklyTargetRequest: Request {
     var method: HTTPMethod = .get
     var queryItems: [URLQueryItem]?
     var body: Encodable?
+    var contentType: String?
     typealias Response = WeeklyTarget
     
     func show(userId: Int) -> Self {
