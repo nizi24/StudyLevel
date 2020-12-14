@@ -57,7 +57,7 @@ class UserRequest: Request {
         path = "/v2/users/\(userId)/update_avatar"
         method = .patch
         contentType = "multipart/form-data"
-        let imageData = image.jpegData(compressionQuality: 1.0)
+        let imageData = image.jpegData(compressionQuality: 0.2)
         body = httpBody(imageData!, fileName: "icon")
         return self
     }

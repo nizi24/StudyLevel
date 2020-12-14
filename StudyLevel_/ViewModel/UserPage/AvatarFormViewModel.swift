@@ -50,7 +50,7 @@ class AvatarFormViewModel: ObservableObject {
             case .notSelected:
                 validationError = "画像が選択されていません。"
             case .imageSizeIsTooBig:
-                validationError = "画像サイズは10MB以下である必要があります。"
+                validationError = "画像サイズは5MB以下である必要があります。"
             case .none: break
         }
         if let validationError = validationError, validationError.isEmpty {

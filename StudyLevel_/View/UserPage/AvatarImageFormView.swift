@@ -13,46 +13,49 @@ struct AvatarImageFormView: View {
     @State var showingImagePicker = false
     @State var inputImage: UIImage?
     @State var size: CGFloat = 60
+    @State var title = "通信中・・・"
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-        Form {
-            Button(action: {
-                self.showingImagePicker = true
-            }) {
-                HStack {
-                    Image(systemName: "square.and.arrow.up")
-                    Text("アイコン画像を選択")
-                    Spacer()
+        LoadingView(title: $title, isShowing: $viewModel.connecting) {
+            Form {
+                Button(action: {
+                    self.showingImagePicker = true
+                }) {
+                    HStack {
+                        Image(systemName: "square.and.arrow.up")
+                        Text("アイコン画像を選択")
+                        Spacer()
+                    }
+                }.sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
+                    ImagePicker(image: self.$inputImage)
                 }
-            }.sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
-                ImagePicker(image: self.$inputImage)
+                Section(header: Text("アップロード画像")) {
+                    image
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: size, height: size)
+                        .cornerRadius(size / 2)
+                }
+                if let error = viewModel.validationError, !error.isEmpty {
+                    Text(error)
+                        .foregroundColor(.red)
+                }
             }
-            Section(header: Text("アップロード画像")) {
-                image
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: size, height: size)
-                    .cornerRadius(size / 2)
-            }
-            if let error = viewModel.validationError, !error.isEmpty {
-                Text(error)
-                    .foregroundColor(.red)
-            }
-        }
-        .navigationBarItems(trailing: Button(action: {
-            viewModel.updateAvatar(image: inputImage)
-        }, label: {
-            Text("変更")
-        }))
-        .alert(isPresented: $viewModel.alert) {
-            switch viewModel.alertType {
-            case .success:
-                return Alert(title: Text("完了"), message: Text("プロフィールを変更しました。"), dismissButton: .default(Text("OK"), action: {
-                    presentationMode.wrappedValue.dismiss()
-                }))
-            case .error:
-                return Alert(title: Text("エラー"), message: Text(viewModel.errorMessage))
+            .navigationBarItems(trailing: Button(action: {
+                viewModel.updateAvatar(image: inputImage)
+            }, label: {
+                Text("変更")
+            }))
+            .alert(isPresented: $viewModel.alert) {
+                switch viewModel.alertType {
+                case .success:
+                    return Alert(title: Text("完了"), message: Text("プロフィールを変更しました。"), dismissButton: .default(Text("OK"), action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }))
+                case .error:
+                    return Alert(title: Text("エラー"), message: Text(viewModel.errorMessage))
+                }
             }
         }
     }

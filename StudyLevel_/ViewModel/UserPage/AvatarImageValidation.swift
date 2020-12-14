@@ -16,7 +16,7 @@ struct AvatarImageValidation {
         }
         let imageData: Int = NSData(data: image.jpegData(compressionQuality: 1)!).count
         let dataToKB = Double(imageData) / 1000.0
-        if dataToKB > 10000.0 {
+        if dataToKB > 5000.0 {
             return .imageSizeIsTooBig
         }
         return nil
