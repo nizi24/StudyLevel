@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SearchUserListItem: View {
-    @ObservedObject var viewModel: SearchViewModel
+    var viewModel = UserLevelColor()
     var user: SearchUser
     @State var error = false
     @State var errorMessage = ""
@@ -42,6 +42,15 @@ struct SearchUserListItem: View {
                             .foregroundColor(.secondary)
                             .font(.caption)
                         Spacer()
+                    }
+                    if let profile = user.profile {
+                        HStack {
+                            Text(profile)
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                            Spacer()
+                        }
+                        .frame(maxHeight: 50)
                     }
                 }
                 HStack {

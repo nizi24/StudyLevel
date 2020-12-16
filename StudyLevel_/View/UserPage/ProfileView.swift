@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfileView: View {
     @ObservedObject var viewModel: UserPageViewModel
     var userId: Int
+    @State var screen: CGSize = UIScreen.main.bounds.size
     
     var body: some View {
         VStack {
@@ -51,21 +52,30 @@ struct ProfileView: View {
                 Text(viewModel.user?.profile ?? "")
                     .font(.footnote)
                     .padding()
+                    .frame(maxHeight: screen.height * 3 / 5)
                 Spacer()
             }
             HStack {
-                HStack {
-                    Text(String(viewModel.followingCount))
-                        .bold()
-                    Text("フォロー")
-                        .font(.footnote)
+                NavigationLink(destination: FollowingView(user: viewModel.user)) {
+                    HStack {
+                        Text(String(viewModel.followingCount))
+                            .bold()
+                        Text("フォロー")
+                            .font(.footnote)
+                    }
+                    .padding(.trailing, 20)
+                    .padding(.bottom, 20)
+                    .foregroundColor(.primary)
                 }
-                .padding(.trailing, 20)
-                HStack {
-                Text(String(viewModel.followerCount))
-                    .bold()
-                Text("フォロワー")
-                    .font(.footnote)
+                NavigationLink(destination: FollowersView(user: viewModel.user)) {
+                    HStack {
+                        Text(String(viewModel.followerCount))
+                            .bold()
+                        Text("フォロワー")
+                            .font(.footnote)
+                    }
+                    .padding(.bottom, 20)
+                    .foregroundColor(.primary)
                 }
                 Spacer()
             }

@@ -1272,8 +1272,8 @@
             filePath = "StudyLevel_/View/UserPage/UserPageView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -1579,6 +1579,22 @@
             startingLineNumber = "22"
             endingLineNumber = "22"
             landmarkName = "init(from:userId:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B1A9B6DE-2374-4034-9904-F77A409A228B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyLevel_/ViewModel/UserPage/UserTagDetailViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "getMainTags()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

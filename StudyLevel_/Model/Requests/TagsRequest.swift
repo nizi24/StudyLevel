@@ -19,4 +19,9 @@ class TagsRequest: Request {
         path = "/v2/time_reports/\(timeReportId)/tags"
         return self
     }
+    
+    func followingTags(userId: Int) -> Self {
+        path = "/v2/users/\(userId)/following_tags"
+        return self
+    }
 }

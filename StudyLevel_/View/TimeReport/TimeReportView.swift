@@ -231,41 +231,7 @@ struct TimeReportView: View {
                 }
             }
         }
-    }
-        
-    private func generateTags() -> some View {
-        var width = CGFloat.zero
-        var height = CGFloat.zero
-    
-        return ZStack(alignment: .topLeading) {
-            if let tagList = timeReport.tags {
-                ForEach(tagList, id: \.self) { tag in
-                    TagView(id: tag.id, name: tag.name)
-                        .padding([.horizontal, .vertical], 4)
-                        .alignmentGuide(.leading, computeValue: { d in
-                            if abs(width - d.width) > 330 {
-                                width = 0
-                                height -= d.height
-                            }
-                            let result = width
-                            if tag == tagList.last {
-                                width = 0
-                            } else {
-                                width -= d.width
-                            }
-                            return result
-                        })
-                        .alignmentGuide(.top, computeValue: { _ in
-                            let result = height
-                            if tag == tagList.last {
-                                height = 0
-                            }
-                            return result
-                        })
-                    }
-                }
-            }
-        }
+    }        
 }
 
 class LikesCount: ObservableObject {

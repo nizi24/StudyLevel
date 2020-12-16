@@ -19,4 +19,15 @@ class SearchUserRequest: Request {
         queryItems = [URLQueryItem(name: "word", value: word)]
         return self
     }
+    
+    func following(userId: Int) -> Self {
+        path = "/v2/users/\(userId)/following"
+        return self
+    }
+    
+    func followers(userId: Int) -> Self {
+        path = "/v2/users/\(userId)/followers"
+        return self
+    }
+
 }
