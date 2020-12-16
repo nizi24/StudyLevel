@@ -12,6 +12,7 @@ class CommentRequest: Request {
     var method: HTTPMethod = .post
     var queryItems: [URLQueryItem]?
     var body: Encodable?
+    var contentType: String?
     typealias Response = Comment
     
     func create(userId: Int, timeReportId: Int, content: String) -> Self {

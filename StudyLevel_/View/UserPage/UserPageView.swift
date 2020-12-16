@@ -31,7 +31,6 @@ struct UserPageView: View {
                 ScrollView(.vertical) {
                     VStack {
                         ProfileView(viewModel: viewModel, userId: id)
-                            .frame(height: 250)
                             .background(Color.white)
                             .padding()
                         ExperienceProgressView(viewModel: viewModel)
@@ -71,6 +70,31 @@ struct UserPageView: View {
                             }
                         }
                         Spacer()
+                        if let currentUserId = CurrentUser().currentUser()?.id, let user = viewModel.user, currentUserId == id {
+                            EmptyView()
+                                .navigationBarItems(leading: HStack {
+                                                            Button(action: {
+                                            viewModel.getToServer()
+                                    }, label: { Image(systemName: "goforward")
+                                        NavigationLink(destination: UserTagDetailView(user: user), label: {
+                                            Image(systemName: "tag")
+                                        }).padding()
+                                    })},
+                                trailing: NavigationLink(destination: ProfileSettingView(name: viewModel.user?.name, screenName: viewModel.user?.screenName, profile: viewModel.user?.profile)) {
+                                    Image(systemName: "gearshape")
+                                })
+                        } else if let user = viewModel.user {
+                            EmptyView()
+                                .navigationBarItems(leading: HStack {
+                                                        Button(action: {
+                                        viewModel.getToServer()
+                                }, label: { Image(systemName: "goforward")
+                                    NavigationLink(destination: UserTagDetailView(user: user), label: {
+                                        Image(systemName: "tag")
+                                    }).padding()
+                                })})
+                        }
+
                     }
                 }
                 .frame(width: screen.width * 19 / 20)
@@ -93,8 +117,5 @@ struct UserPageView: View {
             }
         }
         .navigationBarTitle(Text(viewModel.user?.name ?? "ユーザーページ"), displayMode: .inline)
-        .navigationBarItems(trailing: Button(action: {
-                viewModel.getToServer()
-            }, label: { Image(systemName: "goforward") }))
     }
 }

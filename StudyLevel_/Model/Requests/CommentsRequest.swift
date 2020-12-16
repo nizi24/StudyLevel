@@ -12,6 +12,7 @@ class CommentsRequest: Request {
     var method: HTTPMethod = .get
     var queryItems: [URLQueryItem]?
     var body: Encodable?
+    var contentType: String?
     typealias Response = [Comment]
     
     func index(timeReportId: Int) -> Self {

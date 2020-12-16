@@ -13,9 +13,15 @@ class TagsRequest: Request {
     var method: HTTPMethod = .get
     var queryItems: [URLQueryItem]?
     var body: Encodable?
+    var contentType: String?
     
     func index(timeReportId: Int) -> Self {
         path = "/v2/time_reports/\(timeReportId)/tags"
+        return self
+    }
+    
+    func followingTags(userId: Int) -> Self {
+        path = "/v2/users/\(userId)/following_tags"
         return self
     }
 }

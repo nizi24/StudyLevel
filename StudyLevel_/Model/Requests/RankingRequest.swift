@@ -12,6 +12,7 @@ class RankingRequest: Request {
     var method: HTTPMethod = .get
     var queryItems: [URLQueryItem]?
     var body: Encodable?
+    var contentType: String?
     typealias Response = [RankingUser]
     
     func experience_rank() -> Self {

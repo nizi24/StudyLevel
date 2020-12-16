@@ -30,7 +30,7 @@ struct UserSearchView: View {
             ScrollView(.vertical) {
                 if let users = viewModel.users {
                     ForEach(users.indices, id: \.self) { i in
-                        SearchUserListItem(viewModel: viewModel, user: users[i])
+                        SearchUserListItem(user: users[i])
                         Divider()
                     }
                 }

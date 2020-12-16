@@ -13,6 +13,7 @@ class TimeReportsRequest: Request {
     var method: HTTPMethod = .get
     var queryItems: [URLQueryItem]?
     var body: Encodable?
+    var contentType: String?
     
     func index() -> Self {
         path = "/v2/time_reports"
@@ -97,6 +98,18 @@ class TimeReportsRequest: Request {
     
     func search(tagName: String, offset: Int) -> Self {
         path = "/v2/time_reports/tag_search"
+        queryItems = [URLQueryItem(name: "tag_name", value: tagName), URLQueryItem(name: "offset", value: String(offset))]
+        return self
+    }
+    
+    func search(userId: Int, tagName: String) -> Self {
+        path = "/v2/users/\(userId)/time_reports/tag_search"
+        queryItems = [URLQueryItem(name: "tag_name", value: tagName)]
+        return self
+    }
+    
+    func search(userId: Int, tagName: String, offset: Int) -> Self {
+        path = "/v2/users/\(userId)/time_reports/tag_search"
         queryItems = [URLQueryItem(name: "tag_name", value: tagName), URLQueryItem(name: "offset", value: String(offset))]
         return self
     }

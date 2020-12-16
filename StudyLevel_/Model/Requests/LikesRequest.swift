@@ -12,6 +12,7 @@ class LikesRequest: Request {
     var method: HTTPMethod = .get
     var queryItems: [URLQueryItem]?
     var body: Encodable?
+    var contentType: String?
     typealias Response = [Like]
     
     func index(userId: Int) -> Self {

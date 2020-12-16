@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfileView: View {
     @ObservedObject var viewModel: UserPageViewModel
     var userId: Int
+    @State var screen: CGSize = UIScreen.main.bounds.size
     
     var body: some View {
         VStack {
@@ -47,22 +48,34 @@ struct ProfileView: View {
                 }
                 Spacer()
             }
-            Text(viewModel.user?.profile ?? "")
-                .font(.footnote)
-                .padding()
             HStack {
-                HStack {
-                    Text(String(viewModel.followingCount))
-                        .bold()
-                    Text("フォロー")
-                        .font(.footnote)
-                }
-                .padding(.trailing, 20)
-                HStack {
-                Text(String(viewModel.followerCount))
-                    .bold()
-                Text("フォロワー")
+                Text(viewModel.user?.profile ?? "")
                     .font(.footnote)
+                    .padding()
+                    .frame(maxHeight: screen.height * 3 / 5)
+                Spacer()
+            }
+            HStack {
+                NavigationLink(destination: FollowingView(user: viewModel.user)) {
+                    HStack {
+                        Text(String(viewModel.followingCount))
+                            .bold()
+                        Text("フォロー")
+                            .font(.footnote)
+                    }
+                    .padding(.trailing, 20)
+                    .padding(.bottom, 20)
+                    .foregroundColor(.primary)
+                }
+                NavigationLink(destination: FollowersView(user: viewModel.user)) {
+                    HStack {
+                        Text(String(viewModel.followerCount))
+                            .bold()
+                        Text("フォロワー")
+                            .font(.footnote)
+                    }
+                    .padding(.bottom, 20)
+                    .foregroundColor(.primary)
                 }
                 Spacer()
             }

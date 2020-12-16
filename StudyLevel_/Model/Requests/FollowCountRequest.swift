@@ -13,6 +13,7 @@ class FollowCountRequest: Request {
     var method: HTTPMethod = .get
     var queryItems: [URLQueryItem]?
     var body: Encodable?
+    var contentType: String?
     
     func followingCount(id: Int) -> Self {
         path = "/v2/users/\(id)/following_count"

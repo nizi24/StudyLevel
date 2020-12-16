@@ -14,6 +14,7 @@ class RequiredEXPRequest: Request {
     var method: HTTPMethod = .get
     var queryItems: [URLQueryItem]?
     var body: Encodable?
+    var contentType: String?
     
     func show(level: Int) -> Self {
         queryItems = [URLQueryItem(name: "level", value: String(level))]

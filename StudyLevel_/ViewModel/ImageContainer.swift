@@ -20,7 +20,8 @@ final class ImageContainer: ObservableObject {
         if let realmData = realm.objects(UserAvatarDB.self).filter("userId == %@", userId).first {
             if realmData.imageURL == resource.absoluteString {
                 if let uiImage = UIImage(data: realmData.imageData) {
-                    self.image = uiImage
+                    let resizedImage = uiImage.resized(withPercentage: 0.1)
+                    self.image = resizedImage ?? uiImage
                     return
                 }
             }
@@ -44,5 +45,15 @@ final class ImageContainer: ObservableObject {
             session.invalidateAndCancel()
         })
         task.resume()
+    }
+}
+
+extension UIImage {
+    //データサイズを変更する
+    func resized(withPercentage percentage: CGFloat) -> UIImage? {
+        let canvas = CGSize(width: size.width * percentage, height: size.height * percentage)
+        return UIGraphicsImageRenderer(size: canvas, format: imageRendererFormat).image {
+            _ in draw(in: CGRect(origin: .zero, size: canvas))
+        }
     }
 }

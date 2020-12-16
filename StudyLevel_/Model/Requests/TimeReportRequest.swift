@@ -12,6 +12,7 @@ class TimeReportRequest: Request {
     var method: HTTPMethod = .get
     var queryItems: [URLQueryItem]?
     var body: Encodable?
+    var contentType: String?
     typealias Response = TimeReport
     
     func show(timeReportId: Int) -> Self {
