@@ -48,6 +48,10 @@ struct UserPageView: View {
                                     TimeReportView(timeReport: timeReports[i], reload: $reload, currentPageUserId: viewModel.user?.id)
                                         .background(Color.white)
                                 }
+                                if timeReports.isEmpty {
+                                    Text("まだ記録がありません。")
+                                        .padding()
+                                }
                             }
                         }
                         if let timeReports = viewModel.timeReports {

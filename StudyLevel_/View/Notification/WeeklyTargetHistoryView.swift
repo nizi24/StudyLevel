@@ -19,6 +19,10 @@ struct WeeklyTargetHistoryView: View {
                     WeeklyTargetListItem(weeklyTarget: weeklyTargets[i])
                     Divider()
                 }
+                if weeklyTargets.isEmpty {
+                    Text("目標の履歴はありません。")
+                        .padding()
+                }
             }
         }
         .frame(width: screen.width * 19 / 20)

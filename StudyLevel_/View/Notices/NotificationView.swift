@@ -13,10 +13,15 @@ struct NotificationView: View {
     var body: some View {
         NavigationView {
             ScrollView(.vertical) {
-                ForEach(contentViewModel.notices.indices, id: \.self) { i in
-                    NotificationItemView(notice: contentViewModel.notices[i])
+                if contentViewModel.notices.isEmpty {
+                    Text("通知はまだありません。")
                         .padding()
-                    Divider()
+                } else {
+                    ForEach(contentViewModel.notices.indices, id: \.self) { i in
+                        NotificationItemView(notice: contentViewModel.notices[i])
+                            .padding()
+                        Divider()
+                    }
                 }
                 if !contentViewModel.notices.isEmpty && contentViewModel.notices.count % 30 == 0 {
                     Button(action: {

@@ -44,7 +44,8 @@ class TagPageViewModel: ObservableObject, TimeReportsViewModelProtocol {
     }
     
     func getTimeReports() {
-        let request = TimeReportsRequest().index(tagId: tagId, limit: timeReports?.count ?? 30)
+        let timeReportsCount = timeReports?.count ?? 30
+        let request = TimeReportsRequest().index(tagId: tagId, limit: timeReportsCount >= 30 ? timeReportsCount : 30)
         StudyLevelClient().send(request: request) { [weak self] result in
             switch result {
             case .success(let timeReports):

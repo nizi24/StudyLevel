@@ -26,6 +26,10 @@ struct RankingView: View {
                         RankingUserListItem(rank: i + 1, user: users[i], error: $error, errorMessage: $errorMessage)
                         Divider()
                     }
+                    if users.isEmpty {
+                        Text("該当するユーザーがいません。")
+                            .padding()
+                    }
                 }
             }
             Spacer()

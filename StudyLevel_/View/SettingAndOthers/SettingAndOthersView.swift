@@ -31,6 +31,9 @@ struct SettingAndOthersView: View {
                     }
                 }
                 Section(header: Text("その他")) {
+                    NavigationLink(destination: LicensesView()) {
+                        Text("ライセンス")
+                    }
                     Button(action: {
                         if viewModel.logout() {
                             isLogin = false

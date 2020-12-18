@@ -20,7 +20,7 @@ protocol Request {
 
 extension Request {
     var baseURL: URL {
-        URL(string: "http://192.168.11.10:3000")!
+        URL(string: "https://polpa-api.herokuapp.com")!
     }
     
     func buildURLRequest() -> URLRequest {

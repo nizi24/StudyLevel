@@ -35,6 +35,7 @@
 		6A2B4EA725669F2F00D7CE7F /* UserPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B4EA625669F2F00D7CE7F /* UserPageView.swift */; };
 		6A2B4EAC2566A0E700D7CE7F /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B4EAB2566A0E700D7CE7F /* NotificationView.swift */; };
 		6A2B4EB62566A48B00D7CE7F /* UserPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B4EB52566A48B00D7CE7F /* UserPageViewModel.swift */; };
+		6A2C62A3259864E600BDDB68 /* LicensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2C62A2259864E600BDDB68 /* LicensesView.swift */; };
 		6A35E81525938BEB003E776B /* RoleLetterHalfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A35E81425938BEB003E776B /* RoleLetterHalfView.swift */; };
 		6A35E81A2594C42B003E776B /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A35E8192594C42B003E776B /* ModalView.swift */; };
 		6A35E81F2594C756003E776B /* LevelUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A35E81E2594C756003E776B /* LevelUpView.swift */; };
@@ -197,6 +198,7 @@
 		6AEF71812563C22D0078E333 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEF71802563C22D0078E333 /* HTTPMethod.swift */; };
 		6AEF71862563DF200078E333 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEF71852563DF200078E333 /* HTTPClient.swift */; };
 		6AF7CB3625962680004EF6AA /* 34524-confetti.json in Resources */ = {isa = PBXBuildFile; fileRef = 6AF7CB3525962680004EF6AA /* 34524-confetti.json */; };
+		6AF7CB5725977DEB004EF6AA /* AdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF7CB5625977DEB004EF6AA /* AdView.swift */; };
 		D68CB4876A9E57A35CC09F11 /* Pods_StudyLevel_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77C25CA2DA9D70E9476082DE /* Pods_StudyLevel_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -261,6 +263,7 @@
 		6A2B4EA625669F2F00D7CE7F /* UserPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageView.swift; sourceTree = "<group>"; };
 		6A2B4EAB2566A0E700D7CE7F /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationView.swift; path = ../Notices/NotificationView.swift; sourceTree = "<group>"; };
 		6A2B4EB52566A48B00D7CE7F /* UserPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageViewModel.swift; sourceTree = "<group>"; };
+		6A2C62A2259864E600BDDB68 /* LicensesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicensesView.swift; sourceTree = "<group>"; };
 		6A35E81425938BEB003E776B /* RoleLetterHalfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleLetterHalfView.swift; sourceTree = "<group>"; };
 		6A35E8192594C42B003E776B /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
 		6A35E81E2594C756003E776B /* LevelUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelUpView.swift; sourceTree = "<group>"; };
@@ -429,6 +432,7 @@
 		6AEF71802563C22D0078E333 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		6AEF71852563DF200078E333 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		6AF7CB3525962680004EF6AA /* 34524-confetti.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "34524-confetti.json"; sourceTree = "<group>"; };
+		6AF7CB5625977DEB004EF6AA /* AdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdView.swift; sourceTree = "<group>"; };
 		77C25CA2DA9D70E9476082DE /* Pods_StudyLevel_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StudyLevel_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B986E309B24A8BB73BDC450 /* Pods_StudyLevel__StudyLevel_UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StudyLevel__StudyLevel_UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C33AF2BDAD62125C05737F81 /* Pods-StudyLevel_-StudyLevel_UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyLevel_-StudyLevel_UITests.debug.xcconfig"; path = "Target Support Files/Pods-StudyLevel_-StudyLevel_UITests/Pods-StudyLevel_-StudyLevel_UITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -491,6 +495,7 @@
 				6A6AE0C62582EE140025CE18 /* LazyView.swift */,
 				6A35E8192594C42B003E776B /* ModalView.swift */,
 				6A35E81E2594C756003E776B /* LevelUpView.swift */,
+				6AF7CB5625977DEB004EF6AA /* AdView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -786,6 +791,7 @@
 				6A61D34025935EAD004BA0CE /* PrivacyView.swift */,
 				6A61D34525935FF1004BA0CE /* RoleView.swift */,
 				6A35E81425938BEB003E776B /* RoleLetterHalfView.swift */,
+				6A2C62A2259864E600BDDB68 /* LicensesView.swift */,
 			);
 			path = SettingAndOthers;
 			sourceTree = "<group>";
@@ -850,10 +856,10 @@
 		6AB13DBE257D033F00FFB191 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
-				6AB13DC4257D0D9F00FFB191 /* TimelineViewModel.swift */,
 				6AB13DBF257D034F00FFB191 /* FeedViewModel.swift */,
-				6AB13DD9257D0F7100FFB191 /* NewestTimeReportsViewModel.swift */,
 				6AB13DDE257E4E4F00FFB191 /* TimeReportsViewModelProtocol.swift */,
+				6AB13DC4257D0D9F00FFB191 /* TimelineViewModel.swift */,
+				6AB13DD9257D0F7100FFB191 /* NewestTimeReportsViewModel.swift */,
 				6AB13DF4257E5BB200FFB191 /* TagFeedViewModel.swift */,
 				6A6AE1612583A3300025CE18 /* RankingViewModel.swift */,
 			);
@@ -1353,6 +1359,7 @@
 				6A61D2BC258F7FC6004BA0CE /* WeeklyTargetExperienceRecordRequest.swift in Sources */,
 				6A446D9E256A25D200AC93DF /* TagView.swift in Sources */,
 				6A61D2B2258F7E00004BA0CE /* WeeklyTargetListItemViewModel.swift in Sources */,
+				6AF7CB5725977DEB004EF6AA /* AdView.swift in Sources */,
 				6A6AE1E52584DF8E0025CE18 /* SettingAndOthersViewModel.swift in Sources */,
 				6A583DE82565ECC8006FE098 /* Login.swift in Sources */,
 				6ABF38BB2568EF4C009CAEF3 /* TimeReport.swift in Sources */,
@@ -1375,6 +1382,7 @@
 				6A6AE1672583B4E50025CE18 /* RankingUserListItem.swift in Sources */,
 				6ABDD0252589A18000FD061D /* FollowingViewModel.swift in Sources */,
 				6ABF38F22568F643009CAEF3 /* TimeReportView.swift in Sources */,
+				6A2C62A3259864E600BDDB68 /* LicensesView.swift in Sources */,
 				6AEF717C2563C18B0078E333 /* Request.swift in Sources */,
 				6A446DCB256A8B2100AC93DF /* ExtensionStringRegex.swift in Sources */,
 				6A61D31A2590E2AE004BA0CE /* EmailRequest.swift in Sources */,
@@ -1594,7 +1602,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yunishida.StudyLevel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "StudyLevel Dev";
@@ -1622,7 +1630,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yunishida.StudyLevel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "StudyLevel Dev";

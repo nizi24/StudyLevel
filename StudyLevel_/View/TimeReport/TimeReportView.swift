@@ -193,6 +193,7 @@ struct TimeReportView: View {
                             .padding(.leading, 50)
                             .padding(.trailing, 30)
                             .foregroundColor(Color.black)
+                            .fixedSize(horizontal: false, vertical: true)
                         Spacer()
                     }
                 }

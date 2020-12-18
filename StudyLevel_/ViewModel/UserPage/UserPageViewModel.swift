@@ -172,7 +172,8 @@ class UserPageViewModel: ObservableObject {
     }
     
     private func getTimeReports() {
-        let request = TimeReportsRequest().index(userId: id, limit: timeReports?.count ?? 30)
+        let timeReportsCount = timeReports?.count ?? 30
+        let request = TimeReportsRequest().index(userId: id, limit: timeReportsCount >= 30 ? timeReportsCount : 30)
         StudyLevelClient().send(request: request) { [weak self] result in
             switch result {
             case .success(let timeReports):
@@ -215,18 +216,23 @@ class UserPageViewModel: ObservableObject {
             return nil
         }
         let proportion: Double = 100 - Double(experienceToNext) / Double(requiredEXP) * 100
-        if proportion == 100 {
-            return 0
-        } else {
-            return proportion
-        }
+        if isMaxLevel() { return 100 }
+        return proportion == 100 ? 0 : proportion
     }
     
     func progressNumeretor() -> String {
         guard let experienceToNext = experience?.experienceToNext, let requiredEXP = requiredEXP?.requiredEXP else {
             return ""
         }
+        if isMaxLevel() { return "MAX" }
         return "\(requiredEXP - experienceToNext)/\(requiredEXP)"
+    }
+    
+    func isMaxLevel() -> Bool {
+        guard let requiredEXP = requiredEXP?.requiredEXP else {
+            return false
+        }
+        return requiredEXP == 1660
     }
     
     func weeklyTargetProgress() -> Double {
