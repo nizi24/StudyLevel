@@ -10,6 +10,9 @@ target 'StudyLevel_' do
   pod 'RealmSwift'
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
+  pod 'NCMB', :git => 'https://github.com/NIFTYCloud-mbaas/ncmb_ios.git'
   
   target 'StudyLevel_Tests' do
     inherit! :search_paths

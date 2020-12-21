@@ -13,6 +13,7 @@ struct AvaterView: View {
     
     var body: some View {
         Image(uiImage: container.image)
+            .renderingMode(.original)
             .resizable()
             .scaledToFill()
             .frame(width: size, height: size)

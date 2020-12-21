@@ -15,7 +15,17 @@ struct ContentView: View {
             if viewModel.error {
                 Text(viewModel.errorMessage)
             } else {
-                MenuView()
+                MenuView(contentViewModel: viewModel)
+                    .onAppear {
+                        let timer = Timer.scheduledTimer(
+                            timeInterval: 60,
+                            target: viewModel,
+                            selector: #selector(viewModel.getNotices),
+                            userInfo: nil,
+                            repeats: true)
+                        timer.fire()
+                        viewModel.getPrevWeeklyTarget()
+                    }
             }
         } else {
             SignupOrLoginView()

@@ -31,6 +31,11 @@ class WeeklyTargetRequest: Request {
         return self
     }
     
+    func prevWeeklyTarget(userId: Int) -> Self {
+        path = "/v2/users/\(userId)/prev_weekly_target"
+        return self
+    }
+    
     private func processingTargetTime(targetHour: Int, targetMinute: Int) -> String {
         let day = targetHour / 24
         let hour = targetHour % 24

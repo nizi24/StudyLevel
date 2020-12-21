@@ -60,6 +60,22 @@
 		6A583DE12564019D006FE098 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A583DE02564019D006FE098 /* UserRequest.swift */; };
 		6A583DE82565ECC8006FE098 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A583DE72565ECC8006FE098 /* Login.swift */; };
 		6A583DED2565ED0E006FE098 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A583DEC2565ED0E006FE098 /* LoginView.swift */; };
+		6A61D263258E1ED8004BA0CE /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A61D262258E1ED8004BA0CE /* Device.swift */; };
+		6A61D268258E1F20004BA0CE /* DeviceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A61D267258E1F20004BA0CE /* DeviceRequest.swift */; };
+		6A61D26D258E2064004BA0CE /* DeviceRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A61D26C258E2064004BA0CE /* DeviceRegister.swift */; };
+		6A61D272258E3E7A004BA0CE /* Notice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A61D271258E3E7A004BA0CE /* Notice.swift */; };
+		6A61D277258E40B8004BA0CE /* NoticesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A61D276258E40B8004BA0CE /* NoticesRequest.swift */; };
+		6A61D290258ECEB8004BA0CE /* NotificationItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A61D28F258ECEB8004BA0CE /* NotificationItemView.swift */; };
+		6A61D296258F302C004BA0CE /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A61D295258F302C004BA0CE /* NotificationViewModel.swift */; };
+		6A61D29E258F78C9004BA0CE /* WeeklyTargetHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A61D29D258F78C9004BA0CE /* WeeklyTargetHistoryView.swift */; };
+		6A61D2A3258F7AE3004BA0CE /* WeeklyTargetsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A61D2A2258F7AE3004BA0CE /* WeeklyTargetsRequest.swift */; };
+		6A61D2A8258F7C61004BA0CE /* WeeklyTargetHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A61D2A7258F7C61004BA0CE /* WeeklyTargetHistoryViewModel.swift */; };
+		6A61D2AD258F7D8D004BA0CE /* WeeklyTargetListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A61D2AC258F7D8D004BA0CE /* WeeklyTargetListItem.swift */; };
+		6A61D2B2258F7E00004BA0CE /* WeeklyTargetListItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A61D2B1258F7E00004BA0CE /* WeeklyTargetListItemViewModel.swift */; };
+		6A61D2B7258F7EC2004BA0CE /* WeeklyTargetExperienceRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A61D2B6258F7EC2004BA0CE /* WeeklyTargetExperienceRecord.swift */; };
+		6A61D2BC258F7FC6004BA0CE /* WeeklyTargetExperienceRecordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A61D2BB258F7FC6004BA0CE /* WeeklyTargetExperienceRecordRequest.swift */; };
+		6A61D2C92590BF19004BA0CE /* EmphasizeTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A61D2C82590BF19004BA0CE /* EmphasizeTimeView.swift */; };
+		6A61D2D62590BFA9004BA0CE /* EmphasizeTimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A61D2D52590BFA9004BA0CE /* EmphasizeTimeViewModel.swift */; };
 		6A673A9C256160D200184D88 /* Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A673A9B256160D200184D88 /* Signup.swift */; };
 		6A6811722565F07000510D73 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6811712565F07000510D73 /* LoginViewModel.swift */; };
 		6A6811932565F5F900510D73 /* SignupOrLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6811922565F5F900510D73 /* SignupOrLoginView.swift */; };
@@ -165,6 +181,20 @@
 		D68CB4876A9E57A35CC09F11 /* Pods_StudyLevel_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77C25CA2DA9D70E9476082DE /* Pods_StudyLevel_Tests.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		6AA26F61258CEE8100C80C56 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = pattern.proxy;
+			inputFiles = (
+			);
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXContainerItemProxy section */
 		6AB298FB25614DEA003D2792 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -210,7 +240,7 @@
 		6A2B4E9C256664CE00D7CE7F /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		6A2B4EA125669F0200D7CE7F /* CreateTimeReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTimeReportView.swift; sourceTree = "<group>"; };
 		6A2B4EA625669F2F00D7CE7F /* UserPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageView.swift; sourceTree = "<group>"; };
-		6A2B4EAB2566A0E700D7CE7F /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		6A2B4EAB2566A0E700D7CE7F /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationView.swift; path = ../Notices/NotificationView.swift; sourceTree = "<group>"; };
 		6A2B4EB52566A48B00D7CE7F /* UserPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageViewModel.swift; sourceTree = "<group>"; };
 		6A446D9D256A25D200AC93DF /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		6A446DA2256A2CB400AC93DF /* FlexibleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleView.swift; sourceTree = "<group>"; };
@@ -237,6 +267,22 @@
 		6A583DE02564019D006FE098 /* UserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
 		6A583DE72565ECC8006FE098 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		6A583DEC2565ED0E006FE098 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		6A61D262258E1ED8004BA0CE /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		6A61D267258E1F20004BA0CE /* DeviceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRequest.swift; sourceTree = "<group>"; };
+		6A61D26C258E2064004BA0CE /* DeviceRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRegister.swift; sourceTree = "<group>"; };
+		6A61D271258E3E7A004BA0CE /* Notice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notice.swift; sourceTree = "<group>"; };
+		6A61D276258E40B8004BA0CE /* NoticesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticesRequest.swift; sourceTree = "<group>"; };
+		6A61D28F258ECEB8004BA0CE /* NotificationItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationItemView.swift; sourceTree = "<group>"; };
+		6A61D295258F302C004BA0CE /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationViewModel.swift; path = StudyLevel_/View/Notification/NotificationViewModel.swift; sourceTree = SOURCE_ROOT; };
+		6A61D29D258F78C9004BA0CE /* WeeklyTargetHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyTargetHistoryView.swift; sourceTree = "<group>"; };
+		6A61D2A2258F7AE3004BA0CE /* WeeklyTargetsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyTargetsRequest.swift; sourceTree = "<group>"; };
+		6A61D2A7258F7C61004BA0CE /* WeeklyTargetHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyTargetHistoryViewModel.swift; sourceTree = "<group>"; };
+		6A61D2AC258F7D8D004BA0CE /* WeeklyTargetListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyTargetListItem.swift; sourceTree = "<group>"; };
+		6A61D2B1258F7E00004BA0CE /* WeeklyTargetListItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyTargetListItemViewModel.swift; sourceTree = "<group>"; };
+		6A61D2B6258F7EC2004BA0CE /* WeeklyTargetExperienceRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyTargetExperienceRecord.swift; sourceTree = "<group>"; };
+		6A61D2BB258F7FC6004BA0CE /* WeeklyTargetExperienceRecordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyTargetExperienceRecordRequest.swift; sourceTree = "<group>"; };
+		6A61D2C82590BF19004BA0CE /* EmphasizeTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmphasizeTimeView.swift; sourceTree = "<group>"; };
+		6A61D2D52590BFA9004BA0CE /* EmphasizeTimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmphasizeTimeViewModel.swift; sourceTree = "<group>"; };
 		6A673A9B256160D200184D88 /* Signup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup.swift; sourceTree = "<group>"; };
 		6A6811712565F07000510D73 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		6A6811922565F5F900510D73 /* SignupOrLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupOrLoginView.swift; sourceTree = "<group>"; };
@@ -326,6 +372,7 @@
 		6ABDD0292589A94C00FD061D /* UserLevelColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLevelColor.swift; sourceTree = "<group>"; };
 		6ABDD0312589AF4600FD061D /* FollowersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersViewModel.swift; sourceTree = "<group>"; };
 		6ABDD0362589AFE700FD061D /* FollowersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersView.swift; sourceTree = "<group>"; };
+		6ABDD05D2589F56000FD061D /* StudyLevel_.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudyLevel_.entitlements; sourceTree = "<group>"; };
 		6ABF38BA2568EF4C009CAEF3 /* TimeReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeReport.swift; sourceTree = "<group>"; };
 		6ABF38C02568F100009CAEF3 /* ExperienceRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceRecord.swift; sourceTree = "<group>"; };
 		6ABF38C82568F182009CAEF3 /* ExperienceRecordTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceRecordTest.swift; sourceTree = "<group>"; };
@@ -384,6 +431,7 @@
 		6A0B8C8025615831009BD8EC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6A61D27B258E4522004BA0CE /* Notification */,
 				6A6AE1E22584DF660025CE18 /* SettingAndOthers */,
 				6A6AE1712583D7080025CE18 /* Search */,
 				6A6AE0F9258351B70025CE18 /* TagPage */,
@@ -397,7 +445,6 @@
 				6A2B4E972566640C00D7CE7F /* LoadingView.swift */,
 				6A6AE0E22583126C0025CE18 /* FollowButtonView.swift */,
 				6A2B4E8D256659A500D7CE7F /* MenuView.swift */,
-				6A2B4EAB2566A0E700D7CE7F /* NotificationView.swift */,
 				6A12467F2567FB320095CB13 /* AvaterView.swift */,
 				6A12468F256805C60095CB13 /* DefaultAvatarView.swift */,
 				6A446D9D256A25D200AC93DF /* TagView.swift */,
@@ -410,6 +457,7 @@
 		6A0B8C8125615839009BD8EC /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				6A61D294258F3013004BA0CE /* Notification */,
 				6A6AE1E32584DF780025CE18 /* SettingAndOthers */,
 				6A6AE17A2583D7EA0025CE18 /* Search */,
 				6A6AE102258351F30025CE18 /* TagPage */,
@@ -454,6 +502,10 @@
 				6A6AE1882583DB680025CE18 /* SearchUser.swift */,
 				6A6AE19C25844FB30025CE18 /* SearchTag.swift */,
 				6A6AE22F25878CA10025CE18 /* MainTag.swift */,
+				6A61D262258E1ED8004BA0CE /* Device.swift */,
+				6A61D26C258E2064004BA0CE /* DeviceRegister.swift */,
+				6A61D271258E3E7A004BA0CE /* Notice.swift */,
+				6A61D2B6258F7EC2004BA0CE /* WeeklyTargetExperienceRecord.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -609,8 +661,35 @@
 				6A6AE1A12584503F0025CE18 /* TagSearchRequest.swift */,
 				6A6AE204258597140025CE18 /* ScreenNameAlreadyUsedRequest.swift */,
 				6A6AE23425878CE10025CE18 /* MainTagsRequest.swift */,
+				6A61D267258E1F20004BA0CE /* DeviceRequest.swift */,
+				6A61D276258E40B8004BA0CE /* NoticesRequest.swift */,
+				6A61D2A2258F7AE3004BA0CE /* WeeklyTargetsRequest.swift */,
+				6A61D2BB258F7FC6004BA0CE /* WeeklyTargetExperienceRecordRequest.swift */,
 			);
 			path = Requests;
+			sourceTree = "<group>";
+		};
+		6A61D27B258E4522004BA0CE /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				6A2B4EAB2566A0E700D7CE7F /* NotificationView.swift */,
+				6A61D28F258ECEB8004BA0CE /* NotificationItemView.swift */,
+				6A61D29D258F78C9004BA0CE /* WeeklyTargetHistoryView.swift */,
+				6A61D2AC258F7D8D004BA0CE /* WeeklyTargetListItem.swift */,
+				6A61D2C82590BF19004BA0CE /* EmphasizeTimeView.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		6A61D294258F3013004BA0CE /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				6A61D295258F302C004BA0CE /* NotificationViewModel.swift */,
+				6A61D2A7258F7C61004BA0CE /* WeeklyTargetHistoryViewModel.swift */,
+				6A61D2B1258F7E00004BA0CE /* WeeklyTargetListItemViewModel.swift */,
+				6A61D2D52590BFA9004BA0CE /* EmphasizeTimeViewModel.swift */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		6A6AE0F9258351B70025CE18 /* TagPage */ = {
@@ -754,6 +833,7 @@
 		6AB298EB25614DE8003D2792 /* StudyLevel_ */ = {
 			isa = PBXGroup;
 			children = (
+				6ABDD05D2589F56000FD061D /* StudyLevel_.entitlements */,
 				6A0B8C8225615844009BD8EC /* Model */,
 				6A0B8C8125615839009BD8EC /* ViewModel */,
 				6A0B8C8025615831009BD8EC /* View */,
@@ -872,6 +952,7 @@
 				746579718C15B1675A7F8E6C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
+				6AA26F61258CEE8100C80C56 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -1105,11 +1186,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A6AE1892583DB680025CE18 /* SearchUser.swift in Sources */,
+				6A61D268258E1F20004BA0CE /* DeviceRequest.swift in Sources */,
 				6A87F74C257BAB4100781F99 /* Like.swift in Sources */,
+				6A61D26D258E2064004BA0CE /* DeviceRegister.swift in Sources */,
 				6A6811932565F5F900510D73 /* SignupOrLoginView.swift in Sources */,
 				6ABDD02A2589A94C00FD061D /* UserLevelColor.swift in Sources */,
 				6A6AE1622583A3300025CE18 /* RankingViewModel.swift in Sources */,
 				6A87F763257BD84A00781F99 /* TimeReportLikeButtonView.swift in Sources */,
+				6A61D2D62590BFA9004BA0CE /* EmphasizeTimeViewModel.swift in Sources */,
 				6A0B8C8425615868009BD8EC /* SignupView.swift in Sources */,
 				6A12463225673ED30095CB13 /* ExperienceRequest.swift in Sources */,
 				6A673A9C256160D200184D88 /* Signup.swift in Sources */,
@@ -1119,6 +1203,7 @@
 				6A6AE1F62585073A0025CE18 /* ProfileFromView.swift in Sources */,
 				6A12462A25673D730095CB13 /* Experience.swift in Sources */,
 				6A6AE1732583D7BC0025CE18 /* SearchView.swift in Sources */,
+				6A61D277258E40B8004BA0CE /* NoticesRequest.swift in Sources */,
 				6A1246762567ECE60095CB13 /* UIColorHex.swift in Sources */,
 				6A6AE2002585953A0025CE18 /* ProfileFormValidation.swift in Sources */,
 				6A6AE20F2586086C0025CE18 /* ProfileSettingViewModel.swift in Sources */,
@@ -1126,6 +1211,7 @@
 				6A124690256805C60095CB13 /* DefaultAvatarView.swift in Sources */,
 				6A6AE1C125846D560025CE18 /* TimeReportSearchView.swift in Sources */,
 				6A4CC98D25789393005565D4 /* TimeReportDetailViewModel.swift in Sources */,
+				6A61D29E258F78C9004BA0CE /* WeeklyTargetHistoryView.swift in Sources */,
 				6A87F756257BC08100781F99 /* LikeDB.swift in Sources */,
 				6ABDD016258991BA00FD061D /* SearchTimeReportWithTagViewModel.swift in Sources */,
 				6A4CC98125789195005565D4 /* TimeReportDetailView.swift in Sources */,
@@ -1155,10 +1241,14 @@
 				6A12469A25689E2B0095CB13 /* FollowCountRequest.swift in Sources */,
 				6A6AE2532588F0DF0025CE18 /* FollowingTagsView.swift in Sources */,
 				6A2B4E8E256659A500D7CE7F /* MenuView.swift in Sources */,
+				6A61D2C92590BF19004BA0CE /* EmphasizeTimeView.swift in Sources */,
 				6A6AE1D92584CAA20025CE18 /* WeeklyTargetFormViewModel.swift in Sources */,
 				6A87F77B257BDD4E00781F99 /* CommentLikeButtonView.swift in Sources */,
+				6A61D2A8258F7C61004BA0CE /* WeeklyTargetHistoryViewModel.swift in Sources */,
 				6AA0F0DE257262F100F59074 /* TimeReportRequest.swift in Sources */,
 				6AA0F0CE2572096C00F59074 /* TimeReportFormView.swift in Sources */,
+				6A61D272258E3E7A004BA0CE /* Notice.swift in Sources */,
+				6A61D296258F302C004BA0CE /* NotificationViewModel.swift in Sources */,
 				6A2B4EA225669F0200D7CE7F /* CreateTimeReportView.swift in Sources */,
 				6A6811722565F07000510D73 /* LoginViewModel.swift in Sources */,
 				6A6AE1042583520B0025CE18 /* TagPageView.swift in Sources */,
@@ -1189,7 +1279,9 @@
 				6A87F768257BD86700781F99 /* LikeButtonViewModel.swift in Sources */,
 				6A446DC6256A7F7100AC93DF /* WeeklyTargetView.swift in Sources */,
 				6A12466C2567542F0095CB13 /* RequiredEXPRequest.swift in Sources */,
+				6A61D2BC258F7FC6004BA0CE /* WeeklyTargetExperienceRecordRequest.swift in Sources */,
 				6A446D9E256A25D200AC93DF /* TagView.swift in Sources */,
+				6A61D2B2258F7E00004BA0CE /* WeeklyTargetListItemViewModel.swift in Sources */,
 				6A6AE1E52584DF8E0025CE18 /* SettingAndOthersViewModel.swift in Sources */,
 				6A583DE82565ECC8006FE098 /* Login.swift in Sources */,
 				6ABF38BB2568EF4C009CAEF3 /* TimeReport.swift in Sources */,
@@ -1198,11 +1290,14 @@
 				6A6AE21C25862A4A0025CE18 /* AvatarFormViewModel.swift in Sources */,
 				6A2B4E812566145F00D7CE7F /* ContentViewModel.swift in Sources */,
 				6ABDD0322589AF4600FD061D /* FollowersViewModel.swift in Sources */,
+				6A61D290258ECEB8004BA0CE /* NotificationItemView.swift in Sources */,
 				6ABDD0372589AFE700FD061D /* FollowersView.swift in Sources */,
 				6A6AE0E8258314500025CE18 /* FollowButtonViewModel.swift in Sources */,
+				6A61D263258E1ED8004BA0CE /* Device.swift in Sources */,
 				6A6AE1842583D97D0025CE18 /* SearchViewModel.swift in Sources */,
 				6A4CC98625789274005565D4 /* TimeReportViewNonNavigationLink.swift in Sources */,
 				6A6AE1A22584503F0025CE18 /* TagSearchRequest.swift in Sources */,
+				6A61D2AD258F7D8D004BA0CE /* WeeklyTargetListItem.swift in Sources */,
 				6A4CC9742577B84F005565D4 /* AleatItem.swift in Sources */,
 				6A2B4EA725669F2F00D7CE7F /* UserPageView.swift in Sources */,
 				6A6AE1AF258450EB0025CE18 /* TagSearchView.swift in Sources */,
@@ -1231,8 +1326,10 @@
 				6A446DFB256B5CAB00AC93DF /* TimeReportFormViewModel.swift in Sources */,
 				6A12465F256751F20095CB13 /* RequiredEXP.swift in Sources */,
 				6A0B8C8C256158FB009BD8EC /* SignupViewModel.swift in Sources */,
+				6A61D2A3258F7AE3004BA0CE /* WeeklyTargetsRequest.swift in Sources */,
 				6A4CC9C5257912FE005565D4 /* CommentViewModel.swift in Sources */,
 				6A6AE14D25839F530025CE18 /* RankingUser.swift in Sources */,
+				6A61D2B7258F7EC2004BA0CE /* WeeklyTargetExperienceRecord.swift in Sources */,
 				6AB13DC5257D0D9F00FFB191 /* TimelineViewModel.swift in Sources */,
 				6A6811A02565FA3A00510D73 /* CurrentUser.swift in Sources */,
 				6A87F751257BBC5300781F99 /* LikesRequest.swift in Sources */,
@@ -1408,7 +1505,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
+				CODE_SIGN_ENTITLEMENTS = StudyLevel_/StudyLevel_.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "\"StudyLevel_/Preview Content\"";
 				DEVELOPMENT_TEAM = SHRYHV5Z92;
 				ENABLE_PREVIEWS = YES;
@@ -1420,6 +1520,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yunishida.StudyLevel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "StudyLevel Dev";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1431,7 +1532,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
+				CODE_SIGN_ENTITLEMENTS = StudyLevel_/StudyLevel_.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "\"StudyLevel_/Preview Content\"";
 				DEVELOPMENT_TEAM = SHRYHV5Z92;
 				ENABLE_PREVIEWS = YES;
@@ -1443,6 +1547,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yunishida.StudyLevel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "StudyLevel Dev";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

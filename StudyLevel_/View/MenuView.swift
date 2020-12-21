@@ -14,9 +14,16 @@ extension UIApplication {
 }
 
 struct MenuView: View {
+    @ObservedObject var contentViewModel: ContentViewModel
     @ObservedObject var viewModel = MenuViewModel()
     @State var error = false
     @State var errorMessage = ""
+    @State var selection = 0
+    
+    init(contentViewModel: ContentViewModel) {
+        _contentViewModel = ObservedObject(initialValue: contentViewModel)
+        
+    }
     
     var body: some View {
         ZStack {
@@ -28,56 +35,93 @@ struct MenuView: View {
                         .navigationBarHidden(true)
                 })
             if let currentUserId = CurrentUser().currentUser()?.id {
-                TabView {
+                TabView(selection: $selection) {
                     FeedView(isNotLogin: $viewModel.isNotLogin)
-                    .tabItem {
-                            VStack {
-                                Image(systemName: "list.bullet")
-                                Text("ホーム")
-                            }
-                        }
+                        .tag(0)
                         .navigationBarHidden(true)
                     CreateTimeReportView()
-                        .tabItem {
-                            VStack {
-                                Image(systemName: "square.and.pencil")
-                                Text("記録する")
-                            }
-                        }
+                        .tag(1)
                         .navigationBarHidden(true)
                     NavigationView {
                         UserPageView(id: currentUserId, error: $error, errorMessage: $errorMessage)
                     }
-                    .tabItem {
-                        VStack {
-                            Image(systemName: "person.crop.circle")
-                            Text("マイページ")
+                        .tag(2)
+                        .navigationBarHidden(true)
+                        .alert(isPresented: $error) {
+                            Alert(title: Text("エラー"), message: Text(errorMessage), dismissButton: .default(Text("OK"), action: {
+                                error = false
+                            }))
                         }
-                    }
-                    .navigationBarHidden(true)
-                    .alert(isPresented: $error) {
-                        Alert(title: Text("エラー"), message: Text(errorMessage), dismissButton: .default(Text("OK"), action: {
-                            error = false
-                        }))
-                    }
-                    NotificationView()
-                        .tabItem {
-                            VStack {
-                                Image(systemName: "bell")
-                                Text("通知")
-                            }
-                        }
+                    NotificationView(contentViewModel: contentViewModel)
+                        .tag(3)
                         .navigationBarHidden(true)
                     SettingAndOthersView(isLogin: $viewModel.isNotLogin)
-                        .tabItem {
-                            VStack {
-                                Image(systemName: "gearshape")
-                                Text("設定・その他")
-                            }
-                        }
+                        .tag(4)
                         .navigationBarHidden(true)
                     }
                     .navigationBarBackButtonHidden(true)
+                    VStack {
+                        Spacer(minLength: 0)
+                        HStack {
+                            VStack {
+                                Image(systemName: "list.bullet")
+                                    .padding(.bottom, 1)
+                                Text("ホーム")
+                                    .font(.caption2)
+                            }
+                            .foregroundColor(selection == 0 ? .blue : .secondary)
+                            .onTapGesture {
+                                selection = 0
+                            }
+                            .padding(.horizontal)
+                            VStack {
+                                Image(systemName: "square.and.pencil")
+                                    .padding(.bottom, 1)
+                                Text("記録する")
+                                    .font(.caption2)
+                            }
+                            .foregroundColor(selection == 1 ? .blue : .secondary)
+                            .onTapGesture {
+                                selection = 1
+                            }
+                            .padding(.horizontal)
+                            VStack {
+                                Image(systemName: "person.crop.circle")
+                                    .padding(.bottom, 1)
+                                Text("マイページ")
+                                    .font(.caption2)
+                            }
+                            .foregroundColor(selection == 2 ? .blue : .secondary)
+                            .onTapGesture {
+                                selection = 2
+                            }
+                            .padding(.horizontal)
+                            VStack {
+                                Image(systemName: contentViewModel.noticesIncludeNonChecked() || !contentViewModel.prevWeeklyTargetCheck ? "bell.badge.fill" : "bell")
+                                    .padding(.bottom, 1)
+                                    .foregroundColor(contentViewModel.noticesIncludeNonChecked() || !contentViewModel.prevWeeklyTargetCheck ? .orange : .secondary)
+                                Text("通知")
+                                    .font(.caption2)
+                            }
+                            .foregroundColor(selection == 3 ? .blue : .secondary)
+                            .onTapGesture {
+                                selection = 3
+                            }
+                            .padding(.horizontal)
+                            VStack {
+                                Image(systemName: "gearshape")
+                                    .padding(.bottom, 1)
+                                Text("設定・その他")
+                                    .font(.caption2)
+                            }
+                            .foregroundColor(selection == 4 ? .blue : .secondary)
+                            .onTapGesture {
+                                selection = 4
+                            }
+                            .padding(.horizontal)
+                        }
+                        .foregroundColor(.secondary)
+                    }
             } else {
                 SignupOrLoginView()
                     .navigationBarHidden(true)
@@ -87,14 +131,6 @@ struct MenuView: View {
             if error && viewModel.isNotLogin {
                 self.error = false
             }
-        }
-    }
-}
-
-struct MenuView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            MenuView()
         }
     }
 }

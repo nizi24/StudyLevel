@@ -12,6 +12,7 @@ struct DefaultAvatarView: View {
     
     var body: some View {
         Image("defaultIcon")
+            .renderingMode(.original)
             .resizable()
             .scaledToFill()
             .frame(width: size, height: size)

@@ -27,7 +27,7 @@ struct TimeReportView: View {
     }
     
     var body: some View {
-        NavigationLink(destination: TimeReportDetailView(viewModel: TimeReportDetailViewModel(timeReport: timeReport, likesCount: likesCount.likesCount), error: $viewModel.aleat, errorMessage: $viewModel.errorMessage)) {
+        NavigationLink(destination: TimeReportDetailView(viewModel: TimeReportDetailViewModel(timeReport: timeReport, timeReportId: timeReport.id, likesCount: likesCount.likesCount), error: $viewModel.aleat, errorMessage: $viewModel.errorMessage)) {
             VStack {
                 HStack {
                     VStack {
