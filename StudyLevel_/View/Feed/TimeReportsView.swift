@@ -10,7 +10,7 @@ import SwiftUI
 struct TimeReportsView<ViewModel>: View where ViewModel: TimeReportsViewModelProtocol {
     @Binding var error: Bool
     @Binding var errorMessage: String
-    @ObservedObject var viewModel: ViewModel
+    @StateObject var viewModel: ViewModel
     @Binding var bindReload: Bool
     @State var screen: CGSize = UIScreen.main.bounds.size
     @State var reload = false
@@ -19,14 +19,14 @@ struct TimeReportsView<ViewModel>: View where ViewModel: TimeReportsViewModelPro
     init(error: Binding<Bool>, errorMessage: Binding<String>, viewModel: ViewModel) {
         self._error = error
         self._errorMessage = errorMessage
-        _viewModel = ObservedObject(initialValue: viewModel)
+        _viewModel = StateObject(wrappedValue: viewModel)
         self._bindReload = .constant(false)
     }
     
     init(error: Binding<Bool>, errorMessage: Binding<String>, viewModel: ViewModel, reload: Binding<Bool>) {
         self._error = error
         self._errorMessage = errorMessage
-        _viewModel = ObservedObject(initialValue: viewModel)
+        _viewModel = StateObject(wrappedValue: viewModel)
         _bindReload = reload
     }
 

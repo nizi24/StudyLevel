@@ -874,8 +874,8 @@
             filePath = "StudyLevel_/View/TimeReport/TimeReportDetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -922,8 +922,8 @@
             filePath = "StudyLevel_/View/TimeReport/TimeReportDetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -970,8 +970,8 @@
             filePath = "StudyLevel_/View/TimeReport/TimeReportDetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -986,8 +986,8 @@
             filePath = "StudyLevel_/View/TimeReport/TimeReportDetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -1002,8 +1002,8 @@
             filePath = "StudyLevel_/ViewModel/TimeReport/TimeReportDetailViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "getComments()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1432,8 +1432,8 @@
             filePath = "StudyLevel_/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -1448,8 +1448,8 @@
             filePath = "StudyLevel_/View/MenuView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -1496,8 +1496,8 @@
             filePath = "StudyLevel_/View/MenuView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -1595,6 +1595,230 @@
             startingLineNumber = "39"
             endingLineNumber = "39"
             landmarkName = "getMainTags()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9C47C223-92A4-46D6-B5BA-8A38569EE8CA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyLevel_/StudyLevel_App.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "92B59AD9-E257-4320-BFD2-80F66E3EA570"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyLevel_/ViewModel/TimeReport/TimeReportDetailViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "init(timeReportId:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B353074E-D273-4632-991B-BD429D1A09FE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyLevel_/ViewModel/ContentViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "getNotices()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B353074E-D273-4632-991B-BD429D1A09FE - 2a82d508a37285bf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "StudyLevel_.ContentViewModel.getNotices() -&gt; ()"
+                  moduleName = "StudyLevel_"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yuunishida/StudyLevel_/StudyLevel_/ViewModel/ContentViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "396">
+               </Location>
+               <Location
+                  uuid = "B353074E-D273-4632-991B-BD429D1A09FE - 4e9ff39c6eb1150d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;StudyLevel_.Notice&gt;, Swift.Error&gt;) -&gt; () in StudyLevel_.ContentViewModel.getNotices() -&gt; ()"
+                  moduleName = "StudyLevel_"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yuunishida/StudyLevel_/StudyLevel_/ViewModel/ContentViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "264">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AFA5CEFD-AB9B-45BC-8F21-9A3802415FAF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyLevel_/ViewModel/ContentViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "getNotices()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "AFA5CEFD-AB9B-45BC-8F21-9A3802415FAF - 4e9ff39c6eb1154f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;StudyLevel_.Notice&gt;, Swift.Error&gt;) -&gt; () in StudyLevel_.ContentViewModel.getNotices() -&gt; ()"
+                  moduleName = "StudyLevel_"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yuunishida/StudyLevel_/StudyLevel_/ViewModel/ContentViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "288">
+               </Location>
+               <Location
+                  uuid = "AFA5CEFD-AB9B-45BC-8F21-9A3802415FAF - 4e9ff39c6eb1154f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;StudyLevel_.Notice&gt;, Swift.Error&gt;) -&gt; () in StudyLevel_.ContentViewModel.getNotices() -&gt; ()"
+                  moduleName = "StudyLevel_"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yuunishida/StudyLevel_/StudyLevel_/ViewModel/ContentViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "300">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8AB59271-634D-4744-ADE2-62651204EBF6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyLevel_/ViewModel/ContentViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "getNotices()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1588B88C-3219-4246-B40E-E59653F6A3D9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyLevel_/ViewModel/ContentViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "getNotices()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "94875FB9-AAE0-43E1-B7F0-8814C3C0B851"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyLevel_/Model/HTTPRequestProcessor/StudyLevelClient.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "send(request:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "94875FB9-AAE0-43E1-B7F0-8814C3C0B851 - 7badcd5234ff00db"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "StudyLevel_.StudyLevelClient.send&lt;A where A: StudyLevel_.Request&gt;(request: A, completion: (Swift.Result&lt;A.Response, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "StudyLevel_"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yuunishida/StudyLevel_/StudyLevel_/Model/HTTPRequestProcessor/StudyLevelClient.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "360">
+               </Location>
+               <Location
+                  uuid = "94875FB9-AAE0-43E1-B7F0-8814C3C0B851 - b89b62bd8d49c3f4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;(Foundation.Data, __C.NSHTTPURLResponse), Swift.Error&gt;) -&gt; () in StudyLevel_.StudyLevelClient.send&lt;A where A: StudyLevel_.Request&gt;(request: A, completion: (Swift.Result&lt;A.Response, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "StudyLevel_"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yuunishida/StudyLevel_/StudyLevel_/Model/HTTPRequestProcessor/StudyLevelClient.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "688">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "046E1B91-536C-4722-A485-4AD0BDC6C2B5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StudyLevel_/ViewModel/ContentViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "getPrevWeeklyTarget()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

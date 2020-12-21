@@ -1,0 +1,25 @@
+{
+  "name": "NCMB",
+  "version": "3.1.0",
+  "summary": "NCMB is SDK for NIFCLOUD mobile backend.",
+  "description": "NCMB is SDK for NIFCLOUD mobile backend.\nNIFCLOUD mobile backend function\n* Data store\n* Push Notification\n* User Management\n* SNS integration\n* File store",
+  "homepage": "https://mbaas.nifcloud.com",
+  "license": "Apache License, Version 2.0",
+  "authors": "FUJITSU CLOUD TECHNOLOGIES LIMITED",
+  "platforms": {
+    "ios": "5.1"
+  },
+  "source": {
+    "git": "https://github.com/NIFCLOUD-mbaas/ncmb_ios.git",
+    "tag": "v3.1.0"
+  },
+  "source_files": "NCMB/**/*.{h,m,c}",
+  "frameworks": [
+    "Foundation",
+    "UIKit",
+    "MobileCoreServices",
+    "AudioToolbox",
+    "SystemConfiguration"
+  ],
+  "requires_arc": true
+}
