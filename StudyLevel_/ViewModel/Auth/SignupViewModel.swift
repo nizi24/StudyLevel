@@ -44,30 +44,30 @@ class SignupViewModel: ObservableObject {
     }
     
     private func createErrorMessages() {
-        let validationResults = SignupValidation(viewModel: self).isValid()
+        let validationResults = SignupValidation(viewModel: self).isValidWithViewModel()
         for validationResult in validationResults {
             switch validationResult {
             case .success(true): break
             case let .failure(error):
                 switch error {
                 case .nameIsRequired:
-                    errorMessages.append("名前は必須項目です")
+                    errorMessages.append("名前は必須項目です。")
                 case .nameIsTooLong:
-                errorMessages.append("名前は20文字以内にしてください")
+                errorMessages.append("名前は20文字以内にしてください。")
                 case .emailIsRequired:
-                    errorMessages.append("メールアドレスは必須項目です")
+                    errorMessages.append("メールアドレスは必須項目です。")
                 case .invalidEmail:
-                    errorMessages.append("無効なメールアドレスです")
+                    errorMessages.append("無効なメールアドレスです。")
                 case .alreadyRegisteredEmail:
-                    errorMessages.append("既に登録されたメールアドレスです")
+                    errorMessages.append("既に登録されたメールアドレスです。")
                 case .passwordIsRequired:
-                    errorMessages.append("パスワードは必須項目です")
+                    errorMessages.append("パスワードは必須項目です。")
                 case .passwordIsTooShort:
-                    errorMessages.append("パスワードは6文字以上にしてください")
+                    errorMessages.append("パスワードは6文字以上にしてください。")
                 case .confirmationPasswordIsRequired:
-                    errorMessages.append("パスワード(確認用)は必須項目です")
+                    errorMessages.append("パスワード(確認用)は必須項目です。")
                 case .confirmationAndPasswordDoNotMatch:
-                    errorMessages.append("パスワードと確認が一致しません")
+                    errorMessages.append("パスワードと確認が一致しません。")
                 }
             default:
                 fatalError()

@@ -8,53 +8,89 @@
 import Foundation
 
 struct SignupValidation {
-    var viewModel: SignupViewModel
+    var viewModel: SignupViewModel?
+    var userId: Int?
     
-    func isValid() -> [Result<Bool, SignupError>] {
-        return [isValidName(), isValidEmail(), isValidPassword(), isValidConfirmationPassword()]
+    init(viewModel: SignupViewModel) {
+        self.viewModel = viewModel
     }
     
-    func isValidName() -> Result<Bool, SignupError> {
-        if viewModel.name.isEmpty {
+    init(userId: Int) {
+        self.userId = userId
+    }
+    
+    init() {}
+    
+    func isValidWithViewModel() -> [Result<Bool, SignupError>] {
+        return [isValidName(name: viewModel!.name), isValidEmail(email: viewModel!.email),
+                isValidPassword(password: viewModel!.password),
+                isValidConfirmationPassword(password: viewModel!.password, confirmationPassword: viewModel!.confirmationPassword)]
+    }
+    
+    func isValidName(name: String) -> Result<Bool, SignupError> {
+        if name.isEmpty {
             return .failure(.nameIsRequired)
-        } else if viewModel.name.count > 20 {
+        } else if name.count > 20 {
             return .failure(.nameIsTooLong)
         } else {
             return .success(true)
         }
     }
     
-    func isValidEmail() -> Result<Bool, SignupError> {
-        if viewModel.email.isEmpty {
+    func isValidEmail(email: String) -> Result<Bool, SignupError> {
+        if email.isEmpty {
             return .failure(.emailIsRequired)
-        } else if isEmail() {
-            return .success(true)
-        } else {
+        } else if !isEmail(email: email) {
             return .failure(.invalidEmail)
+        } else if emailAlreadyUsed(email: email) {
+            return .failure(.alreadyRegisteredEmail)
+        } else {
+            return .success(true)
         }
     }
     
-    private func isEmail() -> Bool {
+    private func isEmail(email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        let result = emailTest.evaluate(with: viewModel.email)
+        let result = emailTest.evaluate(with: email)
         return result
     }
     
-    func isValidPassword() -> Result<Bool, SignupError> {
-        if viewModel.password.isEmpty {
+    private func emailAlreadyUsed(email: String) -> Bool {
+        var request = AlreadyUsedRequest()
+        if let currentUserId = userId {
+            request = request.emailAlreadyUsed(userId: currentUserId, email: email)
+        } else {
+            request = request.emailAlreadyUsed(email: email)
+        }
+        var alreadyUsed = true
+        let semaphore = DispatchSemaphore(value: 0)
+        StudyLevelClient().send(request: request) { result in
+            switch result {
+            case .success(let used):
+                alreadyUsed = used
+            case .failure(_): break
+            }
+            semaphore.signal()
+        }
+        semaphore.wait()
+        return alreadyUsed
+    }
+    
+    func isValidPassword(password: String) -> Result<Bool, SignupError> {
+        if password.isEmpty {
             return .failure(.passwordIsRequired)
-        } else if viewModel.password.count < 6 {
+        } else if password.count < 6 {
             return .failure(.passwordIsTooShort)
         } else {
             return .success(true)
         }
     }
     
-    func isValidConfirmationPassword() -> Result<Bool, SignupError> {
-        if viewModel.confirmationPassword.isEmpty {
+    func isValidConfirmationPassword(password: String, confirmationPassword: String) -> Result<Bool, SignupError> {
+        if confirmationPassword.isEmpty {
             return .failure(.confirmationPasswordIsRequired)
-        } else if viewModel.password != viewModel.confirmationPassword {
+        } else if password != confirmationPassword {
             return .failure(.confirmationAndPasswordDoNotMatch)
         } else {
             return .success(true)

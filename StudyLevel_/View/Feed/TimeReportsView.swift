@@ -46,7 +46,7 @@ struct TimeReportsView<ViewModel>: View where ViewModel: TimeReportsViewModelPro
                         .frame(width: screen.width * 19 / 20)
                         if let timeReports = viewModel.timeReports {
                             ForEach(timeReports.indices, id: \.self) { i in
-                                TimeReportView(timeReport: timeReports[i], reload: $reload, currentPageUserId: nil)
+                                TimeReportView(timeReport: timeReports[i], reload: $reload, currentPageUserId: nil, editReload: $reload)
                                     .background(Color.white)
                             }
                         }

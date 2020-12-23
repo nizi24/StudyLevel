@@ -11,7 +11,7 @@ import PartialSheet
 struct CreateTimeReportView: View {
     @ObservedObject var viewModel = CreateTimeReportViewModel()
     @State var timeReportFormViewModel = TimeReportFormViewModel()
-    @ObservedObject var keyboardObserver = KeyboardObserver()
+    @StateObject var keyboardObserver = KeyboardObserver()
     @State var title = "通信中・・・"
     
     var body: some View {

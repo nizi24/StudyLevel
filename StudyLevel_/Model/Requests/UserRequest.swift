@@ -53,6 +53,18 @@ class UserRequest: Request {
         return self
     }
     
+    func update(userId: Int, email: String) -> Self {
+        path = "/v2/users/\(userId)"
+        method = .patch
+        do {
+            let params = ["user": ["email": email]]
+            body = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
+        } catch {
+            fatalError("Encoding failed")
+        }
+        return self
+    }
+    
     func update_avatar(userId: Int, image: UIImage) -> Self {
         path = "/v2/users/\(userId)/update_avatar"
         method = .patch

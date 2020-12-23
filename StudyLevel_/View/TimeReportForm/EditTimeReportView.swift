@@ -10,6 +10,7 @@ import SwiftUI
 struct EditTimeReportView: View {
     @StateObject var viewModel = EditTimeReportViewModel()
     @StateObject var timeReportFormViewModel: TimeReportFormViewModel
+    @Binding var reload: Bool
     @StateObject var keyboardObserver = KeyboardObserver()
     @State var title = "通信中・・・"
     @Environment(\.presentationMode) var presentationMode
@@ -37,6 +38,7 @@ struct EditTimeReportView: View {
             .alert(isPresented: $viewModel.success) {
                 return Alert(title: Text("完了"), message: Text("記録を変更しました。"), dismissButton: .default(Text("OK"), action: {
                     presentationMode.wrappedValue.dismiss()
+                    reload = true
                 }))
             }
         }

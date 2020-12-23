@@ -14,6 +14,12 @@ struct SettingAndOthersView: View {
     var body: some View {
         NavigationView {
             List {
+                NavigationLink(destination: ReAuthView()) {
+                    Text("アカウント設定")
+                }
+                NavigationLink(destination: NotificationSettingView()) {
+                    Text("通知設定")
+                }
                 Button(action: {
                     if viewModel.logout() {
                         isLogin = false
