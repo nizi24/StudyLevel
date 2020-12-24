@@ -47,7 +47,6 @@
 		6A446DC6256A7F7100AC93DF /* WeeklyTargetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A446DC5256A7F7100AC93DF /* WeeklyTargetView.swift */; };
 		6A446DCB256A8B2100AC93DF /* ExtensionStringRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A446DCA256A8B2100AC93DF /* ExtensionStringRegex.swift */; };
 		6A446DFB256B5CAB00AC93DF /* TimeReportFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A446DFA256B5CAA00AC93DF /* TimeReportFormViewModel.swift */; };
-		6A4CC9742577B84F005565D4 /* AleatItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4CC9732577B84F005565D4 /* AleatItem.swift */; };
 		6A4CC98125789195005565D4 /* TimeReportDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4CC98025789195005565D4 /* TimeReportDetailView.swift */; };
 		6A4CC98625789274005565D4 /* TimeReportViewNonNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4CC98525789274005565D4 /* TimeReportViewNonNavigationLink.swift */; };
 		6A4CC98D25789393005565D4 /* TimeReportDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4CC98C25789393005565D4 /* TimeReportDetailViewModel.swift */; };
@@ -269,7 +268,6 @@
 		6A446DC5256A7F7100AC93DF /* WeeklyTargetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyTargetView.swift; sourceTree = "<group>"; };
 		6A446DCA256A8B2100AC93DF /* ExtensionStringRegex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionStringRegex.swift; sourceTree = "<group>"; };
 		6A446DFA256B5CAA00AC93DF /* TimeReportFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeReportFormViewModel.swift; sourceTree = "<group>"; };
-		6A4CC9732577B84F005565D4 /* AleatItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AleatItem.swift; sourceTree = "<group>"; };
 		6A4CC98025789195005565D4 /* TimeReportDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeReportDetailView.swift; sourceTree = "<group>"; };
 		6A4CC98525789274005565D4 /* TimeReportViewNonNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeReportViewNonNavigationLink.swift; sourceTree = "<group>"; };
 		6A4CC98C25789393005565D4 /* TimeReportDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeReportDetailViewModel.swift; sourceTree = "<group>"; };
@@ -507,7 +505,6 @@
 				6A12467A2567FA560095CB13 /* ImageContainer.swift */,
 				6A446DCA256A8B2100AC93DF /* ExtensionStringRegex.swift */,
 				6A932EA9256FDD9500D0B4AE /* KeyboardObserver.swift */,
-				6A4CC9732577B84F005565D4 /* AleatItem.swift */,
 				6A6AE13B2583990A0025CE18 /* FollowButtonViewModelProtocol.swift */,
 				6A35E8232594C884003E776B /* LevelUpViewModel.swift */,
 			);
@@ -1353,7 +1350,6 @@
 				6A4CC98625789274005565D4 /* TimeReportViewNonNavigationLink.swift in Sources */,
 				6A6AE1A22584503F0025CE18 /* TagSearchRequest.swift in Sources */,
 				6A61D2AD258F7D8D004BA0CE /* WeeklyTargetListItem.swift in Sources */,
-				6A4CC9742577B84F005565D4 /* AleatItem.swift in Sources */,
 				6A2B4EA725669F2F00D7CE7F /* UserPageView.swift in Sources */,
 				6A6AE1AF258450EB0025CE18 /* TagSearchView.swift in Sources */,
 				6A6AE1672583B4E50025CE18 /* RankingUserListItem.swift in Sources */,

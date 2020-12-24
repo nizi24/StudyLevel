@@ -80,12 +80,12 @@ PODS:
   - GoogleUtilities/UserDefaults (7.1.1):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.5.0)
+  - lottie-ios (3.1.9)
   - nanopb (2.30906.0):
     - nanopb/decode (= 2.30906.0)
     - nanopb/encode (= 2.30906.0)
   - nanopb/decode (2.30906.0)
   - nanopb/encode (2.30906.0)
-  - NCMB (3.1.0)
   - PromisesObjC (1.2.11)
   - Realm (10.5.0):
     - Realm/Headers (= 10.5.0)
@@ -98,7 +98,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Messaging
-  - NCMB (from `https://github.com/NIFTYCloud-mbaas/ncmb_ios.git`)
+  - lottie-ios
   - RealmSwift
 
 SPEC REPOS:
@@ -115,19 +115,11 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleUtilities
     - GTMSessionFetcher
+    - lottie-ios
     - nanopb
     - PromisesObjC
     - Realm
     - RealmSwift
-
-EXTERNAL SOURCES:
-  NCMB:
-    :git: https://github.com/NIFTYCloud-mbaas/ncmb_ios.git
-
-CHECKOUT OPTIONS:
-  NCMB:
-    :commit: f11ec347e410179817d72ac2be21f4578b11bc5f
-    :git: https://github.com/NIFTYCloud-mbaas/ncmb_ios.git
 
 SPEC CHECKSUMS:
   Firebase: 26223c695fe322633274198cb19dca8cb7e54416
@@ -142,12 +134,12 @@ SPEC CHECKSUMS:
   GoogleDataTransport: 116c84c4bdeb76be2a7a46de51244368f9794eab
   GoogleUtilities: 3dc4ff0d5e4840e2fa8eef0889620e8c33d4218c
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
+  lottie-ios: 3a3758ef5a008e762faec9c9d50a39842f26d124
   nanopb: 1bf24dd71191072e120b83dd02d08f3da0d65e53
-  NCMB: c308972109137bf523ec1830bac16de6a31c25f4
   PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
   Realm: e1c22c3d83b229afb70ebc10e1771c91e9542d12
   RealmSwift: 6fc078d9d3fd7e58c71bfdbb694e252462f112a5
 
-PODFILE CHECKSUM: 7156532fc062ff41f767afe17ead5eaa25ce33c9
+PODFILE CHECKSUM: 37963c64d0e914362b731e1a9cd45f0bba11273b
 
 COCOAPODS: 1.10.0

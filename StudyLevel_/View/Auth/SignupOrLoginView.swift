@@ -8,18 +8,29 @@
 import SwiftUI
 
 struct SignupOrLoginView: View {
+    @State var page = 0
+    
     var body: some View {
         ZStack {
             Color.backgroundGray
                 .edgesIgnoringSafeArea(.all)
             NavigationView {
                 VStack {
-                    Text("Welcome To StudyLevel！")
-                        .font(.largeTitle)
-                        .bold()
-                    Text("StudyLevelは、学習時間に応じてレベルが上がる学習管理アプリです。")
-                        .padding()
-                        .font(.headline)
+                    TabView(selection: $page) {
+                        VStack {
+                            Text("Welcome To StudyLevel！")
+                                .font(.largeTitle)
+                                .bold()
+                            Text("StudyLevelは、学習時間に応じてレベルが上がる学習管理アプリです。")
+                                .padding()
+                                .font(.headline)
+                        }
+                        .tag(0)
+                        Text("aa")
+                            .tag(1)
+                    }
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+                    .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
                     NavigationLink(destination: SignupView()) {
                         Text("いますぐ始める")
                         .font(.title3)
@@ -31,10 +42,12 @@ struct SignupOrLoginView: View {
                     }
                     NavigationLink(destination: LoginView()) {
                         Text("すでにアカウントをお持ちの方")
-                        .padding()
+                            .padding()
                     }
+                    .padding(.bottom, 30)
                 }
             }
+            .background(Color.backgroundGray)
         }
     }
 }
