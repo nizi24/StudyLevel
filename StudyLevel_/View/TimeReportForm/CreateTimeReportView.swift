@@ -13,6 +13,7 @@ struct CreateTimeReportView: View {
     @State var timeReportFormViewModel = TimeReportFormViewModel()
     @StateObject var keyboardObserver = KeyboardObserver()
     @State var title = "通信中・・・"
+    @EnvironmentObject var levelUpViewModel: LevelUpViewModel
     
     var body: some View {
         LoadingView(title: $title, isShowing: $viewModel.connecting) {
@@ -37,6 +38,7 @@ struct CreateTimeReportView: View {
             .alert(isPresented: $viewModel.success) {
                 Alert(title: Text("完了"), message: Text("記録を作成しました。"), dismissButton: .default(Text("OK"), action: {
                     self.timeReportFormViewModel = TimeReportFormViewModel()
+                    levelUpViewModel.getExperienceToServer()
                 }))
             }
         }

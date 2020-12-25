@@ -9,23 +9,27 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var viewModel = ContentViewModel()
+    @EnvironmentObject var levelUpViewModel: LevelUpViewModel
     
     var body: some View {
         if CurrentUser().isLogin() {
             if viewModel.error {
                 Text(viewModel.errorMessage)
             } else {
-                MenuView(contentViewModel: viewModel)
-                    .onAppear {
-                        let timer = Timer.scheduledTimer(
-                            timeInterval: 60,
-                            target: viewModel,
-                            selector: #selector(viewModel.getNotices),
-                            userInfo: nil,
-                            repeats: true)
-                        timer.fire()
-                        viewModel.getPrevWeeklyTarget()
-                    }
+                LevelUpView(isShowing: $levelUpViewModel.isShowing, level: levelUpViewModel.level) {
+                    MenuView(contentViewModel: viewModel)
+                        .onAppear {
+                            let timer = Timer.scheduledTimer(
+                                timeInterval: 60,
+                                target: viewModel,
+                                selector: #selector(viewModel.getNotices),
+                                userInfo: nil,
+                                repeats: true)
+                            timer.fire()
+                            viewModel.getPrevWeeklyTarget()
+                        }
+                        .navigationBarHidden(true)
+                }
             }
         } else {
             SignupOrLoginView()

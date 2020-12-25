@@ -74,23 +74,23 @@ struct TimeReportsView<ViewModel>: View where ViewModel: TimeReportsViewModelPro
                 }
                 .frame(width: screen.width * 19 / 20)
             }
-            .onChange(of: reload) { reload in
-                if reload {
-                    viewModel.getTimeReports()
-                    self.reload = false
-                    self.bindReload = true
-                }
-            }
-            .onChange(of: viewModel.error) { error in
-                if error {
-                    self.error = true
-                    errorMessage = viewModel.errorMessage
-                    viewModel.error = false
-                }
-            }
-            .onAppear {
+        }
+        .onChange(of: reload) { reload in
+            if reload {
                 viewModel.getTimeReports()
+                self.reload = false
+                self.bindReload = true
             }
+        }
+        .onChange(of: viewModel.error) { error in
+            if error {
+                self.error = true
+                errorMessage = viewModel.errorMessage
+                viewModel.error = false
+            }
+        }
+        .onAppear {
+            viewModel.getTimeReports()
         }
     }
 }

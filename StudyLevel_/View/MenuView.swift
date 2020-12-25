@@ -38,15 +38,12 @@ struct MenuView: View {
                 TabView(selection: $selection) {
                     FeedView(isNotLogin: $viewModel.isNotLogin)
                         .tag(0)
-                        .navigationBarHidden(true)
                     CreateTimeReportView()
                         .tag(1)
-                        .navigationBarHidden(true)
                     NavigationView {
                         UserPageView(id: currentUserId, error: $error, errorMessage: $errorMessage)
                     }
                         .tag(2)
-                        .navigationBarHidden(true)
                         .alert(isPresented: $error) {
                             Alert(title: Text("エラー"), message: Text(errorMessage), dismissButton: .default(Text("OK"), action: {
                                 error = false
@@ -54,10 +51,8 @@ struct MenuView: View {
                         }
                     NotificationView(contentViewModel: contentViewModel)
                         .tag(3)
-                        .navigationBarHidden(true)
                     SettingAndOthersView(isLogin: $viewModel.isNotLogin)
                         .tag(4)
-                        .navigationBarHidden(true)
                     }
                     .navigationBarBackButtonHidden(true)
                     if !keyboardObserver.isShowing {

@@ -42,9 +42,20 @@ struct SignupView: View {
                             .foregroundColor(Color.red)
                             .padding(.bottom, 10)
                     }
-                    Text("利用規約 及び プライバシーポリシー に同意の上ご利用ください。")
-                        .font(.footnote)
-                        .padding(.bottom, 30)
+                    VStack {
+                        HStack {
+                            NavigationLink(destination: RoleView()) {
+                                Text("利用規約")
+                            }
+                            Text(" 及び ")
+                            NavigationLink(destination: PrivacyView()) {
+                                Text("プライバシーポリシー")
+                            }
+                        }
+                        Text("に同意の上ご利用ください。")
+                    }
+                    .font(.footnote)
+                    .padding(.bottom, 30)
                     Button(action: {
                         viewModel.signup()
                     }, label: {

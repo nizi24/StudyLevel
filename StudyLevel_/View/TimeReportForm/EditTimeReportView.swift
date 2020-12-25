@@ -14,6 +14,7 @@ struct EditTimeReportView: View {
     @StateObject var keyboardObserver = KeyboardObserver()
     @State var title = "通信中・・・"
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var levelUpViewModel: LevelUpViewModel
     
     var body: some View {
         LoadingView(title: $title, isShowing: $viewModel.connecting) {
@@ -37,6 +38,7 @@ struct EditTimeReportView: View {
             }))
             .alert(isPresented: $viewModel.success) {
                 return Alert(title: Text("完了"), message: Text("記録を変更しました。"), dismissButton: .default(Text("OK"), action: {
+                    levelUpViewModel.getExperienceToServer()
                     presentationMode.wrappedValue.dismiss()
                     reload = true
                 }))

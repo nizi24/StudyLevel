@@ -15,11 +15,13 @@ import UserNotifications
 struct StudyLevel_App: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     let sheetManager: PartialSheetManager = PartialSheetManager()
+    let levelUpViewModel = LevelUpViewModel()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(sheetManager)
+                .environmentObject(levelUpViewModel)
         }
     }
 }
