@@ -13,6 +13,7 @@ target 'StudyLevel_' do
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
   pod 'lottie-ios'
+  pod 'Google-Mobile-Ads-SDK'
   
   target 'StudyLevel_Tests' do
     inherit! :search_paths

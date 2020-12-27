@@ -31,6 +31,9 @@ struct FeedView: View {
                 } else if viewModel.feedType == .newest {
                     TimeReportsView(error: $error, errorMessage: $errorMessage, viewModel: NewestTimeReportsViewModel())
                 }
+                AdView(unitID: "ca-app-pub-2760885204397772/3214087597")
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 40)
             }
             .navigationBarItems(leading: NavigationLink(destination: RankingView()) {
                 Image(systemName: "crown")

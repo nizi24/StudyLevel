@@ -55,6 +55,9 @@ struct MenuView: View {
                         .tag(4)
                     }
                     .navigationBarBackButtonHidden(true)
+                    .onAppear {
+                        selection = 0
+                    }
                     if !keyboardObserver.isShowing {
                         VStack {
                             Spacer(minLength: 0)

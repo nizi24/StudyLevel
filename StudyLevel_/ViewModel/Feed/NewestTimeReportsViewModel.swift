@@ -17,7 +17,8 @@ class NewestTimeReportsViewModel: ObservableObject, TimeReportsViewModelProtocol
     
     func getTimeReports() {
         connecting = true
-        let request = TimeReportsRequest().index(limit: timeReports?.count ?? 30)
+        let timeReportsCount = timeReports?.count ?? 30
+        let request = TimeReportsRequest().index(limit: timeReportsCount >= 30 ? timeReportsCount : 30)
         StudyLevelClient().send(request: request) { [weak self] result in
             switch (result) {
             case .success(let timeReports):

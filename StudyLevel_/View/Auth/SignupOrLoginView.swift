@@ -20,14 +20,14 @@ struct SignupOrLoginView: View {
                         VStack {
                             HStack {
                                 Text("Welcome To")
-                                    .font(.largeTitle)
+                                    .font(.title)
                                     .bold()
                                     .foregroundColor(Color(UIColor(hex: "FFD54F")))
-                                Text("StudyLevel！")
-                                    .font(.largeTitle)
-                                    .bold()
-                                    .foregroundColor(Color(UIColor(hex: "FF6F00")))
                             }
+                            Text("StudyLevel！")
+                                .font(.largeTitle)
+                                .bold()
+                                .foregroundColor(Color(UIColor(hex: "FF6F00")))
                             Text("StudyLevelは、学習時間に応じてレベルが上がる学習管理アプリです。")
                                 .padding()
                                 .font(.headline)
