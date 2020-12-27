@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct SearchView: View {
-    @ObservedObject var viewModel = SearchViewModel()
-    @ObservedObject var keyboardObserver = KeyboardObserver()
+    @StateObject var viewModel = SearchViewModel()
+    @StateObject var keyboardObserver = KeyboardObserver()
     @State var screen: CGSize = UIScreen.main.bounds.size
     
     var body: some View {

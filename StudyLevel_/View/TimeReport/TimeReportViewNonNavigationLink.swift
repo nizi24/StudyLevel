@@ -63,7 +63,7 @@ struct TimeReportViewNonNavigationLink: View {
                 Spacer()
                 if viewModel.displayEditButton(creatorId: timeReport.creator.id) {
                     NavigationLink(
-                        destination: EditTimeReportView(timeReportFormViewModel: TimeReportFormViewModel(timeReport: timeReport))
+                        destination: EditTimeReportView(timeReportFormViewModel: TimeReportFormViewModel(timeReport: timeReport), reload: .constant(false))
                     ) {
                         Image(systemName: "square.and.pencil")
                     }

@@ -10,13 +10,14 @@ import SwiftUI
 struct SignupView: View {
     @ObservedObject var viewModel = SignupViewModel()
     @State var title = "通信中・・・"
+    @State var screen: CGSize = UIScreen.main.bounds.size
     
     var body: some View {
         ZStack {
             Color.backgroundGray
                 .edgesIgnoringSafeArea(.all)
             LoadingView(title: $title, isShowing: $viewModel.connecting) {
-                VStack {
+                ScrollView {
                     NavigationLink(
                         destination: ContentView(),
                         isActive: $viewModel.complete) {
@@ -26,7 +27,6 @@ struct SignupView: View {
                         .font(.title2)
                         .fontWeight(.bold)
                         .padding(.top, 30)
-                        
                     Form {
                         TextField("名前", text: $viewModel.name)
                             .padding(10)
@@ -42,9 +42,20 @@ struct SignupView: View {
                             .foregroundColor(Color.red)
                             .padding(.bottom, 10)
                     }
-                    Text("利用規約 及び プライバシーポリシー に同意の上ご利用ください。")
-                        .font(.footnote)
-                        .padding(.bottom, 30)
+                    VStack {
+                        HStack {
+                            NavigationLink(destination: RoleView()) {
+                                Text("利用規約")
+                            }
+                            Text(" 及び ")
+                            NavigationLink(destination: PrivacyView()) {
+                                Text("プライバシーポリシー")
+                            }
+                        }
+                        Text("に同意の上ご利用ください。")
+                    }
+                    .font(.footnote)
+                    .padding(.bottom, 30)
                     Button(action: {
                         viewModel.signup()
                     }, label: {
@@ -58,6 +69,7 @@ struct SignupView: View {
                     .cornerRadius(10)
                     Spacer()
                 }
+                .frame(width: screen.width * 19 / 20)
             }
         }
     }

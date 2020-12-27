@@ -12,7 +12,7 @@ target 'StudyLevel_' do
   pod 'Firebase/Auth'
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
-  pod 'NCMB', :git => 'https://github.com/NIFTYCloud-mbaas/ncmb_ios.git'
+  pod 'lottie-ios'
   
   target 'StudyLevel_Tests' do
     inherit! :search_paths

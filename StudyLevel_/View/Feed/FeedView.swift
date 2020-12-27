@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FeedView: View {
     @Binding var isNotLogin: Bool
-    @ObservedObject var viewModel = FeedViewModel()
+    @StateObject var viewModel = FeedViewModel()
     @State var screen: CGSize = UIScreen.main.bounds.size
     @State var error = false
     @State var errorMessage = ""

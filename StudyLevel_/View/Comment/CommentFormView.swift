@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CommentFormView: View {
     var timeReportId: Int
-    @ObservedObject var viewModel: CommentFormViewModel
+    @StateObject var viewModel: CommentFormViewModel
     @Binding var reload: Bool
     @State var screen: CGSize = UIScreen.main.bounds.size
     

@@ -8,18 +8,67 @@
 import SwiftUI
 
 struct SignupOrLoginView: View {
+    @State var page = 0
+    
     var body: some View {
         ZStack {
             Color.backgroundGray
                 .edgesIgnoringSafeArea(.all)
             NavigationView {
                 VStack {
-                    Text("Welcome To StudyLevel！")
-                        .font(.largeTitle)
-                        .bold()
-                    Text("StudyLevelは、学習時間に応じてレベルが上がる学習管理アプリです。")
-                        .padding()
-                        .font(.headline)
+                    TabView(selection: $page) {
+                        VStack {
+                            HStack {
+                                Text("Welcome To")
+                                    .font(.largeTitle)
+                                    .bold()
+                                    .foregroundColor(Color(UIColor(hex: "FFD54F")))
+                                Text("StudyLevel！")
+                                    .font(.largeTitle)
+                                    .bold()
+                                    .foregroundColor(Color(UIColor(hex: "FF6F00")))
+                            }
+                            Text("StudyLevelは、学習時間に応じてレベルが上がる学習管理アプリです。")
+                                .padding()
+                                .font(.headline)
+                            LottieView(filename: "28893-book-loading")
+                        }
+                        .tag(0)
+                        VStack {
+                            Text("モチベーションを保とう")
+                                .foregroundColor(.secondary)
+                                .font(.title)
+                                .bold()
+                                .padding()
+                            Text("学習時間に応じて")
+                                .foregroundColor(.blue)
+                                .font(.title)
+                                .bold()
+                                .padding(.horizontal)
+                            Text("レベルアップ！")
+                                .foregroundColor(.blue)
+                                .font(.title)
+                                .bold()
+                            LottieView(filename: "8804-level-up-confetti-animation")
+                        }
+                        .tag(1)
+                        VStack {
+                            Text("交流しよう")
+                                .foregroundColor(.secondary)
+                                .font(.title)
+                                .bold()
+                                .padding()
+                            Text("いいねやコメントをしよう")
+                                .foregroundColor(.blue)
+                                .font(.title)
+                                .bold()
+                                .padding(.horizontal)
+                            LottieView(filename: "13450-like-animation")
+                        }
+                        .tag(2)
+                    }
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+                    .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
                     NavigationLink(destination: SignupView()) {
                         Text("いますぐ始める")
                         .font(.title3)
@@ -31,10 +80,12 @@ struct SignupOrLoginView: View {
                     }
                     NavigationLink(destination: LoginView()) {
                         Text("すでにアカウントをお持ちの方")
-                        .padding()
+                            .padding()
                     }
+                    .padding(.bottom, 30)
                 }
             }
+            .background(Color.backgroundGray)
         }
     }
 }

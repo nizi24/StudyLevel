@@ -55,7 +55,7 @@ class ProfileFormValidation {
         guard let currentUserId = CurrentUser().currentUser()?.id else {
             return true
         }
-        let request = ScreenNameAlreadyUsedRequest().screenNameAlreadyUsed(userId: currentUserId, screenName: screenName)
+        let request = AlreadyUsedRequest().screenNameAlreadyUsed(userId: currentUserId, screenName: screenName)
         var alreadyUsed = true
         let semaphore = DispatchSemaphore(value: 0)
         StudyLevelClient().send(request: request) { result in
