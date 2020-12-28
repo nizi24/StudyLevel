@@ -10,13 +10,14 @@ import SwiftUI
 struct LoginView: View {
     @ObservedObject var viewModel = LoginViewModel()
     @State var title = "通信中・・・"
+    @State var screen: CGSize = UIScreen.main.bounds.size
     
     var body: some View {
         ZStack {
             Color.backgroundGray
                 .edgesIgnoringSafeArea(.all)
             LoadingView(title: $title, isShowing: $viewModel.connecting) {
-                VStack {
+                ScrollView {
                     NavigationLink(
                         destination: ContentView(),
                         isActive: $viewModel.isLogin,
@@ -52,9 +53,9 @@ struct LoginView: View {
                     .cornerRadius(10)
                     Spacer()
                 }
+                .frame(width: screen.width * 19 / 20)
             }
         }
-        .navigationBarTitle(Text("ログイン"), displayMode: .inline)
     }
 }
 

@@ -52,6 +52,9 @@ PODS:
     - GoogleUtilities/Environment (~> 7.0)
     - GoogleUtilities/Reachability (~> 7.0)
     - GoogleUtilities/UserDefaults (~> 7.0)
+  - Google-Mobile-Ads-SDK (7.69.0):
+    - GoogleAppMeasurement (~> 7.0)
+    - GoogleUserMessagingPlatform (~> 1.1)
   - GoogleAppMeasurement (7.3.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
     - GoogleUtilities/MethodSwizzler (~> 7.0)
@@ -60,6 +63,7 @@ PODS:
     - nanopb (~> 2.30906.0)
   - GoogleDataTransport (8.1.0):
     - nanopb (~> 2.30906.0)
+  - GoogleUserMessagingPlatform (1.4.0)
   - GoogleUtilities/AppDelegateSwizzler (7.1.1):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -80,12 +84,12 @@ PODS:
   - GoogleUtilities/UserDefaults (7.1.1):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.5.0)
+  - lottie-ios (3.1.9)
   - nanopb (2.30906.0):
     - nanopb/decode (= 2.30906.0)
     - nanopb/encode (= 2.30906.0)
   - nanopb/decode (2.30906.0)
   - nanopb/encode (2.30906.0)
-  - NCMB (3.1.0)
   - PromisesObjC (1.2.11)
   - Realm (10.5.0):
     - Realm/Headers (= 10.5.0)
@@ -98,7 +102,8 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Messaging
-  - NCMB (from `https://github.com/NIFTYCloud-mbaas/ncmb_ios.git`)
+  - Google-Mobile-Ads-SDK
+  - lottie-ios
   - RealmSwift
 
 SPEC REPOS:
@@ -111,23 +116,17 @@ SPEC REPOS:
     - FirebaseInstallations
     - FirebaseInstanceID
     - FirebaseMessaging
+    - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleDataTransport
+    - GoogleUserMessagingPlatform
     - GoogleUtilities
     - GTMSessionFetcher
+    - lottie-ios
     - nanopb
     - PromisesObjC
     - Realm
     - RealmSwift
-
-EXTERNAL SOURCES:
-  NCMB:
-    :git: https://github.com/NIFTYCloud-mbaas/ncmb_ios.git
-
-CHECKOUT OPTIONS:
-  NCMB:
-    :commit: f11ec347e410179817d72ac2be21f4578b11bc5f
-    :git: https://github.com/NIFTYCloud-mbaas/ncmb_ios.git
 
 SPEC CHECKSUMS:
   Firebase: 26223c695fe322633274198cb19dca8cb7e54416
@@ -138,16 +137,18 @@ SPEC CHECKSUMS:
   FirebaseInstallations: 971df89b48ae5ee4cc2bf6935f3857a525d28550
   FirebaseInstanceID: 5ccdee6a84e6b4bb5316de0a8cd88bc749ba490d
   FirebaseMessaging: 68d1bcb14880189558a8ae57167abe0b7e417232
+  Google-Mobile-Ads-SDK: 2f288748a42920d1c744946a460896a95b0e9110
   GoogleAppMeasurement: 8d3c0aeede16ab7764144b5a4ca8e1d4323841b7
   GoogleDataTransport: 116c84c4bdeb76be2a7a46de51244368f9794eab
+  GoogleUserMessagingPlatform: b168e8c46cd8f92aa3e34b584c4ca78a411ce367
   GoogleUtilities: 3dc4ff0d5e4840e2fa8eef0889620e8c33d4218c
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
+  lottie-ios: 3a3758ef5a008e762faec9c9d50a39842f26d124
   nanopb: 1bf24dd71191072e120b83dd02d08f3da0d65e53
-  NCMB: c308972109137bf523ec1830bac16de6a31c25f4
   PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
   Realm: e1c22c3d83b229afb70ebc10e1771c91e9542d12
   RealmSwift: 6fc078d9d3fd7e58c71bfdbb694e252462f112a5
 
-PODFILE CHECKSUM: 7156532fc062ff41f767afe17ead5eaa25ce33c9
+PODFILE CHECKSUM: d5d9a24a4837bb24e71666e04f9b4a9fc382bc09
 
 COCOAPODS: 1.10.0

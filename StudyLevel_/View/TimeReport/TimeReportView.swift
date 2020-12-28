@@ -11,15 +11,27 @@ struct TimeReportView: View {
     @StateObject var viewModel = TimeReportViewModel()
     @State var screen: CGSize = UIScreen.main.bounds.size
     @State var editFormAppear = false
+    @State var changeLikesCount: Int = -1
     @Binding var reload: Bool
     var timeReport: TimeReport
-    @State var changeLikesCount: Int = -1
+    @Binding var editReload: Bool
     @ObservedObject var likesCount: LikesCount
     var currentPageUserId: Int?
 
     init(timeReport: TimeReport, reload: Binding<Bool>, currentPageUserId: Int?) {
         self.timeReport = timeReport
-        self._reload = reload
+        _reload = reload
+        _editReload = .constant(false)
+        self.currentPageUserId = currentPageUserId
+        likesCount = LikesCount(likesCount: timeReport.likesCount)
+        changeLikesCount = -1
+        self.timeReport.creator.avatarURL = timeReport.creator.avatarURL?.replacingOccurrences(of: "localhost", with: "192.168.11.10")
+    }
+    
+    init(timeReport: TimeReport, reload: Binding<Bool>, currentPageUserId: Int?, editReload: Binding<Bool>) {
+        self.timeReport = timeReport
+        _reload = reload
+        _editReload = editReload
         self.currentPageUserId = currentPageUserId
         likesCount = LikesCount(likesCount: timeReport.likesCount)
         changeLikesCount = -1
@@ -99,7 +111,7 @@ struct TimeReportView: View {
                     }
                     Spacer()
                     if viewModel.displayEditButton(creatorId: timeReport.creator.id) {
-                        NavigationLink(destination: EditTimeReportView(timeReportFormViewModel: TimeReportFormViewModel(timeReport: timeReport))) {
+                        NavigationLink(destination: EditTimeReportView(timeReportFormViewModel: TimeReportFormViewModel(timeReport: timeReport), reload: $editReload)) {
                             Image(systemName: "square.and.pencil")
                         }
                         .padding(.trailing, 20)
@@ -181,6 +193,7 @@ struct TimeReportView: View {
                             .padding(.leading, 50)
                             .padding(.trailing, 30)
                             .foregroundColor(Color.black)
+                            .fixedSize(horizontal: false, vertical: true)
                         Spacer()
                     }
                 }

@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct WeeklyTargetListItem: View {
-    @ObservedObject var viewModel: WeeklyTargetListItemViewModel
+    @StateObject var viewModel: WeeklyTargetListItemViewModel
     @State var screen: CGSize = UIScreen.main.bounds.size
     
     init(weeklyTarget: WeeklyTarget) {
-        _viewModel = ObservedObject(initialValue: WeeklyTargetListItemViewModel(weeklyTarget: weeklyTarget))
+        _viewModel = StateObject(wrappedValue: WeeklyTargetListItemViewModel(weeklyTarget: weeklyTarget))
     }
     
     var body: some View {
@@ -54,7 +54,14 @@ struct WeeklyTargetListItem: View {
                 Spacer()
             }
             .padding(.top, 10)
+            .onAppear {
+                viewModel.getExperieceRecord()
+            }
             if let experienceRecord = viewModel.experienceRecord {
+                Text("目標達成！")
+                    .foregroundColor(Color(UIColor(hex: "FF6F00")))
+                    .font(.title)
+                    .padding(.vertical, 10)
                 HStack(alignment: .bottom) {
                     Spacer()
                     Image(systemName: "arrow.turn.right.up")
@@ -70,7 +77,6 @@ struct WeeklyTargetListItem: View {
                         .foregroundColor(Color.black)
                     Spacer()
                 }
-                .padding(.top, 10)
             }
         }
     }

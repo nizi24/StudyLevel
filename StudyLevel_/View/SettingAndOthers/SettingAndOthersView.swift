@@ -14,13 +14,34 @@ struct SettingAndOthersView: View {
     var body: some View {
         NavigationView {
             List {
-                Button(action: {
-                    if viewModel.logout() {
-                        isLogin = false
+                Section(header: Text("設定")) {
+                    NavigationLink(destination: ReAuthView()) {
+                        Text("アカウント設定")
                     }
-                }, label: {
-                    Text("ログアウト")
-                })
+                    NavigationLink(destination: NotificationSettingView()) {
+                        Text("通知設定")
+                    }
+                }
+                Section(header: Text("規約")) {
+                    NavigationLink(destination: RoleView()) {
+                        Text("利用規約")
+                    }
+                    NavigationLink(destination: PrivacyView()) {
+                        Text("プライバシーポリシー")
+                    }
+                }
+                Section(header: Text("その他")) {
+                    NavigationLink(destination: LicensesView()) {
+                        Text("ライセンス")
+                    }
+                    Button(action: {
+                        if viewModel.logout() {
+                            isLogin = false
+                        }
+                    }, label: {
+                        Text("ログアウト")
+                    })
+                }
             }
             .navigationBarTitle(Text("設定・その他"), displayMode: .inline)
         }

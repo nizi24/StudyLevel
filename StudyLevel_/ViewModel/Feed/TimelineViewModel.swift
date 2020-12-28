@@ -54,7 +54,8 @@ class TimelineViewModel: ObservableObject, TimeReportsViewModelProtocol {
             return
         }
         connecting = true
-        let request = TimeReportsRequest().timeline(userId: id, limit: timeReports?.count ?? 30)
+        let timeReportsCount = timeReports?.count ?? 30
+        let request = TimeReportsRequest().timeline(userId: id, limit: timeReportsCount >= 30 ? timeReportsCount : 30)
         StudyLevelClient().send(request: request) { [weak self] result in
             switch (result) {
             case .success(let timeReports):

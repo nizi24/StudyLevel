@@ -13,6 +13,9 @@ class CurrentUser: Object {
     @objc dynamic var id = 0
     @objc dynamic var name = ""
     @objc dynamic var screenName = ""
+    @objc dynamic var level = 0
+    @objc dynamic var experience = 0
+    @objc dynamic var nextToExperience = 0
     
     
     func set() -> Result<CurrentUser, Error> {
@@ -43,6 +46,7 @@ class CurrentUser: Object {
                 }
             default: break
             }
+            getExperienceToServer()
             return results!
         } else {
             let user = realm.objects(CurrentUser.self)
@@ -67,6 +71,13 @@ class CurrentUser: Object {
             id = user!.id
             name = user!.name
             screenName = user!.screenName
+            guard let lv = user?.level, let exp = user?.experience, let toNext = user?.nextToExperience else {
+                getExperienceToServer()
+                return nil
+            }
+            level = lv
+            experience = exp
+            nextToExperience = toNext
             return self
         } else {
             return nil
@@ -81,6 +92,35 @@ class CurrentUser: Object {
         }
     }
     
+    func setExperiences(level: Int, exprience: Int, toNext: Int) {
+        let realm = try! Realm()
+        let user = realm.objects(CurrentUser.self).first
+        try! realm.write {
+            user?.level = level
+            user?.experience = experience
+            user?.experience = toNext
+        }
+    }
+    
+    private func getExperienceToServer() {
+        let request = ExperienceRequest().show(userId: id)
+        StudyLevelClient().send(request: request) { result in
+            switch result {
+            case .success(let experience):
+                DispatchQueue.main.async {
+                    let realm = try! Realm()
+                    let user = realm.objects(CurrentUser.self).first
+                    try! realm.write {
+                        user?.level = experience.level
+                        user?.experience = experience.totalExperience
+                        user?.experience = experience.experienceToNext
+                    }
+                }
+            case .failure(_): break
+            }
+        }
+    }
+    
     private func setCurrentUserToRealm() {
         let realm = try! Realm()
         try! realm.write {
@@ -89,7 +129,7 @@ class CurrentUser: Object {
     }
     
     private func realmMigration() {
-        let schemaVersion: UInt64 = 6
+        let schemaVersion: UInt64 = 7
 
         let config = Realm.Configuration(
             schemaVersion: schemaVersion,

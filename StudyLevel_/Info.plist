@@ -20,12 +20,14 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-2760885204397772~3829149350</string>
 	<key>LSApplicationCategoryType</key>
 	<array>
-		<string>en</string>
+		<string>ja</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

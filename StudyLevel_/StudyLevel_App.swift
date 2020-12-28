@@ -10,16 +10,19 @@ import Firebase
 import PartialSheet
 import FirebaseMessaging
 import UserNotifications
+import GoogleMobileAds
 
 @main
 struct StudyLevel_App: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     let sheetManager: PartialSheetManager = PartialSheetManager()
+    let levelUpViewModel = LevelUpViewModel()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(sheetManager)
+                .environmentObject(levelUpViewModel)
         }
     }
 }
@@ -28,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
         Messaging.messaging().delegate = self
         if #available(iOS 10.0, *) {
             let center = UNUserNotificationCenter.current()

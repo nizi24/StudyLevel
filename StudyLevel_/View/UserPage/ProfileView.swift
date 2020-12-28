@@ -48,12 +48,15 @@ struct ProfileView: View {
                 }
                 Spacer()
             }
-            HStack {
-                Text(viewModel.user?.profile ?? "")
-                    .font(.footnote)
-                    .padding()
-                    .frame(maxHeight: screen.height * 3 / 5)
-                Spacer()
+            if let profile = viewModel.user?.profile, !profile.isEmpty {
+                HStack {
+                    Text(profile)
+                        .font(.footnote)
+                        .padding()
+                        .frame(maxHeight: screen.height * 3 / 5)
+                        .fixedSize(horizontal: false, vertical: true)
+                    Spacer()
+                }
             }
             HStack {
                 NavigationLink(destination: FollowingView(user: viewModel.user)) {

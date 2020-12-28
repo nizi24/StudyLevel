@@ -75,10 +75,7 @@ class ProfileFormViewModel: ObservableObject {
                 validationErrorMessages.append("プロフィールは160文字以内である必要があります。")
             }
         }
-        if validationErrorMessages.isEmpty {
-            return true
-        }
-        return false
+        return validationErrorMessages.isEmpty
     }
     
     enum AlertType {

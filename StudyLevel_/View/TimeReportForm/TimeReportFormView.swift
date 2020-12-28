@@ -143,6 +143,11 @@ struct TimeReportFormView: View {
                             .foregroundColor(Color.red)
                     }
                 }
+                if !keyboardObserver.isShowing {
+                    AdView(unitID: "ca-app-pub-2760885204397772/7075287463")
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 40)
+                }
             }.addPartialSheet()
             if keyboardObserver.isShowing {
                 Button(action: {
