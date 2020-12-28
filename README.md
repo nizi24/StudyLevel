@@ -7,6 +7,8 @@
 時間に応じてレベルアップする学習記録iOSアプリ
 Webアプリ 「PolPa」 をiosアプリとしてリメイクしたものです。
 
+SwiftUIを使用して開発しています。
+
 [PolPa リンク](https://polpa.work)
 
 [PolPa リポジトリ](https://github.com/nizi24/PolPa)
@@ -44,6 +46,13 @@ Webアプリ 「PolPa」 をiosアプリとしてリメイクしたものです�
 - フィード
 
 ![StudyLevel_README_Images 003](https://user-images.githubusercontent.com/62362974/103184120-d571e580-48f9-11eb-84f0-1a1d09c52cab.jpeg)
+
+- プッシュ通知
+
+配信サービスは Firebase Cloud Messaging を使用しています。
+
+![8xGQPWjwiqdlfFD1609121838_1609121870](https://user-images.githubusercontent.com/62362974/103185329-4b2c8000-48ff-11eb-8ec1-7fc2eddb0c27.png)
+
 
 ## :computer: Version
 
