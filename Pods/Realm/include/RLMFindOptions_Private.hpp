@@ -17,14 +17,13 @@
 ////////////////////////////////////////////////////////////////////////////
 
 #import <Realm/RLMFindOptions.h>
-#import "sync/remote_mongo_collection.hpp"
+
+#import <realm/object-store/sync/mongo_collection.hpp>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RLMFindOptions ()
-
 - (realm::app::MongoCollection::FindOptions)_findOptions;
-
 @end
 
 NS_ASSUME_NONNULL_END
