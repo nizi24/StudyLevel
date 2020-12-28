@@ -1,6 +1,9 @@
 # StudyLevel
 
-![Icon-180](https://user-images.githubusercontent.com/62362974/103183613-e2d9a080-48f6-11eb-811e-22e38cb59ca9.png)
+![Icon-80](https://user-images.githubusercontent.com/62362974/103183629-fd137e80-48f6-11eb-8a9a-a3b95735224e.png)
+
+![EBix5lwPap3KnKr1609119242_1609119251](https://user-images.githubusercontent.com/62362974/103183861-6e9ffc80-48f8-11eb-9d89-ad1e6819eacb.png)
+
 
 ## :sparkler: Overview
 
