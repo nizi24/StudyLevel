@@ -46,6 +46,12 @@ Webアプリ 「PolPa」 をiosアプリとしてリメイクしたものです�
 
 ![StudyLevel_README_Images 003](https://user-images.githubusercontent.com/62362974/103184120-d571e580-48f9-11eb-84f0-1a1d09c52cab.jpeg)
 
+## :computer: Version
+
+- swift 5.3.1
+- Xcode 12.2
+- iOS 14.0
+
 ## 👀 Author
 
 - [Twitter](https://twitter.com/nizi_24a)
