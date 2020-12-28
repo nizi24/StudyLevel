@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CanvasRestorationUserActivityTitleKey</key>
+	<string>SwiftUI.ModifiedContent&lt;StudyLevel_.ContentView, SwiftUI._EnvironmentKeyWritingModifier&lt;Swift.Optional&lt;PartialSheet.PartialSheetManager&gt;&gt;&gt;-1</string>
+	<key>CanvasRestorationUserActivityTypeKey</key>
+	<string>com.apple.SwiftUI.stateRestoration</string>
+	<key>CanvasRestorationUserActivityUserInfoDataKey</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
+	AAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICV8QKENhbnZhc1Jlc3RvcmF0aW9uVXNlckFj
+	dGl2aXR5VXNlckluZm9LZXmAAaMLDBNVJG51bGzTDQ4PEBESV05TLmtleXNaTlMub2Jq
+	ZWN0c1YkY2xhc3OgoIAC0hQVFhdaJGNsYXNzbmFtZVgkY2xhc3Nlc1xOU0RpY3Rpb25h
+	cnmiFhhYTlNPYmplY3QIERokKTI3SUx3eX2DipKdpKWmqK24wc7RAAAAAAAAAQEAAAAA
+	AAAAGQAAAAAAAAAAAAAAAAAAANo=
+	</data>
+</dict>
+</plist>

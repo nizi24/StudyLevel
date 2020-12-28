@@ -15,11 +15,12 @@ protocol Request {
     var method: HTTPMethod { get }
     var queryItems: [URLQueryItem]? { get }
     var body: Encodable? { get }
+    var contentType: String? { get }
 }
 
 extension Request {
     var baseURL: URL {
-        URL(string: "http://192.168.11.9:3000")!
+        URL(string: "https://polpa-api.herokuapp.com")!
     }
     
     func buildURLRequest() -> URLRequest {
@@ -31,8 +32,13 @@ extension Request {
         case .get:
             components?.queryItems = queryItems
         case .post: fallthrough
-        case .patch:
-            urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        case .patch: fallthrough
+        case .delete:
+            if let contentType = contentType {
+                urlRequest.addValue(contentType + ";boundary=----BoundaryZLdHZy8HNaBmUX0d", forHTTPHeaderField: "Content-Type")
+            } else {
+                urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            }
         default: break
         }
         
@@ -51,5 +57,3 @@ extension Request {
         }
     }
 }
-
-

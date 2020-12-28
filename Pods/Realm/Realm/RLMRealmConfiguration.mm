@@ -23,11 +23,11 @@
 #import "RLMSchema_Private.hpp"
 #import "RLMUtil.hpp"
 
-#import "schema.hpp"
-#import "shared_realm.hpp"
+#import <realm/object-store/schema.hpp>
+#import <realm/object-store/shared_realm.hpp>
 
 #if REALM_ENABLE_SYNC
-#import "sync/sync_config.hpp"
+#import <realm/sync/config.hpp>
 #else
 @class RLMSyncConfiguration;
 #endif
@@ -233,6 +233,9 @@ static bool isSync(realm::Realm::Config const& config) {
     if (deleteRealmIfMigrationNeeded) {
         if (self.readOnly) {
             @throw RLMException(@"Cannot set `deleteRealmIfMigrationNeeded` when `readOnly` is set.");
+        }
+        if (isSync(_config)) {
+            @throw RLMException(@"Cannot set 'deleteRealmIfMigrationNeeded' when sync is enabled ('syncConfig' is set).");
         }
         _config.schema_mode = realm::SchemaMode::ResetFile;
     }

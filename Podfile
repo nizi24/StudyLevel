@@ -10,6 +10,10 @@ target 'StudyLevel_' do
   pod 'RealmSwift'
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
+  pod 'lottie-ios'
+  pod 'Google-Mobile-Ads-SDK'
   
   target 'StudyLevel_Tests' do
     inherit! :search_paths
