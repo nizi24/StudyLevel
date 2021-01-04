@@ -211,6 +211,35 @@ class UserPageViewModel: ObservableObject {
         }
     }
     
+    func block() {
+        guard let currentUserId = CurrentUser().currentUser()?.id else {
+            return
+        }
+        let request = BlockRequest().create(currentUserId: currentUserId, userId: id)
+        StudyLevelClient().send(request: request) { result in
+            switch result {
+            case .success(let blockedId):
+                BlockDB().create(blockedUserId: blockedId)
+            case .failure(_): break
+            }
+        }
+    }
+    
+    func unblock() {
+        guard let currentUserId = CurrentUser().currentUser()?.id else {
+            return
+        }
+        let request = BlockRequest().delete(currentUserId: currentUserId, userId: id)
+        StudyLevelClient().send(request: request) { result in
+            switch result {
+            case .success(let blockedId):
+                BlockDB().delete(blockedUserId: blockedId)
+            case .failure(_): break
+            }
+        }
+
+    }
+    
     func progress() -> Double? {
         guard let experienceToNext = experience?.experienceToNext, let requiredEXP = requiredEXP?.requiredEXP else {
             return nil

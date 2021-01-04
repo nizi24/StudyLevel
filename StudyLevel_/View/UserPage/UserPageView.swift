@@ -15,6 +15,7 @@ struct UserPageView: View {
     @State var screen: CGSize = UIScreen.main.bounds.size
     @State var title = "通信中・・・"
     @State var reload = false
+    @State var otherUserSetting = false
     
     init(id: Int, error: Binding<Bool>, errorMessage: Binding<String>) {
         self.id = id
@@ -33,14 +34,19 @@ struct UserPageView: View {
                         ProfileView(viewModel: viewModel, userId: id)
                             .background(Color.white)
                             .padding()
-                        ExperienceProgressView(viewModel: viewModel)
-                            .frame(height: 100)
-                            .padding()
-                            .background(Color.white)
-                        WeeklyTargetView(viewModel: viewModel)
-                            .frame(height: 100)
-                            .padding()
-                            .background(Color.white)
+                        if !BlockDB().find(userId: id) {
+                            ExperienceProgressView(viewModel: viewModel)
+                                .frame(height: 100)
+                                .padding()
+                                .background(Color.white)
+                            WeeklyTargetView(viewModel: viewModel)
+                                .frame(height: 100)
+                                .padding()
+                                .background(Color.white)
+                        } else {
+                            Text("ブロック中")
+                                .foregroundColor(.red)
+                        }
                         Spacer()
                         VStack {
                             if let timeReports = viewModel.timeReports {
@@ -54,7 +60,7 @@ struct UserPageView: View {
                                 }
                             }
                         }
-                        if let timeReports = viewModel.timeReports {
+                        if let timeReports = viewModel.timeReports, !BlockDB().find(userId: id) {
                             if !timeReports.isEmpty && timeReports.count % 30 == 0 {
                                 Button(action: {
                                     viewModel.getTimeReportMore()
@@ -96,7 +102,25 @@ struct UserPageView: View {
                                     NavigationLink(destination: UserTagDetailView(user: user), label: {
                                         Image(systemName: "tag")
                                     }).padding()
-                                })})
+                                })}, trailing: Button(action: {
+                                    self.otherUserSetting = true
+                                }, label: {
+                                    Image(systemName: "gearshape")
+                                }).actionSheet(isPresented: $otherUserSetting) {
+                                    if BlockDB().find(userId: id) {
+                                        return ActionSheet(title: Text("設定"), message: nil,
+                                                    buttons: [.destructive(Text("ブロック解除"), action: {
+                                                        viewModel.unblock()
+                                                        viewModel.getToServer()
+                                                    }), .cancel(Text("キャンセル"))])
+                                    } else {
+                                        return ActionSheet(title: Text("設定"), message: nil,
+                                                    buttons: [.destructive(Text("ブロック"), action: {
+                                                        viewModel.block()
+                                                        viewModel.getToServer()
+                                                    }), .cancel(Text("キャンセル"))])
+                                    }
+                                })
                         }
 
                     }

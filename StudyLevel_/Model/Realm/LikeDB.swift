@@ -39,7 +39,6 @@ class LikeDB: Object {
     }
     
     func find(comment: Comment) -> Bool {
-        print(Realm.Configuration.defaultConfiguration.fileURL)
         let realm = try! Realm()
         if realm.objects(Self.self).filter("likeableType == 'Comment' AND likeableId == %@", comment.id).first != nil {
             return true

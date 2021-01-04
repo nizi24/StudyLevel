@@ -98,6 +98,7 @@ class ContentViewModel: ObservableObject {
         case .success(let user):
             id = user.id
             likesSetToRealm()
+            blockingSetToRealm()
         case .failure(StudyLevelClientError.communicationFailed):
             error = true
             errorMessage = "通信に失敗しました。"
@@ -115,6 +116,20 @@ class ContentViewModel: ObservableObject {
                 LikeDB().deleteAll()
                 for like in likes {
                     LikeDB().createAndSave(like: like)
+                }
+            case .failure(_): break
+            }
+        }
+    }
+    
+    private func blockingSetToRealm() {
+        let request = BlocksRequest().index(userId: id)
+        StudyLevelClient().send(request: request) { result in
+            switch result {
+            case .success(let blocks):
+                BlockDB().deleteAll()
+                for block in blocks {
+                    BlockDB().create(blockedUserId: block.blockedId)
                 }
             case .failure(_): break
             }

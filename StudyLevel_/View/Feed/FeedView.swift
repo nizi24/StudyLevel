@@ -33,7 +33,7 @@ struct FeedView: View {
                 }
                 AdView(unitID: "ca-app-pub-2760885204397772/3214087597")
                     .frame(maxWidth: .infinity)
-                    .frame(height: 40)
+                    .frame(height: 50)
             }
             .navigationBarItems(leading: NavigationLink(destination: RankingView()) {
                 Image(systemName: "crown")

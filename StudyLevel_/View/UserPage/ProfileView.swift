@@ -48,7 +48,7 @@ struct ProfileView: View {
                 }
                 Spacer()
             }
-            if let profile = viewModel.user?.profile, !profile.isEmpty {
+            if let profile = viewModel.user?.profile, !profile.isEmpty, !BlockDB().find(userId: viewModel.id) {
                 HStack {
                     Text(profile)
                         .font(.footnote)

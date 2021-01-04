@@ -69,6 +69,11 @@ struct TimeReportViewNonNavigationLink: View {
                     }
                     .padding(.trailing, 20)
                 }
+                NavigationLink(destination: WebView(req: URLRequest(url: URL(string: "https://polpa.work/contact")!))) {
+                    Text("通報")
+                        .font(.caption)
+                }
+                .padding()
             }
             HStack {
                 Image(systemName: "calendar")
