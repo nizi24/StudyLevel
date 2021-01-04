@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TimeReportSearchView: View {
-    @ObservedObject var viewModel: SearchViewModel
+    @StateObject var viewModel: SearchViewModel
     @State var word = ""
     @State var reload = false
     @State var screen: CGSize = UIScreen.main.bounds.size

@@ -146,7 +146,7 @@ struct TimeReportFormView: View {
                 if !keyboardObserver.isShowing {
                     AdView(unitID: "ca-app-pub-2760885204397772/7075287463")
                         .frame(maxWidth: .infinity)
-                        .frame(height: 40)
+                        .frame(height: 50)
                 }
             }.addPartialSheet()
             if keyboardObserver.isShowing {

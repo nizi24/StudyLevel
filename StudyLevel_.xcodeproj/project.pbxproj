@@ -189,6 +189,11 @@
 		6ABF39052568F9D3009CAEF3 /* TagsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABF39042568F9D3009CAEF3 /* TagsRequest.swift */; };
 		6AC656F525712AAF003FCAB1 /* TimeReportValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC656F425712AAF003FCAB1 /* TimeReportValidation.swift */; };
 		6AC656FA25712AF7003FCAB1 /* SignupValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC656F925712AF7003FCAB1 /* SignupValidation.swift */; };
+		6AE2414825997F60000921CC /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE2414725997F60000921CC /* WebView.swift */; };
+		6AE241502599B197000921CC /* BlocksRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE2414F2599B197000921CC /* BlocksRequest.swift */; };
+		6AE241552599B1BC000921CC /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE241542599B1BC000921CC /* Block.swift */; };
+		6AE2415A2599B260000921CC /* BlockRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE241592599B260000921CC /* BlockRequest.swift */; };
+		6AE2415F2599B35E000921CC /* BlockDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE2415E2599B35E000921CC /* BlockDB.swift */; };
 		6AEF714B25635E370078E333 /* SignupValidationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEF714A25635E370078E333 /* SignupValidationTest.swift */; };
 		6AEF715D2563651D0078E333 /* SuguMemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEF715C2563651D0078E333 /* SuguMemoUITests.swift */; };
 		6AEF716525636E7B0078E333 /* SignupViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEF716425636E7B0078E333 /* SignupViewModelTest.swift */; };
@@ -423,6 +428,11 @@
 		6ABF39042568F9D3009CAEF3 /* TagsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsRequest.swift; sourceTree = "<group>"; };
 		6AC656F425712AAF003FCAB1 /* TimeReportValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeReportValidation.swift; sourceTree = "<group>"; };
 		6AC656F925712AF7003FCAB1 /* SignupValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupValidation.swift; sourceTree = "<group>"; };
+		6AE2414725997F60000921CC /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		6AE2414F2599B197000921CC /* BlocksRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlocksRequest.swift; sourceTree = "<group>"; };
+		6AE241542599B1BC000921CC /* Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
+		6AE241592599B260000921CC /* BlockRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockRequest.swift; sourceTree = "<group>"; };
+		6AE2415E2599B35E000921CC /* BlockDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockDB.swift; sourceTree = "<group>"; };
 		6AEF714A25635E370078E333 /* SignupValidationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupValidationTest.swift; sourceTree = "<group>"; };
 		6AEF715C2563651D0078E333 /* SuguMemoUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuguMemoUITests.swift; sourceTree = "<group>"; };
 		6AEF716425636E7B0078E333 /* SignupViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModelTest.swift; sourceTree = "<group>"; };
@@ -496,6 +506,7 @@
 				6A35E8192594C42B003E776B /* ModalView.swift */,
 				6A35E81E2594C756003E776B /* LevelUpView.swift */,
 				6AF7CB5625977DEB004EF6AA /* AdView.swift */,
+				6AE2414725997F60000921CC /* WebView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -553,6 +564,7 @@
 				6A61D271258E3E7A004BA0CE /* Notice.swift */,
 				6A61D2B6258F7EC2004BA0CE /* WeeklyTargetExperienceRecord.swift */,
 				6A61D3052590D00A004BA0CE /* Setting.swift */,
+				6AE241542599B1BC000921CC /* Block.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -638,6 +650,7 @@
 			children = (
 				6A4CC9BC2578E727005565D4 /* UserAvatarDB.swift */,
 				6A87F755257BC08100781F99 /* LikeDB.swift */,
+				6AE2415E2599B35E000921CC /* BlockDB.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -714,6 +727,8 @@
 				6A61D2BB258F7FC6004BA0CE /* WeeklyTargetExperienceRecordRequest.swift */,
 				6A61D30A2590D137004BA0CE /* SettingRequest.swift */,
 				6A61D3192590E2AE004BA0CE /* EmailRequest.swift */,
+				6AE2414F2599B197000921CC /* BlocksRequest.swift */,
+				6AE241592599B260000921CC /* BlockRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -869,7 +884,6 @@
 		6AB298E025614DE8003D2792 = {
 			isa = PBXGroup;
 			children = (
-				6A10FDB4256154EE00B98D18 /* GoogleService-Info.plist */,
 				6AB298EB25614DE8003D2792 /* StudyLevel_ */,
 				6AB298FD25614DEA003D2792 /* StudyLevel_Tests */,
 				6AB2990825614DEA003D2792 /* StudyLevel_UITests */,
@@ -892,6 +906,7 @@
 		6AB298EB25614DE8003D2792 /* StudyLevel_ */ = {
 			isa = PBXGroup;
 			children = (
+				6A10FDB4256154EE00B98D18 /* GoogleService-Info.plist */,
 				6ABDD05D2589F56000FD061D /* StudyLevel_.entitlements */,
 				6A0B8C8225615844009BD8EC /* Model */,
 				6A0B8C8125615839009BD8EC /* ViewModel */,
@@ -1253,6 +1268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A6AE1892583DB680025CE18 /* SearchUser.swift in Sources */,
+				6AE241552599B1BC000921CC /* Block.swift in Sources */,
 				6A61D268258E1F20004BA0CE /* DeviceRequest.swift in Sources */,
 				6A87F74C257BAB4100781F99 /* Like.swift in Sources */,
 				6A61D26D258E2064004BA0CE /* DeviceRegister.swift in Sources */,
@@ -1323,6 +1339,7 @@
 				6AA0F0CE2572096C00F59074 /* TimeReportFormView.swift in Sources */,
 				6A61D272258E3E7A004BA0CE /* Notice.swift in Sources */,
 				6A61D296258F302C004BA0CE /* NotificationViewModel.swift in Sources */,
+				6AE241502599B197000921CC /* BlocksRequest.swift in Sources */,
 				6A2B4EA225669F0200D7CE7F /* CreateTimeReportView.swift in Sources */,
 				6A6811722565F07000510D73 /* LoginViewModel.swift in Sources */,
 				6A6AE1042583520B0025CE18 /* TagPageView.swift in Sources */,
@@ -1349,6 +1366,7 @@
 				6AC656F525712AAF003FCAB1 /* TimeReportValidation.swift in Sources */,
 				6A6AE22B25878B6F0025CE18 /* UserTagDetailViewModel.swift in Sources */,
 				6A6AE0E32583126C0025CE18 /* FollowButtonView.swift in Sources */,
+				6AE2415A2599B260000921CC /* BlockRequest.swift in Sources */,
 				6A61D34625935FF1004BA0CE /* RoleView.swift in Sources */,
 				6A6AE1D12584C9510025CE18 /* WeeklyTargetFormView.swift in Sources */,
 				6AEF71812563C22D0078E333 /* HTTPMethod.swift in Sources */,
@@ -1378,6 +1396,7 @@
 				6A6AE1A22584503F0025CE18 /* TagSearchRequest.swift in Sources */,
 				6A61D2AD258F7D8D004BA0CE /* WeeklyTargetListItem.swift in Sources */,
 				6A2B4EA725669F2F00D7CE7F /* UserPageView.swift in Sources */,
+				6AE2415F2599B35E000921CC /* BlockDB.swift in Sources */,
 				6A6AE1AF258450EB0025CE18 /* TagSearchView.swift in Sources */,
 				6A6AE1672583B4E50025CE18 /* RankingUserListItem.swift in Sources */,
 				6ABDD0252589A18000FD061D /* FollowingViewModel.swift in Sources */,
@@ -1387,6 +1406,7 @@
 				6A446DCB256A8B2100AC93DF /* ExtensionStringRegex.swift in Sources */,
 				6A61D31A2590E2AE004BA0CE /* EmailRequest.swift in Sources */,
 				6ABDD0112588F75400FD061D /* SearchTimeReportWithTagView.swift in Sources */,
+				6AE2414825997F60000921CC /* WebView.swift in Sources */,
 				6A6AE0FB258351D20025CE18 /* TagPageViewModel.swift in Sources */,
 				6A6AE18E2583DC7C0025CE18 /* SearchUserRequest.swift in Sources */,
 				6A446DB1256A3BAF00AC93DF /* WeeklyTarget.swift in Sources */,
@@ -1602,7 +1622,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yunishida.StudyLevel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "StudyLevel Dev";
@@ -1630,7 +1650,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yunishida.StudyLevel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "StudyLevel Dev";
