@@ -50,7 +50,7 @@ SwiftUIを使用して開発しています。
 - プッシュ通知
 
 配信サービスは Firebase Cloud Messaging を使用しています。
-
+<strong>現在、プッシュ通知が配信されない問題を確認しています。原因が分かり次第、修正します。</strong>
 ![8xGQPWjwiqdlfFD1609121838_1609121870](https://user-images.githubusercontent.com/62362974/103185329-4b2c8000-48ff-11eb-8ec1-7fc2eddb0c27.png)
 
 
