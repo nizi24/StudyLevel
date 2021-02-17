@@ -13,9 +13,11 @@ class FollowRequest: Request {
     var queryItems: [URLQueryItem]?
     var body: Encodable?
     var contentType: String?
+    var idToken: String?
     typealias Response = Int
     
-    func follow(userId: Int, currentUserId: Int) -> Self {
+    func follow(userId: Int, currentUserId: Int, idToken: String) -> Self {
+        self.idToken = idToken
         path = "/v1/users/\(userId)/follow"
         let params = ["current_user_id": currentUserId]
         do {
@@ -26,7 +28,8 @@ class FollowRequest: Request {
         return self
     }
     
-    func unfollow(userId: Int, currentUserId: Int) -> Self {
+    func unfollow(userId: Int, currentUserId: Int, idToken: String) -> Self {
+        self.idToken = idToken
         path = "/v1/users/\(userId)/unfollow"
         method = .delete
         let params = ["current_user_id": currentUserId]
@@ -38,7 +41,8 @@ class FollowRequest: Request {
         return self
     }
     
-    func follow(tagId: Int, currentUserId: Int) -> Self {
+    func follow(tagId: Int, currentUserId: Int, idToken: String) -> Self {
+        self.idToken = idToken
         path = "/v1/tags/\(tagId)/follow"
         let params = ["user_id": currentUserId]
         do {
@@ -49,7 +53,8 @@ class FollowRequest: Request {
         return self
     }
     
-    func unfollow(tagId: Int, currentUserId: Int) -> Self {
+    func unfollow(tagId: Int, currentUserId: Int, idToken: String) -> Self {
+        self.idToken = idToken
         path = "/v1/tags/\(tagId)/unfollow"
         method = .delete
         let params = ["user_id": currentUserId]

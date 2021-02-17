@@ -14,17 +14,25 @@ class NewestTimeReportsViewModel: ObservableObject, TimeReportsViewModelProtocol
     @Published var errorMessage = ""
     @Published var message = ""
     @Published var subMessage = ""
+    var contentViewModel: ContentViewModel
+    
+    init(contentViewModel: ContentViewModel) {
+        self.contentViewModel = contentViewModel
+        contentViewModel.likesSetToRealm()
+    }
     
     func getTimeReports() {
         connecting = true
         let timeReportsCount = timeReports?.count ?? 30
         let request = TimeReportsRequest().index(limit: timeReportsCount >= 30 ? timeReportsCount : 30)
+        contentViewModel.likesSetToRealm()
         StudyLevelClient().send(request: request) { [weak self] result in
             switch (result) {
             case .success(let timeReports):
                 DispatchQueue.main.async {
                     self?.timeReports = timeReports
                     self?.connecting = false
+                    self?.contentViewModel.likesSetToRealm()
                 }
             case .failure(_):
                 DispatchQueue.main.async {

@@ -30,6 +30,7 @@ class ContentViewModel: ObservableObject {
             case .success(let notices):
                 DispatchQueue.main.async {
                     self?.notices = notices
+                    self?.currentUserSet()
                 }
             case .failure(_): break
             }
@@ -63,14 +64,16 @@ class ContentViewModel: ObservableObject {
         guard let id = CurrentUser().currentUser()?.id else {
             return
         }
-        let request = NoticesRequest().check(userId: id, limit: notices.count == 0 ? 30 : notices.count)
-        StudyLevelClient().send(request: request) { [weak self] result in
-            switch result {
-            case .success(let notices):
-                DispatchQueue.main.async {
-                    self?.notices = notices
+        CurrentUser().getIdToken { idToken in
+            let request = NoticesRequest().check(userId: id, limit: self.notices.count == 0 ? 30 : self.notices.count, idToken: idToken)
+            StudyLevelClient().send(request: request) { [weak self] result in
+                switch result {
+                case .success(let notices):
+                    DispatchQueue.main.async {
+                        self?.notices = notices
+                    }
+                case .failure(_): break
                 }
-            case .failure(_): break
             }
         }
     }
@@ -92,7 +95,7 @@ class ContentViewModel: ObservableObject {
         }
     }
     
-    private func currentUserSet() {
+    func currentUserSet() {
         let result = CurrentUser().set()
         switch result {
         case .success(let user):
@@ -108,7 +111,7 @@ class ContentViewModel: ObservableObject {
         }
     }
     
-    private func likesSetToRealm() {
+    func likesSetToRealm() {
         let request = LikesRequest().index(userId: id)
         StudyLevelClient().send(request: request) { result in
             switch (result) {
@@ -122,16 +125,18 @@ class ContentViewModel: ObservableObject {
         }
     }
     
-    private func blockingSetToRealm() {
-        let request = BlocksRequest().index(userId: id)
-        StudyLevelClient().send(request: request) { result in
-            switch result {
-            case .success(let blocks):
-                BlockDB().deleteAll()
-                for block in blocks {
-                    BlockDB().create(blockedUserId: block.blockedId)
+    func blockingSetToRealm() {
+        CurrentUser().getIdToken { idToken in
+            let request = BlocksRequest().index(userId: self.id, idToken: idToken)
+            StudyLevelClient().send(request: request) { result in
+                switch result {
+                case .success(let blocks):
+                    BlockDB().deleteAll()
+                    for block in blocks {
+                        BlockDB().create(blockedUserId: block.blockedId)
+                    }
+                case .failure(_): break
                 }
-            case .failure(_): break
             }
         }
     }

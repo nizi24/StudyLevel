@@ -15,8 +15,10 @@ class TimelineViewModel: ObservableObject, TimeReportsViewModelProtocol {
     @Published var followingCount: Int?
     @Published var message = ""
     @Published var subMessage = ""
+    var contentViewModel: ContentViewModel
     
-    init() {
+    init(contentViewModel: ContentViewModel) {
+        self.contentViewModel = contentViewModel
         getFollowingCount()
     }
     
@@ -27,6 +29,7 @@ class TimelineViewModel: ObservableObject, TimeReportsViewModelProtocol {
             return
         }
         let request = FollowCountRequest().followingCount(id: id)
+        contentViewModel.likesSetToRealm()
         StudyLevelClient().send(request: request) { [weak self] result in
             switch result {
             case .success(let followingCount):

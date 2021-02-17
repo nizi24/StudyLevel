@@ -24,19 +24,21 @@ class AccountSettingViewModel: ObservableObject {
             return
         }
         connecting = true
-        let request = EmailRequest().getEmail(uid: uid)
-        StudyLevelClient().send(request: request) { [weak self] result in
-            switch result {
-            case .success(let email):
-                DispatchQueue.main.async {
-                    self?.email = email
-                    self?.connecting = false
-                }
-            case .failure(_):
-                DispatchQueue.main.async {
-                    self?.errorMessage = "通信に失敗しました。"
-                    self?.alertType = .error
-                    self?.alert = true
+        CurrentUser().getIdToken { idToken in
+            let request = EmailRequest().getEmail(uid: uid, idToken: idToken)
+            StudyLevelClient().send(request: request) { [weak self] result in
+                switch result {
+                case .success(let email):
+                    DispatchQueue.main.async {
+                        self?.email = email
+                        self?.connecting = false
+                    }
+                case .failure(_):
+                    DispatchQueue.main.async {
+                        self?.errorMessage = "通信に失敗しました。"
+                        self?.alertType = .error
+                        self?.alert = true
+                    }
                 }
             }
         }
@@ -56,21 +58,23 @@ class AccountSettingViewModel: ObservableObject {
                     self.alert = true
                     return
                 }
-                let request = UserRequest().update(userId: id, email: self.email)
-                StudyLevelClient().send(request: request) { [weak self] result in
-                    switch result {
-                    case .success(_):
-                        DispatchQueue.main.async {
-                            self?.alertType = .updateSuccess
-                            self?.connecting = false
-                            self?.alert = true
-                        }
-                    case .failure(_):
-                        DispatchQueue.main.async {
-                            self?.alertType = .error
-                            self?.connecting = false
-                            self?.errorMessage = "通信エラーが発生しました。"
-                            self?.alert = true
+                CurrentUser().getIdToken { idToken in
+                    let request = UserRequest().update(userId: id, email: self.email, idToken: idToken)
+                    StudyLevelClient().send(request: request) { [weak self] result in
+                        switch result {
+                        case .success(_):
+                            DispatchQueue.main.async {
+                                self?.alertType = .updateSuccess
+                                self?.connecting = false
+                                self?.alert = true
+                            }
+                        case .failure(_):
+                            DispatchQueue.main.async {
+                                self?.alertType = .error
+                                self?.connecting = false
+                                self?.errorMessage = "通信エラーが発生しました。"
+                                self?.alert = true
+                            }
                         }
                     }
                 }

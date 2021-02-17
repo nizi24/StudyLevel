@@ -13,6 +13,7 @@ class NoticesRequest: Request {
     var queryItems: [URLQueryItem]?
     var body: Encodable?
     var contentType: String?
+    var idToken: String?
     typealias Response = [Notice]
     
     func index(userId: Int) -> Self {
@@ -32,7 +33,8 @@ class NoticesRequest: Request {
         return self
     }
     
-    func check(userId: Int, limit: Int) -> Self {
+    func check(userId: Int, limit: Int, idToken: String) -> Self {
+        self.idToken = idToken
         path = "/v2/users/\(userId)/notices/check"
         queryItems = [URLQueryItem(name: "limit", value: String(limit))]
         return self

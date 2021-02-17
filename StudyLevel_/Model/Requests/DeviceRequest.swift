@@ -13,6 +13,7 @@ class DeviceRequest: Request {
     var queryItems: [URLQueryItem]?
     var body: Encodable?
     var contentType: String?
+    var idToken: String?
     typealias Response = Device
     
     func create(userId: Int, token: String) -> Self {

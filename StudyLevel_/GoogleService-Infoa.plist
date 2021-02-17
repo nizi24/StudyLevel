@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>675439292690-1ar4eq99sd23gpmbu321gor3rh18rjsg.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.675439292690-1ar4eq99sd23gpmbu321gor3rh18rjsg</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAp0NbM-_CeJlPmnNU40cNvijXS5LSApbI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>675439292690</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.yunishida.StudyLevel</string>
+	<key>PROJECT_ID</key>
+	<string>studylevel-47929</string>
+	<key>STORAGE_BUCKET</key>
+	<string>studylevel-47929.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:675439292690:ios:b960714a26ad6faf3bc3cb</string>
+	<key>DATABASE_URL</key>
+	<string>https://studylevel-47929.firebaseio.com</string>
+</dict>
+</plist>

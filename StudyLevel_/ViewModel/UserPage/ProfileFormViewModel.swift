@@ -31,21 +31,23 @@ class ProfileFormViewModel: ObservableObject {
             return
         }
         connecting = true
-        let request = UserRequest().update(userId: currentUserId, name: name, screenName: screenName, profile: profile)
-        StudyLevelClient().send(request: request) { [weak self] result in
-            switch result {
-            case .success(_):
-                DispatchQueue.main.async {
-                    self?.connecting = false
-                    self?.alertType = .success
-                    self?.alert = true
-                }
-            case .failure(_):
-                DispatchQueue.main.async {
-                    self?.connecting = false
-                    self?.alertType = .error
-                    self?.errorMessage = "通信に失敗しました。"
-                    self?.alert = true
+        CurrentUser().getIdToken { idToken in
+            let request = UserRequest().update(userId: currentUserId, name: self.name, screenName: self.screenName, profile: self.profile, idToken: idToken)
+            StudyLevelClient().send(request: request) { [weak self] result in
+                switch result {
+                case .success(_):
+                    DispatchQueue.main.async {
+                        self?.connecting = false
+                        self?.alertType = .success
+                        self?.alert = true
+                    }
+                case .failure(_):
+                    DispatchQueue.main.async {
+                        self?.connecting = false
+                        self?.alertType = .error
+                        self?.errorMessage = "通信に失敗しました。"
+                        self?.alert = true
+                    }
                 }
             }
         }

@@ -215,12 +215,14 @@ class UserPageViewModel: ObservableObject {
         guard let currentUserId = CurrentUser().currentUser()?.id else {
             return
         }
-        let request = BlockRequest().create(currentUserId: currentUserId, userId: id)
-        StudyLevelClient().send(request: request) { result in
-            switch result {
-            case .success(let blockedId):
-                BlockDB().create(blockedUserId: blockedId)
-            case .failure(_): break
+        CurrentUser().getIdToken { idToken in
+            let request = BlockRequest().create(currentUserId: currentUserId, userId: self.id, idToken: idToken)
+            StudyLevelClient().send(request: request) { result in
+                switch result {
+                case .success(let blockedId):
+                    BlockDB().create(blockedUserId: blockedId)
+                case .failure(_): break
+                }
             }
         }
     }
@@ -229,15 +231,16 @@ class UserPageViewModel: ObservableObject {
         guard let currentUserId = CurrentUser().currentUser()?.id else {
             return
         }
-        let request = BlockRequest().delete(currentUserId: currentUserId, userId: id)
-        StudyLevelClient().send(request: request) { result in
-            switch result {
-            case .success(let blockedId):
-                BlockDB().delete(blockedUserId: blockedId)
-            case .failure(_): break
+        CurrentUser().getIdToken { idToken in
+            let request = BlockRequest().delete(currentUserId: currentUserId, userId: self.id, idToken: idToken)
+            StudyLevelClient().send(request: request) { result in
+                switch result {
+                case .success(let blockedId):
+                    BlockDB().delete(blockedUserId: blockedId)
+                case .failure(_): break
+                }
             }
         }
-
     }
     
     func progress() -> Double? {

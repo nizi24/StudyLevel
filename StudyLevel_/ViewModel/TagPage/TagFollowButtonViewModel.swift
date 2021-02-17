@@ -14,14 +14,16 @@ class TagFollowButtonViewModel: ObservableObject, FollowButtonViewModelProtocol 
         guard let userId = CurrentUser().currentUser()?.id else {
             return
         }
-        let request = FollowRequest().follow(tagId: targetId, currentUserId: userId)
-        StudyLevelClient().send(request: request) { result in
-            switch (result) {
-            case .success(_):
-                DispatchQueue.main.async {
-                    self.i = 10
+        CurrentUser().getIdToken { idToken in
+            let request = FollowRequest().follow(tagId: targetId, currentUserId: userId, idToken: idToken)
+            StudyLevelClient().send(request: request) { result in
+                switch (result) {
+                case .success(_):
+                    DispatchQueue.main.async {
+                        self.i = 10
+                    }
+                case .failure(_): break
                 }
-            case .failure(_): break
             }
         }
     }
@@ -30,14 +32,16 @@ class TagFollowButtonViewModel: ObservableObject, FollowButtonViewModelProtocol 
         guard let userId = CurrentUser().currentUser()?.id else {
             return
         }
-        let request = FollowRequest().unfollow(tagId: targetId, currentUserId: userId)
-        StudyLevelClient().send(request: request) { result in
-            switch (result) {
-            case .success(_):
-                DispatchQueue.main.async {
-                    self.i = -10
+        CurrentUser().getIdToken { idToken in
+            let request = FollowRequest().unfollow(tagId: targetId, currentUserId: userId, idToken: idToken)
+            StudyLevelClient().send(request: request) { result in
+                switch (result) {
+                case .success(_):
+                    DispatchQueue.main.async {
+                        self.i = -10
+                    }
+                case .failure(_): break
                 }
-            case .failure(_): break
             }
         }
     }

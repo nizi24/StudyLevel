@@ -23,21 +23,23 @@ class AvatarFormViewModel: ObservableObject {
             return
         }
         connecting = true
-        let request = UserRequest().update_avatar(userId: currentUserId, image: image!)
-        StudyLevelClient().send(request: request) { [weak self] result in
-            switch result {
-            case .success(_):
-                DispatchQueue.main.async {
-                    self?.connecting = false
-                    self?.alertType = .success
-                    self?.alert = true
-                }
-            case .failure(_):
-                DispatchQueue.main.async {
-                    self?.connecting = false
-                    self?.errorMessage = "通信に失敗しました。"
-                    self?.alertType = .error
-                    self?.alert = true
+        CurrentUser().getIdToken { idToken in
+            let request = UserRequest().update_avatar(userId: currentUserId, image: image!, idToken: idToken)
+            StudyLevelClient().send(request: request) { [weak self] result in
+                switch result {
+                case .success(_):
+                    DispatchQueue.main.async {
+                        self?.connecting = false
+                        self?.alertType = .success
+                        self?.alert = true
+                    }
+                case .failure(_):
+                    DispatchQueue.main.async {
+                        self?.connecting = false
+                        self?.errorMessage = "通信に失敗しました。"
+                        self?.alertType = .error
+                        self?.alert = true
+                    }
                 }
             }
         }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FeedView: View {
     @Binding var isNotLogin: Bool
+    @ObservedObject var contentViewModel: ContentViewModel
     @StateObject var viewModel = FeedViewModel()
     @State var screen: CGSize = UIScreen.main.bounds.size
     @State var error = false
@@ -25,11 +26,11 @@ struct FeedView: View {
                 .pickerStyle(SegmentedPickerStyle())
                 Spacer()
                 if viewModel.feedType == .timeline {
-                    TimeReportsView(error: $error, errorMessage: $errorMessage, viewModel: TimelineViewModel())
+                    TimeReportsView(error: $error, errorMessage: $errorMessage, viewModel: TimelineViewModel(contentViewModel: contentViewModel))
                 } else if viewModel.feedType == .tagFeed {
-                    TimeReportsView(error: $error, errorMessage: $errorMessage, viewModel: TagFeedViewModel())
+                    TimeReportsView(error: $error, errorMessage: $errorMessage, viewModel: TagFeedViewModel(contentViewModel: contentViewModel))
                 } else if viewModel.feedType == .newest {
-                    TimeReportsView(error: $error, errorMessage: $errorMessage, viewModel: NewestTimeReportsViewModel())
+                    TimeReportsView(error: $error, errorMessage: $errorMessage, viewModel: NewestTimeReportsViewModel(contentViewModel: contentViewModel))
                 }
                 AdView(unitID: "ca-app-pub-2760885204397772/3214087597")
                     .frame(maxWidth: .infinity)
@@ -48,11 +49,5 @@ struct FeedView: View {
             }
             return Alert(title: Text("完了"), message: Text("ログアウトしました。"))
         }
-    }
-}
-
-struct FeedView_Previews: PreviewProvider {
-    static var previews: some View {
-        FeedView(isNotLogin: .constant(false))
     }
 }

@@ -36,7 +36,7 @@ struct MenuView: View {
                 })
             if let currentUserId = CurrentUser().currentUser()?.id {
                 TabView(selection: $selection) {
-                    FeedView(isNotLogin: $viewModel.isNotLogin)
+                    FeedView(isNotLogin: $viewModel.isNotLogin, contentViewModel: contentViewModel)
                         .tag(0)
                     CreateTimeReportView()
                         .tag(1)

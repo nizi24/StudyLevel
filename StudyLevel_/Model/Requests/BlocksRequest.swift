@@ -13,9 +13,11 @@ class BlocksRequest: Request {
     var queryItems: [URLQueryItem]?
     var body: Encodable?
     var contentType: String?
+    var idToken: String?
     typealias Response = [Block]
     
-    func index(userId: Int) -> Self {
+    func index(userId: Int, idToken: String) -> Self {
+        self.idToken = idToken
         path = "/v2/users/\(userId)/blocks"
         return self
     }

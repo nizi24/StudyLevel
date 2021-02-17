@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 protocol Request {
     associatedtype Response: Decodable
@@ -16,11 +17,12 @@ protocol Request {
     var queryItems: [URLQueryItem]? { get }
     var body: Encodable? { get }
     var contentType: String? { get }
+    var idToken: String? { get }
 }
 
 extension Request {
     var baseURL: URL {
-        URL(string: "https://polpa-api.herokuapp.com")!
+        URL(string: "http://192.168.11.8:3000")!
     }
     
     func buildURLRequest() -> URLRequest {
@@ -45,6 +47,9 @@ extension Request {
         urlRequest.url = components?.url
         urlRequest.httpMethod = method.rawValue
         urlRequest.httpBody = body as? Data
+        if let idToken = idToken {
+            urlRequest.addValue("Bearer \(idToken)", forHTTPHeaderField: "Authorization")
+        }
         return urlRequest
     }
     

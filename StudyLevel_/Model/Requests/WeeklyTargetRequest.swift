@@ -13,6 +13,7 @@ class WeeklyTargetRequest: Request {
     var queryItems: [URLQueryItem]?
     var body: Encodable?
     var contentType: String?
+    var idToken: String?
     typealias Response = WeeklyTarget
     
     func show(userId: Int) -> Self {
@@ -20,7 +21,8 @@ class WeeklyTargetRequest: Request {
         return self
     }
     
-    func create(userId: Int, targetHour: Int, targetMinute: Int) -> Self {
+    func create(userId: Int, targetHour: Int, targetMinute: Int, idToken: String) -> Self {
+        self.idToken = idToken
         path = "/v2/users/\(userId)/weekly_targets"
         method = .post
         do {

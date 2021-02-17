@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6AB298E825614DE8003D2792"
-               BuildableName = "StudyLevel_.app"
+               BuildableName = "StudyLevel.app"
                BlueprintName = "StudyLevel_"
                ReferencedContainer = "container:StudyLevel_.xcodeproj">
             </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6AB298E825614DE8003D2792"
-            BuildableName = "StudyLevel_.app"
+            BuildableName = "StudyLevel.app"
             BlueprintName = "StudyLevel_"
             ReferencedContainer = "container:StudyLevel_.xcodeproj">
          </BuildableReference>
@@ -94,7 +94,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6AB298E825614DE8003D2792"
-            BuildableName = "StudyLevel_.app"
+            BuildableName = "StudyLevel.app"
             BlueprintName = "StudyLevel_"
             ReferencedContainer = "container:StudyLevel_.xcodeproj">
          </BuildableReference>

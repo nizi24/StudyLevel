@@ -15,8 +15,10 @@ class TagFeedViewModel: ObservableObject, TimeReportsViewModelProtocol {
     @Published var tagFollowingCount: Int?
     @Published var message = ""
     @Published var subMessage = ""
+    var contentViewModel: ContentViewModel
     
-    init() {
+    init(contentViewModel: ContentViewModel) {
+        self.contentViewModel = contentViewModel
         getFollowingCount()
     }
     
@@ -27,6 +29,7 @@ class TagFeedViewModel: ObservableObject, TimeReportsViewModelProtocol {
             return
         }
         let request = FollowCountRequest().tagFollowingCount(userId: id)
+        contentViewModel.likesSetToRealm()
         StudyLevelClient().send(request: request) { [weak self] result in
             switch result {
             case .success(let followingCount):

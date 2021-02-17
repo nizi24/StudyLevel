@@ -13,6 +13,7 @@ class ExperienceRequest: Request {
     var method: HTTPMethod = .get
     var queryItems: [URLQueryItem]?
     var body: Encodable?
+    var idToken: String?
     var contentType: String?
     
     func show(userId: Int) -> Self {

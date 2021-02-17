@@ -13,6 +13,7 @@ class MainTagsRequest: Request {
     var queryItems: [URLQueryItem]?
     var body: Encodable?
     var contentType: String?
+    var idToken: String?
     typealias Response = [MainTag]
     
     func mainTags(userId: Int) -> Self {

@@ -12,10 +12,12 @@ class LikeRequest: Request {
     var method: HTTPMethod = .post
     var queryItems: [URLQueryItem]?
     var body: Encodable?
+    var idToken: String?
     var contentType: String?
     typealias Response = Like
     
-    func create(likeableType: String, likeableId: Int, userId: Int) -> Self {
+    func create(likeableType: String, likeableId: Int, userId: Int, idToken: String) -> Self {
+        self.idToken = idToken
         let params = ["like": ["likeable_type": likeableType, "likeable_id": likeableId, "user_id": userId] ]
         do {
             body = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
@@ -25,7 +27,8 @@ class LikeRequest: Request {
         return self
     }
     
-    func delete(likeableType: String, likeableId: Int, userId: Int) -> Self {
+    func delete(likeableType: String, likeableId: Int, userId: Int, idToken: String) -> Self {
+        self.idToken = idToken
         path = "/v2/likes/delete"
         method = .post
         let params = ["like": ["likeable_type": likeableType, "likeable_id": likeableId, "user_id": userId] ]

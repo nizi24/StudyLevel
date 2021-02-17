@@ -13,6 +13,7 @@ class TagSearchRequest: Request {
     var queryItems: [URLQueryItem]?
     var body: Encodable?
     var contentType: String?
+    var idToken: String?
     typealias Response = [SearchTag]
     
     func search(name: String) -> Self {

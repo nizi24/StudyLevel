@@ -13,9 +13,11 @@ class BlockRequest: Request {
     var queryItems: [URLQueryItem]?
     var body: Encodable?
     var contentType: String?
+    var idToken: String?
     typealias Response = Int
     
-    func create(currentUserId: Int, userId: Int) -> Self {
+    func create(currentUserId: Int, userId: Int, idToken: String) -> Self {
+        self.idToken = idToken
         path = "/v2/users/\(userId)/blocks"
         do {
             let params = ["current_user_id": currentUserId]
@@ -26,7 +28,8 @@ class BlockRequest: Request {
         return self
     }
     
-    func delete(currentUserId: Int, userId: Int) -> Self {
+    func delete(currentUserId: Int, userId: Int, idToken: String) -> Self {
+        self.idToken = idToken
         path = "/v2/users/\(userId)/blocks/1"
         method = .delete
         do {

@@ -17,20 +17,22 @@ class CommentFormViewModel: ObservableObject {
         guard let id = CurrentUser().currentUser()?.id else {
             return
         }
-        let request = CommentRequest().create(userId: id, timeReportId: timeReportId, content: content)
-        StudyLevelClient().send(request: request) { [weak self] result in
-            switch(result) {
-            case .success(_):
-                DispatchQueue.main.async {
-                    self?.aleatType = .createSuccess
-                    self?.aleat = true
-                    self?.content = ""
-                }
-            case .failure(_):
-                DispatchQueue.main.async {
-                    self?.errorMessage = "通信に失敗しました。"
-                    self?.aleatType = .error
-                    self?.aleat = true
+        CurrentUser().getIdToken { idToken in
+            let request = CommentRequest().create(userId: id, timeReportId: timeReportId, content: self.content, idToken: idToken)
+            StudyLevelClient().send(request: request) { [weak self] result in
+                switch(result) {
+                case .success(_):
+                    DispatchQueue.main.async {
+                        self?.aleatType = .createSuccess
+                        self?.aleat = true
+                        self?.content = ""
+                    }
+                case .failure(_):
+                    DispatchQueue.main.async {
+                        self?.errorMessage = "通信に失敗しました。"
+                        self?.aleatType = .error
+                        self?.aleat = true
+                    }
                 }
             }
         }

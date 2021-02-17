@@ -67,7 +67,6 @@ struct TimeReportViewNonNavigationLink: View {
                     ) {
                         Image(systemName: "square.and.pencil")
                     }
-                    .padding(.trailing, 20)
                 }
                 NavigationLink(destination: WebView(req: URLRequest(url: URL(string: "https://polpa.work/contact")!))) {
                     Text("通報")

@@ -14,6 +14,7 @@ class UserRequest: Request {
     var method: HTTPMethod = .get
     var queryItems: [URLQueryItem]?
     var body: Encodable?
+    var idToken: String?
     var contentType: String?
     
     func currentUser(uid: String) -> Self {
@@ -41,7 +42,8 @@ class UserRequest: Request {
         return self
     }
     
-    func update(userId: Int, name: String, screenName: String, profile: String) -> Self {
+    func update(userId: Int, name: String, screenName: String, profile: String, idToken: String) -> Self {
+        self.idToken = idToken
         path = "/v2/users/\(userId)"
         method = .patch
         do {
@@ -53,7 +55,8 @@ class UserRequest: Request {
         return self
     }
     
-    func update(userId: Int, email: String) -> Self {
+    func update(userId: Int, email: String, idToken: String) -> Self {
+        self.idToken = idToken
         path = "/v2/users/\(userId)"
         method = .patch
         do {
@@ -65,7 +68,8 @@ class UserRequest: Request {
         return self
     }
     
-    func update_avatar(userId: Int, image: UIImage) -> Self {
+    func update_avatar(userId: Int, image: UIImage, idToken: String) -> Self {
+        self.idToken = idToken
         path = "/v2/users/\(userId)/update_avatar"
         method = .patch
         contentType = "multipart/form-data"

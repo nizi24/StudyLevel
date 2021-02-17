@@ -102,6 +102,15 @@ class CurrentUser: Object {
         }
     }
     
+    func getIdToken(completion: @escaping ((String) -> Void)) {
+        let currentUser = Auth.auth().currentUser
+        currentUser?.getIDToken { idToken, error in
+            if error == nil {
+                completion(idToken ?? "")
+            }
+        }
+    }
+    
     private func getExperienceToServer() {
         let request = ExperienceRequest().show(userId: id)
         StudyLevelClient().send(request: request) { result in

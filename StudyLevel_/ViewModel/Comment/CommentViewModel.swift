@@ -32,19 +32,21 @@ class CommentViewModel: ObservableObject {
     }
     
     func delete(commentId: Int) {
-        let request = CommentRequest().destroy(commentId: commentId)
-        StudyLevelClient().send(request: request) { [weak self] result in
-            switch (result) {
-            case .success(_):
-                DispatchQueue.main.async {
-                    self?.aleatType = .deleteSuccess
-                    self?.aleat = true
-                }
-            case .failure(_):
-                DispatchQueue.main.async {
-                    self?.aleatType = .error
-                    self?.errorMessage = "通信エラーが発生しました。"
-                    self?.aleat = true
+        CurrentUser().getIdToken { idToken in
+            let request = CommentRequest().destroy(commentId: commentId, idToken: idToken)
+            StudyLevelClient().send(request: request) { [weak self] result in
+                switch (result) {
+                case .success(_):
+                    DispatchQueue.main.async {
+                        self?.aleatType = .deleteSuccess
+                        self?.aleat = true
+                    }
+                case .failure(_):
+                    DispatchQueue.main.async {
+                        self?.aleatType = .error
+                        self?.errorMessage = "通信エラーが発生しました。"
+                        self?.aleat = true
+                    }
                 }
             }
         }

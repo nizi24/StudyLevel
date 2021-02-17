@@ -30,21 +30,23 @@ class WeeklyTargetFormViewModel: ObservableObject {
         default: break
         }
         connecting = true
-        let request = WeeklyTargetRequest().create(userId: currentUserId, targetHour: targetHour, targetMinute: targetMinute)
-        StudyLevelClient().send(request: request) { [weak self] result in
-            switch (result) {
-            case .success(_):
-                DispatchQueue.main.async {
-                    self?.aleatType = .success
-                    self?.aleat = true
-                    self?.targetHour = 0
-                    self?.targetMinute = 0
-                }
-            case .failure(_):
-                DispatchQueue.main.async {
-                    self?.aleatType = .error
-                    self?.errorMessage = "通信に失敗しました。"
-                    self?.aleat = true
+        CurrentUser().getIdToken { idToken in
+            let request = WeeklyTargetRequest().create(userId: currentUserId, targetHour: self.targetHour, targetMinute: self.targetMinute, idToken: idToken)
+            StudyLevelClient().send(request: request) { [weak self] result in
+                switch (result) {
+                case .success(_):
+                    DispatchQueue.main.async {
+                        self?.aleatType = .success
+                        self?.aleat = true
+                        self?.targetHour = 0
+                        self?.targetMinute = 0
+                    }
+                case .failure(_):
+                    DispatchQueue.main.async {
+                        self?.aleatType = .error
+                        self?.errorMessage = "通信に失敗しました。"
+                        self?.aleat = true
+                    }
                 }
             }
         }

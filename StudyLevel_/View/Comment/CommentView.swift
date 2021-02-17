@@ -61,12 +61,10 @@ struct CommentView: View {
                         }, label: {
                             Image(systemName: "trash")
                         })
-                        .padding(.trailing, 30)
                     }
                     NavigationLink(destination: WebView(req: URLRequest(url: URL(string: "https://polpa.work/contact")!))) {
                         Text("通報")
                             .font(.caption)
-                            .padding(.leading, 30)
                     }
                     .padding()
                 }

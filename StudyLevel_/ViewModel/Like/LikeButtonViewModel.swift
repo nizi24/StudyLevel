@@ -14,15 +14,17 @@ class LikeButtonViewModel: ObservableObject {
         guard let userId = CurrentUser().currentUser()?.id else {
             return
         }
-        let request = LikeRequest().create(likeableType: "TimeReport", likeableId: timeReport.id, userId: userId)
-        StudyLevelClient().send(request: request) { result in
-            switch (result) {
-            case .success(let like):
-                LikeDB().createAndSave(like: like)
-                DispatchQueue.main.async {
-                    self.i = 10
+        CurrentUser().getIdToken { idToken in
+            let request = LikeRequest().create(likeableType: "TimeReport", likeableId: timeReport.id, userId: userId, idToken: idToken)
+            StudyLevelClient().send(request: request) { result in
+                switch (result) {
+                case .success(let like):
+                    LikeDB().createAndSave(like: like)
+                    DispatchQueue.main.async {
+                        self.i = 10
+                    }
+                case .failure(_): break
                 }
-            case .failure(_): break
             }
         }
     }
@@ -31,15 +33,17 @@ class LikeButtonViewModel: ObservableObject {
         guard let userId = CurrentUser().currentUser()?.id else {
             return
         }
-        let request = LikeRequest().delete(likeableType: "TimeReport", likeableId: timeReport.id, userId: userId)
-        StudyLevelClient().send(request: request) { result in
-            switch (result) {
-            case .success(let like):
-                LikeDB().delete(likeableType: "TimeReport", likeableId: like.likeableId)
-                DispatchQueue.main.async {
-                    self.i = -10
+        CurrentUser().getIdToken { idToken in
+            let request = LikeRequest().delete(likeableType: "TimeReport", likeableId: timeReport.id, userId: userId, idToken: idToken)
+            StudyLevelClient().send(request: request) { result in
+                switch (result) {
+                case .success(let like):
+                    LikeDB().delete(likeableType: "TimeReport", likeableId: like.likeableId)
+                    DispatchQueue.main.async {
+                        self.i = -10
+                    }
+                case .failure(_): break
                 }
-            case .failure(_): break
             }
         }
     }
@@ -48,15 +52,17 @@ class LikeButtonViewModel: ObservableObject {
         guard let userId = CurrentUser().currentUser()?.id else {
             return
         }
-        let request = LikeRequest().create(likeableType: "Comment", likeableId: comment.id, userId: userId)
-        StudyLevelClient().send(request: request) { result in
-            switch (result) {
-            case .success(let like):
-                LikeDB().createAndSave(like: like)
-                DispatchQueue.main.async {
-                    self.i = 10
+        CurrentUser().getIdToken { idToken in
+            let request = LikeRequest().create(likeableType: "Comment", likeableId: comment.id, userId: userId, idToken: idToken)
+            StudyLevelClient().send(request: request) { result in
+                switch (result) {
+                case .success(let like):
+                    LikeDB().createAndSave(like: like)
+                    DispatchQueue.main.async {
+                        self.i = 10
+                    }
+                case .failure(_): break
                 }
-            case .failure(_): break
             }
         }
     }
@@ -65,15 +71,17 @@ class LikeButtonViewModel: ObservableObject {
         guard let userId = CurrentUser().currentUser()?.id else {
             return
         }
-        let request = LikeRequest().delete(likeableType: "Comment", likeableId: comment.id, userId: userId)
-        StudyLevelClient().send(request: request) { result in
-            switch (result) {
-            case .success(let like):
-                LikeDB().delete(likeableType: "Comment", likeableId: like.likeableId)
-                DispatchQueue.main.async {
-                    self.i = -10
+        CurrentUser().getIdToken { idToken in
+            let request = LikeRequest().delete(likeableType: "Comment", likeableId: comment.id, userId: userId, idToken: idToken)
+            StudyLevelClient().send(request: request) { result in
+                switch (result) {
+                case .success(let like):
+                    LikeDB().delete(likeableType: "Comment", likeableId: like.likeableId)
+                    DispatchQueue.main.async {
+                        self.i = -10
+                    }
+                case .failure(_): break
                 }
-            case .failure(_): break
             }
         }
     }

@@ -34,24 +34,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         GADMobileAds.sharedInstance().start(completionHandler: nil)
         Messaging.messaging().delegate = self
         if #available(iOS 10.0, *) {
-            let center = UNUserNotificationCenter.current()
-            center.delegate = self
+            // For iOS 10 display notification (sent via APNS)
+            UNUserNotificationCenter.current().delegate = self
 
             let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-            center.requestAuthorization(options: authOptions) { granted, error in
-                guard granted else { return }
-            
-                DispatchQueue.main.async {
-                    application.registerForRemoteNotifications()
-                }
-            }
-       } else {
-           let settings: UIUserNotificationSettings =
-               UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-           application.registerUserNotificationSettings(settings)
-       }
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+        } else {
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+        }
 
         application.registerForRemoteNotifications()
+        
         return true
     }
     
@@ -59,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         print("Firebase registration token: \(String(describing: fcmToken))")
         DeviceRegister().register(token: fcmToken)
     }
-    
+            
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
        // Called when a new scene session is being created.
        // Use this method to select a configuration to create the new scene with.
@@ -72,59 +69,58 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
    }
 
-   func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-       // Print message ID.
-       if let messageID = userInfo["gcm.message_id"] {
-           print("Message ID: \(messageID)")
-       }
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        // Print message ID.
+        if let messageID = userInfo["gcm.message_id"] {
+            print("Message ID: \(messageID)")
+        }
 
-       // Print full message.
-       print(userInfo)
-   }
+        // Print full message.
+        print(userInfo)
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        // Print message ID.
+        if let messageID = userInfo["gcm.message_id"] {
+            print("Message ID: \(messageID)")
+        }
 
-   func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
-                    fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-       // Print message ID.
-       if let messageID = userInfo["gcm.message_id"] {
-           print("Message ID: \(messageID)")
-       }
+        // Print full message.
+        print(userInfo)
 
-       // Print full message.
-       print(userInfo)
-
-       completionHandler(UIBackgroundFetchResult.newData)
-   }
+        completionHandler(UIBackgroundFetchResult.newData)
+    }
 }
 
 @available(iOS 10, *)
 extension AppDelegate : UNUserNotificationCenterDelegate {
-    
-   func userNotificationCenter(_ center: UNUserNotificationCenter,
-                               willPresent notification: UNNotification,
-                               withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-       let userInfo = notification.request.content.userInfo
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        let userInfo = notification.request.content.userInfo
 
-       if let messageID = userInfo["gcm.message_id"] {
-           print("Message ID: \(messageID)")
-       }
+        if let messageID = userInfo["gcm.message_id"] {
+            print("Message ID: \(messageID)")
+        }
 
         print(userInfo)
 
-        completionHandler([.list, .banner, .sound, .badge])
-   }
+        completionHandler([])
+    }
 
-   func userNotificationCenter(_ center: UNUserNotificationCenter,
-                               didReceive response: UNNotificationResponse,
-                               withCompletionHandler completionHandler: @escaping () -> Void) {
-       let userInfo = response.notification.request.content.userInfo
-       if let messageID = userInfo["gcm.message_id"] {
-           print("Message ID: \(messageID)")
-       }
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        if let messageID = userInfo["gcm.message_id"] {
+            print("Message ID: \(messageID)")
+        }
 
-       print(userInfo)
+        print(userInfo)
 
-       completionHandler()
-   }
+        completionHandler()
+    }
 }
 
 extension Color {

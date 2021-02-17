@@ -90,7 +90,8 @@ PODS:
     - nanopb/encode (= 2.30906.0)
   - nanopb/decode (2.30906.0)
   - nanopb/encode (2.30906.0)
-  - PromisesObjC (1.2.11)
+  - NCMB (3.1.0)
+  - PromisesObjC (1.2.12)
   - Realm (10.5.0):
     - Realm/Headers (= 10.5.0)
   - Realm/Headers (10.5.0)
@@ -104,6 +105,7 @@ DEPENDENCIES:
   - Firebase/Messaging
   - Google-Mobile-Ads-SDK
   - lottie-ios
+  - NCMB (from `https://github.com/NIFTYCloud-mbaas/ncmb_ios.git`)
   - RealmSwift
 
 SPEC REPOS:
@@ -128,6 +130,15 @@ SPEC REPOS:
     - Realm
     - RealmSwift
 
+EXTERNAL SOURCES:
+  NCMB:
+    :git: https://github.com/NIFTYCloud-mbaas/ncmb_ios.git
+
+CHECKOUT OPTIONS:
+  NCMB:
+    :commit: f11ec347e410179817d72ac2be21f4578b11bc5f
+    :git: https://github.com/NIFTYCloud-mbaas/ncmb_ios.git
+
 SPEC CHECKSUMS:
   Firebase: 26223c695fe322633274198cb19dca8cb7e54416
   FirebaseAnalytics: 2580c2d62535ae7b644143d48941fcc239ea897a
@@ -145,10 +156,11 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   lottie-ios: 3a3758ef5a008e762faec9c9d50a39842f26d124
   nanopb: 1bf24dd71191072e120b83dd02d08f3da0d65e53
-  PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
+  NCMB: c308972109137bf523ec1830bac16de6a31c25f4
+  PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   Realm: e1c22c3d83b229afb70ebc10e1771c91e9542d12
   RealmSwift: 6fc078d9d3fd7e58c71bfdbb694e252462f112a5
 
-PODFILE CHECKSUM: d5d9a24a4837bb24e71666e04f9b4a9fc382bc09
+PODFILE CHECKSUM: e6f0f9cb0e3c6f18e8083f67da764d9ac6b12635
 
 COCOAPODS: 1.10.0

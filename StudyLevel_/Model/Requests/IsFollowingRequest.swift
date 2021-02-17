@@ -13,6 +13,7 @@ class IsFollowingRequest: Request {
     var queryItems: [URLQueryItem]?
     var body: Encodable?
     var contentType: String?
+    var idToken: String?
     typealias Response = Bool
     
     func is_following(targetUserId: Int, currentUserId: Int) -> Self {

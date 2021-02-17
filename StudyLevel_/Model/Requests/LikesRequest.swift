@@ -13,6 +13,7 @@ class LikesRequest: Request {
     var queryItems: [URLQueryItem]?
     var body: Encodable?
     var contentType: String?
+    var idToken: String?
     typealias Response = [Like]
     
     func index(userId: Int) -> Self {

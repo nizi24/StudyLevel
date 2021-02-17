@@ -13,6 +13,7 @@ class WeeklyTargetExperienceRecordRequest: Request {
     var queryItems: [URLQueryItem]?
     var body: Encodable?
     var contentType: String?
+    var idToken: String?
     typealias Response = WeeklyTargetExperienceRecord
     
     func show(userId: Int, weeklyTargetId: Int) -> Self {

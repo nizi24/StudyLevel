@@ -74,6 +74,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>NCMB.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-StudyLevel_-StudyLevel_UITests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
